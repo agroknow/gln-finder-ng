@@ -211,7 +211,7 @@ function getItemJSON(urlTemp)
 //!!! Function may change to follow the storage format ../3LastDigits/XXX3LastDigits
 function getFeaturedItems(items, urlPath)
 {
-    var itemsPerSlide = 4;
+    var itemsPerSlide = 3;
     var numOfSlides= Math.ceil(items.length/itemsPerSlide); //rounds up the value
     
     var functionsQueue = [];
@@ -219,6 +219,7 @@ function getFeaturedItems(items, urlPath)
     
     for(var i=0;i<numOfSlides;i++)
     {
+        jQuery('#FeaturedItemsSlider').append('<div class="slider_page"><ul id="slide'+i+'">');
         
     }
     
@@ -227,27 +228,23 @@ function getFeaturedItems(items, urlPath)
     for(var i=0; i<itemsLength;i++)//every item
     {
         
-        //jQuery('#FeaturedItemsSlider').append('<div id="slide'+ i +'" class="slider_page">')
-        
-        //alert("outer: i: "+i);
-
-        //for(var j=0; j<itemsPerSlide; j++) //for every position in the slide page
-        //{
-            
-            //itemIndexInItemsArray = i*itemsPerSlide + j;
             
             var fileUrl = urlPath + items[i] + ".json";
-                         
-            var position = "middle";
-            if(i%itemsPerSlide===0 || i===0 ){position="start";}
-            if(i%itemsPerSlide===1){position="end";}
         
-            console.log('TEST1-position:'+position);
+            var belongsToSlide = Math.floor(i/itemsPerSlide);
         
-        //we add the called functions in a Queue because ajax is asynchronous and
-        //creates problems inside the for loops
-            var thisItem = getFeaturedItem(fileUrl, position);
+            console.log('TEST1-belongsToSlide:'+belongsToSlide);
+        
+        
+            var thisItem = getFeaturedItem(fileUrl, belongsToSlide);
+        
+        
             functionsQueue.push(thisItem);
+        
+            if(i===itemsLength-1)
+            {var changeToSlide = function(){jQuery('#FeaturedItemsSlider').addClass("is_slider");} }
+        
+            functionsQueue.push(changeToSlide);
             
                  
         //}//end inner loop - j
@@ -263,7 +260,7 @@ function getFeaturedItems(items, urlPath)
 
 //CHANGE THIS FUNCTION WITH GEORGE.
 //CONFLICT PROBLEMS WITH SLIDERs JQUERY AND getJSON AJAX CALLS
-function getFeaturedItem(urlTemp, position)
+function getFeaturedItem(urlTemp, belongsToSlide)
 {
     
     jQuery.ajax({
@@ -284,11 +281,7 @@ function getFeaturedItem(urlTemp, position)
                 
                 languageBlock = data.languageBlocks[k][language[0]]; // We always get language[0] as key
                 
-                if(position==="start"){jQuery('#FeaturedItemsSlider').append('<div class="slider_page"><ul><li class="clearfix slider_page_listitem movie_label"><div><h2><a href="#">1.Livestock Vaccination - FMD_Neemadi_MP_SPS</a></h2><p>The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).</p><div class="info clearfix"><div class="floatleft"><label>Keywords:</label><a href="#">Digital Green,</a><a href="#">Cattle,</a></div></div></div></li>');}
-                
-                if(position==="middle"){jQuery('#FeaturedItemsSlider').append('<div class="slider_page"><ul><li class="clearfix slider_page_listitem movie_label"><div><h2><a href="#">1.Livestock Vaccination - FMD_Neemadi_MP_SPS</a></h2><p>The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).</p><div class="info clearfix"><div class="floatleft"><label>Keywords:</label><a href="#">Digital Green,</a><a href="#">Cattle,</a></div></div></div></li>');}
-                
-                if(position==="end"){jQuery('#FeaturedItemsSlider').append('<li class="clearfix slider_page_listitem movie_label"><div><h2><a href="#">1.Livestock Vaccination - FMD_Neemadi_MP_SPS</a></h2><p>The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).</p><div class="info clearfix"><div class="floatleft"><label>Keywords:</label><a href="#">Digital Green,</a><a href="#">Cattle,</a></div></div></div></li></ul></div>');}
+                jQuery('#slide'+belongsToSlide).append('<li class="clearfix slider_page_listitem movie_label"><div><h2><a href="#">'+languageBlock.title+'</a></h2><p>The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).</p><div class="info clearfix"><div class="floatleft"><label>Keywords:</label><a href="#">Digital Green,</a><a href="#">Cattle,</a></div></div></div></li>');
                 
                 
                 }}
@@ -301,11 +294,7 @@ function getFeaturedItem(urlTemp, position)
                 
                 languageBlock = data.languageBlocks[language[0]]; // We always get language[0] as key
                 
-                if(position==="start"){jQuery('#FeaturedItemsSlider').append('<div class="slider_page"><ul><li class="clearfix slider_page_listitem movie_label"><div><h2><a href="#">1.Livestock Vaccination - FMD_Neemadi_MP_SPS</a></h2><p>The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).</p><div class="info clearfix"><div class="floatleft"><label>Keywords:</label><a href="#">Digital Green,</a><a href="#">Cattle,</a></div></div></div></li>');}
-                
-                if(position==="middle"){jQuery('#FeaturedItemsSlider').append('<li class="clearfix slider_page_listitem movie_label"><div><h2><a href="#">1.Livestock Vaccination - FMD_Neemadi_MP_SPS</a></h2><p>The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).</p><div class="info clearfix"><div class="floatleft"><label>Keywords:</label><a href="#">Digital Green,</a><a href="#">Cattle,</a></div></div></div></li>');}
-                
-                if(position==="end"){jQuery('#FeaturedItemsSlider').append('<li class="clearfix slider_page_listitem movie_label"><div><h2><a href="#">1.Livestock Vaccination - FMD_Neemadi_MP_SPS</a></h2><p>The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).</p><div class="info clearfix"><div class="floatleft"><label>Keywords:</label><a href="#">Digital Green,</a><a href="#">Cattle,</a></div></div></div></li></ul></div>');}
+                jQuery('#slide'+belongsToSlide).append('<li class="clearfix slider_page_listitem movie_label"><div><h2><a href="#">'+languageBlock.title+'</a></h2><p>The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).</p><div class="info clearfix"><div class="floatleft"><label>Keywords:</label><a href="#">Digital Green,</a><a href="#">Cattle,</a></div></div></div></li>');
               
                 
                 
