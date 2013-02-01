@@ -1,1 +1,1 @@
-This is the GLN-finder*New Generation*
+This is the GLN-finder New Generation
