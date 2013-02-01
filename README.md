@@ -1,1 +1,1 @@
-THIS IS THE GLN FINDER OLE OLE OLE
+This is the GLN-finder*New Generation*
