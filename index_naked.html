@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Organic Edunet</title>
+
+
+<link href="./images/OrganicEdunet_Logo_small.png" rel="shortcut icon">
+<link type="text/css" rel="stylesheet" href="./style/finder.css">
+
+<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.8.1/build/yahoo-dom-event/yahoo-dom-event.js&2.8.1/build/container/container_core-min.js&2.8.1/build/datasource/datasource-min.js&2.8.1/build/element/element-min.js&2.8.1/build/paginator/paginator-min.js&2.8.1/build/datatable/datatable-min.js&2.8.1/build/json/json-min.js&2.8.1/build/selector/selector-min.js&2.8.1/build/layout/layout-min.js"></script>
+    
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    
+<SCRIPT type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></SCRIPT>
+
+
+
+<SCRIPT type="text/javascript" src="javascript/prototype.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="javascript/jsonp.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="javascript/sha1.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="javascript/jaml-all.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="javascript/finder.js"></SCRIPT>
+    
+<SCRIPT type="text/javascript" src="javascript/ariadne-json.js"></SCRIPT>
+    
+<!--<SCRIPT type="text/javascript" src="json2.js"></SCRIPT>-->
+
+
+</head>
+
+<body onload="getFullJSON('http://83.212.100.142:8081/ariadne_finder_jsons/test-7.json' );">
+	
+																				<!---HEADER -->
+    <p id="destination"></p>
+
+
+				<div>
+					<form name="searchForm" id="searchForm" action="" method="post" onsubmit="doSearch(); return false;">
+						<div>
+							<input type="text" name="query" id="query" class="withplaceholder" placeholder="Search..." />
+						</div>
+						<input type="submit" value="submit" />
+					</form>
+				</div>
+
+				<div id="searchMessage"></div>
+
+	<!---END HEADER -->
+    
+    
+  
+    <div id="stage"></div>
+    <div id="testme"></div>
+    
+    
+    
+	
+	<table width="100%" cellspacing="0" style="">
+	<tr>
+	<!-- Summary -->
+	<td id="insert_summary" colspan="3"></td>
+	</tr>
+
+	<tr>
+	<!-- Facets -->
+	<td id="insert_facets" class="lineRight" valign="top">
+	</td>
+	<!-- Results -->
+	<td valign="top">
+	<div id="insert_pagination_top" style="display:none"></div>
+	<div id="insert_results"></div>
+
+
+	<div id="insert_pagination_bottom"></div><br>
+
+
+
+	</td>
+	<!-- More Results -->
+	<td id="insert_moreResults" class="lineLeft" valign="top"></td>
+
+	<div id="search_results"></div>
+	
+	</tr>
+	<!-- Separator Bottom -->
+	<tr>
+	<td colspan="3">
+		<div class="separator_bottom">
+			<DIV id="secondary_nav">
+				<A href="http://ariadne.cs.kuleuven.be/trac/newticket?component=finder">Report Problem</A> - 
+				<A href="http://www.ariadne-eu.org/index.php?option=com_contact&Itemid=70">Contact</A>
+			</DIV>
+		</div>
+	</td>
+	</tr>
+	</table>
+
+	
+
+<script type="text/javascript">
+/*
+ * function customizeFinder() is called at initialisation time
+ * you need to change values repositoryName and serviceUrl
+ * and also the same values inside the -finder.js- !
+ */
+function customizeFinder() {
+	return {
+		"externalSources": ["wp","scr","ss","gb"],
+        "pageContainers": ['bottom','top'],
+		"facets": ["language","lrt","format","lom.classification.taxonpath.taxon.entry.string","rights"],
+		"limitFacetDisplay": {"language":["en","eng;","eng","eng; eng","el","fr","nl","de","et","hu","ro","tr"]},
+        "maxLengthDescription":  300,
+		"pageSize": 12,
+		"repositoryName": "Organic.Edunet",//find this in the ariadne.properties file inside your Ariadne folder  ex."repositoryName":"AriadneNext Repository"
+		//"repositoryName":"AriadneNext Repository",
+        "serviceUrl":"http://83.212.96.169:8080/repository2/api/ariadne/restp" //ex. "serviceUrl":"http://localhost:8080/api/ariadne/restp"
+		
+        
+	}
+}
+</script>
+
+
+
+</body></html>

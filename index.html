@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+	<head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Organic Edunet</title>
+		<!--[if (gte IE 6)&(lte IE 8)]>
+			<script type="text/javascript" src="js/selectivizr-min.js"></script>
+		<![endif]-->
+		
+		<link rel="stylesheet" href="style/reset.css" />
+		
+		<!-- more css -->
+		<link rel="stylesheet" href="style/select2.css" />
+		<link rel="stylesheet" href="style/jMenu.jquery.css" />
+		<link rel="stylesheet" href="style/layerslider.css" />
+		
+		<link rel="stylesheet" href="style/style.css" />
+		<!--[if !IE 7]>
+			<style type="text/css">
+				#wrap {display:table;height:100%}
+			</style>
+		<![endif]-->
+		<script src="js/modernizr-1.7.min.js"></script>
+        
+        <!--from index_naked-->
+        <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.8.1/build/yahoo-dom-event/yahoo-dom-event.js&2.8.1/build/container/container_core-min.js&2.8.1/build/datasource/datasource-min.js&2.8.1/build/element/element-min.js&2.8.1/build/paginator/paginator-min.js&2.8.1/build/datatable/datatable-min.js&2.8.1/build/json/json-min.js&2.8.1/build/selector/selector-min.js&2.8.1/build/layout/layout-min.js"></script>
+        
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        
+        <SCRIPT type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></SCRIPT>
+        
+        <SCRIPT type="text/javascript" src="javascript/prototype.js"></SCRIPT>
+        <SCRIPT type="text/javascript" src="javascript/jsonp.js"></SCRIPT>
+        <SCRIPT type="text/javascript" src="javascript/sha1.js"></SCRIPT>
+        <SCRIPT type="text/javascript" src="javascript/jaml-all.js"></SCRIPT>
+        <SCRIPT type="text/javascript" src="javascript/finder.js"></SCRIPT>
+        <script type="text/javascript" src="js/ariadne-json.js"></script>
+	
+	</head>
+	
+	<body>
+    <!--onload="getFeaturedItems(['9383', '14260', '3383','13013', '41432', '13260', '4118', '8013'], 'http://83.212.100.142:8081/ariadne_finder_jsons/' );"-->
+        
+		<section id="wrap">
+
+			<header id="mainheader">
+				<div class="top-menu">
+					<div class="inner">
+						<div class="top-menu-body">
+							<!--<a href="#">Sign In</a> or <a href="#">Register</a>-->
+							<!--<select id="lang-selector">
+                             <option value="en">English</option>
+                             <option value="gr">Greek</option>
+                             </select>-->
+						</div>
+					</div>
+				</div>
+				<div class="main_search_block inner clearfix">
+					<a href="#" class="logo">Organic.Edunet</a>
+					<div class="logo_menu">
+						<ul>
+							<li><a href="#">menu 1</a></li>
+							<li><a href="#">menu 2</a></li>
+							<li><a href="#">menu a bit big big big big</a></li>
+							<li><a href="#">menu 4</a></li>
+						</ul>
+					</div>
+					<div class="moduletable_mainsearch">
+						<div>
+							<form>
+								<div>
+									<input type="text" name="search" class="withplaceholder" placeholder="Search..." />
+								</div>
+								<input type="submit" value="submit" />
+							</form>
+							<div class="alignright">
+								<a href="#" id="ext_search">Extended search</a>
+							</div>
+						</div>
+					</div>
+					<div class="moduletable_extendedsearch">
+						<form>
+							<div class="clearfix radioline">
+								<label><input type="radio" name="radio" checked="checked">All words</label>
+								<label><input type="radio" name="radio">Exact phrase</label>
+							</div>
+							<div class="clearfix selectline">
+								<label>
+									<span>Language:</span>
+									<select id="select_1">
+										<option value="en">English</option>
+										<option value="fr">French</option>
+										<option value="sp">Spanish</option>
+										<option value="gr">Greek</option>
+									</select>
+								</label>
+								<label>
+									<span>Order:</span>
+									<select id="select_2">
+										<option value="asc">Asc</option>
+										<option value="desc">Desc</option>
+									</select>
+								</label>
+							</div>
+							<div class="clearfix selectline">
+								<label>
+									<span>Educational level:</span>
+									<select id="select_3">
+										<option value="lv1">Level 1</option>
+										<option value="lv2">Level 2</option>
+										<option value="lv3">Level 3</option>
+									</select>
+								</label>
+								<label>
+									<span>Resource Type:</span>
+									<select id="select_4">
+										<option value="tp1">Type 1</option>
+										<option value="tp2">Type 2</option>
+									</select>
+								</label>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="inner">
+					<nav>
+						<ul id="jMenu">
+							<li class="active"><a class="fNiv" href="#">Home</a></li>
+                            <li><a class="fNiv" href="#">Browse All</a></li>
+							<!--<li class="hassubmenu">
+								<a class="fNiv">Search</a>
+								<ul>
+									<li><a>Category 2.1</a>
+										<ul>
+											<li><a>Category 2.1.1</a></li>
+										</ul>
+									</li>
+									<li><a>Category 2.2</a>
+										<ul>
+											<li><a>Category 2.2.1</a></li>
+											<li><a>Category 2.2.2</a></li>
+										</ul>
+									</li>
+									<li><a>Category 2.3</a></li>
+                                    
+								</ul>
+							</li>
+							<li><a class="fNiv" href="#">Network</a></li>-->
+						</ul>
+					</nav>
+				</div>
+			</header>
+			
+			<section id="slideshow-wrapper">
+				
+				<div class="inner">
+					
+					<div id="layerslider">
+						
+						<div class="ls-layer">
+							<img class="ls-bg" src="images/slideshow/slide_bg.png" alt="layer">
+							<p style="top:62px;left:25px;" class="ls-s1">
+								<span class="biggreen">green</span>
+								<span class="biggreen">ideas</span>
+								<span class="lightgreen">palermo | italy</span>
+							</p>
+							<p style="top:227px;left:25px;" class="ls-s2">
+								<span class="normalgreen">Green Education</span>
+								<span class="normalgreen">for Green Innovation</span>
+							</p>
+							<img style="top:12px;left:366px;" class="ls-s3" src="images/slideshow/leaf_1.png" alt="sublayer" rel="durationin: 2200; easingin: easeOutQuad" />
+							<img style="top:136px;left:770px;" class="ls-s4" src="images/slideshow/leaf_2.png" alt="sublayer" rel="durationin: 2000; easingin: easeOutQuad" />
+							<img style="top:218px;left:300px;" class="ls-s5" src="images/slideshow/leaf_3.png" alt="sublayer" rel="durationin: 1800; easingin: easeOutQuad" />
+						</div>
+						
+						<div class="ls-layer">
+							<img class="ls-bg" src="images/slideshow/slide_bg.png" alt="layer">
+							<p style="top:62px;left:25px;" class="ls-s1">
+								<span class="biggreen">green</span>
+								<span class="biggreen">ideas</span>
+								<span class="lightgreen">palermo | italy</span>
+							</p>
+							<p style="top:227px;left:25px;" class="ls-s2">
+								<span class="normalgreen">Green Education</span>
+								<span class="normalgreen">for Green Innovation</span>
+							</p>
+							<img style="top:12px;left:366px;" class="ls-s3" src="images/slideshow/leaf_1.png" alt="sublayer" rel="durationin: 2200; easingin: easeOutQuad" />
+							<img style="top:136px;left:770px;" class="ls-s4" src="images/slideshow/leaf_2.png" alt="sublayer" rel="durationin: 2000; easingin: easeOutQuad" />
+							<img style="top:218px;left:300px;" class="ls-s5" src="images/slideshow/leaf_3.png" alt="sublayer" rel="durationin: 1800; easingin: easeOutQuad" />
+						</div>
+				
+						<div class="ls-layer">
+							<img class="ls-bg" src="images/slideshow/slide_bg.png" alt="layer">
+							<p style="top:62px;left:25px;" class="ls-s1">
+								<span class="biggreen">green</span>
+								<span class="biggreen">ideas</span>
+								<span class="lightgreen">palermo | italy</span>
+							</p>
+							<p style="top:227px;left:25px;" class="ls-s2">
+								<span class="normalgreen">Green Education</span>
+								<span class="normalgreen">for Green Innovation</span>
+							</p>
+							<img style="top:12px;left:366px;" class="ls-s3" src="images/slideshow/leaf_1.png" alt="sublayer" rel="durationin: 2200; easingin: easeOutQuad" />
+							<img style="top:136px;left:770px;" class="ls-s4" src="images/slideshow/leaf_2.png" alt="sublayer" rel="durationin: 2000; easingin: easeOutQuad" />
+							<img style="top:218px;left:300px;" class="ls-s5" src="images/slideshow/leaf_3.png" alt="sublayer" rel="durationin: 1800; easingin: easeOutQuad" />
+						</div>
+						
+					</div>
+					
+				</div>
+				
+			</section>
+			
+			<section id="main">
+				<div class="inner">
+					
+					<section class="slider_block">
+						<h2 class="centerheader"><span>Featured Sections</span></h2>
+						
+						<div class="slider">
+						
+							<a class="prev browse left"></a>
+ 
+							<!-- root element for scrollable -->
+							<div class="scrollable" id="scrollable">
+							 
+							  <!-- root element for the items -->
+							  <div class="items">
+							 
+							    <div>
+								<a href="index-school.html" class="school">School</a>
+								<a href="#" class="academic">Academic</a>
+								<a href="#" class="professional">Professional</a>
+								<a href="#" class="casual">Casual</a>
+							    </div>
+							    <!--<div>
+								<a href="#" class="school">School</a>
+								<a href="#" class="academic">Academic</a>
+								<a href="#" class="professional">Professional</a>
+								<a href="#" class="casual">Casual</a>
+							    </div>
+							    <div>
+								<a href="#" class="school">School</a>
+								<a href="#" class="academic">Academic</a>
+								<a href="#" class="professional">Professional</a>
+								<a href="#" class="casual">Casual</a>
+							    </div>-->
+							 
+							  </div>
+							 
+							</div>
+							 
+							<!-- "next page" action -->
+							<a class="next browse right"></a>
+						
+						</div>
+						
+					</section>
+					
+                                                        <!--FEATURED RESOURCES-->
+					
+					<div class="twocols clearfix">
+						
+						<div class="width330">
+							<div class="moduletable slidermodule">
+								<h3>Featured Resources</h3>
+								<div class="articles_mod_list is_slider">
+									
+									<!-- page 1 -->
+									<div class="slider_page">
+										<div class="slider_page_singleitem">
+											<a href="#" class="hasshadow">
+												<img src="images/sample_big_thumb.jpg" alt="thumb" width="318" height="183" />
+											</a>
+											<h2>
+												<a href="#">Preparation of nursery bed for onion in
+rainy seson</a>
+											</h2>
+											<p>
+												The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).
+											</p>
+											<div class="info clearfix">
+												<div class="floatleft">{j! rating}</div>
+												<a href="#">View reviewing history</a>
+												<a href="#">View rating history</a>
+											</div>
+										</div>
+									</div>
+									<!-- page 2 -->
+									<div class="slider_page">
+										<div class="slider_page_singleitem">
+											<a href="#" class="hasshadow">
+												<img src="images/sample_big_thumb.jpg" alt="thumb" width="318" height="183" />
+											</a>
+											<h2>
+												<a href="#">Preparation of nursery bed for onion in
+rainy seson</a>
+											</h2>
+											<p>
+												The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).
+											</p>
+											<div class="info clearfix">
+												<div class="floatleft">{j! rating}</div>
+												<a href="#">View reviewing history</a>
+												<a href="#">View rating history</a>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						
+                        
+                                                                <!--LATEST RESOURCES-->
+                        
+                        
+						<div class="width570">
+							<div class="moduletable slidermodule">
+								<h3>Latest Resources</h3>
+								<div id="FeaturedItemsSlider" class="articles_mod_list is_slider">
+									
+									<!-- page 1 -->
+									<div class="slider_page">
+										<ul>
+											<li class="clearfix slider_page_listitem movie_label">
+												<div>
+													<h2>
+														<a href="item.html?id=9383">Agricultural alternatives : beekeeping</a>
+													</h2>
+													<p>This document was prepared by Maryann Frazier et al. of Pennsylvania State University, and provides information on the benefits of beekeeping.  Topics covered include planning ahead, marketing, acquiring bees, diseases and mites, and a sample budget.  A list of useful addresses, books, and resources for further information is provided.</p>
+													<div class="info clearfix">
+														<div class="floatleft">
+															<label>Keywords:</label>
+															<a href="#">beekeeping,</a>
+															<a href="#">honey bees,</a>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li class="clearfix slider_page_listitem movie_label">
+												<div>
+													<h2>
+														<a href="item.html?id=14260">Food Policy Institute</a>
+													</h2>
+													<p>The Food Policy Institute is an academic research unit of Rutgers State University of New Jersey, and studies issues facing food production, marketing, distribution, and regulation systems. Research projects and publications include biosecurity, nutrition evaluation, food safety, consumer knowledge and attitudes, and economic impact. A wide range of project and research reports is freely available at this site, together with information on the staff and activities of the Institute.</p>
+													<div class="info clearfix">
+														<div class="floatleft">
+															<label>Keywords:</label>
+															<a href="#">government policy, </a>
+															<a href="#">food industry,</a>
+															<a href="#">food security,</a>
+															<a href="#">food policy</a>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li class="clearfix slider_page_listitem movie_label">
+												<div>
+													<h2>
+														<a href="item.html?id=3383">Ocean Careers Exploration</a>
+													</h2>
+													<p>In this lesson, groups of students will gather information about the various careers of the members of the Ocean Adventures expedition team as well as learn about the strengths of having a team of diverse individuals working on a task.</p>
+													<div class="info clearfix">
+														<div class="floatleft">
+															<label>Keywords:</label>
+															<a href="#">greenoer,</a>
+															<a href="#">water,</a>
+															<a href="#">eco_culture,</a>
+															<a href="#">careers</a>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									
+									<!-- page 2 -->
+									<div class="slider_page">
+										<ul>
+											<li class="clearfix slider_page_listitem movie_label">
+												<div>
+													<h2>
+														<a href="item.html?id=13260">National Agricultural Law Center, University of Arkansas</a>
+													</h2>
+													<p>This website is part of the school of law at the University of Arkansas. The center provides expertise in agricultural law and is funded by the USDA agricultural research service. The center provides educational resources, carries out research into agricultural law and provides information through the national agricultural library, AGRICOLA and AgNIC (agricultural network information center). The website is split into details of the centre, a large number of categorised information resources, an index of publications by the centre, a glossary of relevant agricultural terms, and a library of relevant Websites. Many publications are available for downloading.</p>
+													<div class="info clearfix">
+														<div class="floatleft">
+															<label>Keywords:</label>
+															<a href="#">agricultural research,</a>
+															<a href="#">information centres,</a>
+															<a href="#">agricultural education,</a>
+															<a href="#">agricultural law</a>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li class="clearfix slider_page_listitem movie_label">
+												<div>
+													<h2>
+														<a href="item.html?id=4118">Agribusiness : an international journal</a>
+													</h2>
+													<p>This is the homepage of Agribusiness, an international scholarly journal published by John Wiley and Sons, in the area of economic analysis of firms and markets in industrial food systems. The journal was published bimonthly until 1998, then quarterly from 1999 onwards. Table of contents and abstracts can be browsed from 1985 (Volume 1) onwards, with references available for each article. Full text is only available to subscribers. The site also gives scope details, subscription information and instructions for  authors.</p>
+													<div class="info clearfix">
+														<div class="floatleft">
+															<label>Keywords:</label>
+															<a href="#">journals,</a>
+															<a href="#">agroindustrial sector,</a>
+															<a href="#">markets,</a>
+															<a href="#">economic analysis</a>
+														</div>
+													</div>
+												</div>
+											</li>
+											<li class="clearfix slider_page_listitem movie_label">
+												<div>
+													<h2>
+														<a href="item.html?id=8013">"Fair" policies for the coffee trade - protecting people or biodiversity?</a>
+													</h2>
+													<p>We investigate the role that economic instruments can play in the eradication of poverty and preservation of biodiversity in agroforestry management in coffee production. Most of the world's coffee producers live in poverty and manage agroecosystems in regions that culturally and biologically are among the most diverse on the globe. Despite the relatively recent finding that bees can augment pollination and boost coffee crop yields substantially, the short-term revenues to be had from intense monoculture drive land-use decisions that destroy forest strips serving as habitats for pollinating insects. Our study investigates the possibility of multiple equilibria in the adoption of technology in coffee production; farmers specialize in environmentally detrimental (sun-grown) or sustainable (shade-grown) farming or both practices co-exist. We calibrate an empirical model to characterize the equilibria and investigate the ecological and economic impacts of alternative policy instruments, among these protection fees, price premiums and a minimum wage.</p>
+													<div class="info clearfix">
+														<div class="floatleft">
+															<label>Keywords:</label>
+															<a href="#">coffee markets,</a>
+															<a href="#">coffee trade,</a>
+															<a href="#">biodiversity,</a>
+															<a href="#">price premium</a>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									
+									
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<section class="supporters">
+					<div class="inner aligncenter">
+						<a href="#" class="developed_by">Developed by</a>
+						<a href="#" class="operated_by">Operated by</a>
+						<a href="#" class="designed_by">Designed by</a>
+						<a href="#" class="supported_by">With partial EU funding support from</a>
+					</div>
+				</section>
+				
+			</section>
+		
+		</section>
+		
+		<footer id="mainfooter">
+			<div class="inner clearfix">
+				<section class="floatleft footerblock">
+					<h3>Collections</h3>
+					<ul>
+						<li><a href="#">School</a></li>
+						<li><a href="#">Academic</a></li>
+						<li><a href="#">Professional</a></li>
+						<li><a href="#">Casual</a></li>
+					</ul>
+					<h3>Search</h3>
+					<ul>
+						<li><a href="#">Browse</a></li>
+						<li><a href="#">Semantic</a></li>
+						<li><a href="#">Suggest</a></li>
+					</ul>
+					
+				</section>
+				<section class="floatleft footerblock">
+					<h3>Community</h3>
+					<ul>
+						<li><a href="#">Why register</a></li>
+						<li><a href="#">Create an account</a></li>
+						<li><a href="#">Sign in</a></li>
+					</ul>
+					<h3 class="aboutus">About Us</h3>
+					<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected</p>
+				</section>
+				<section class="floatleft footerblock">
+					<h3>Newsletter</h3>
+				</section>
+				<section class="floatright footerblock">
+					<h3>Connect with us</h3>
+					<div class="clearfix footer_social">
+						<a href="#">fb</a>
+						<a href="#">twitter</a>
+						<a href="#">linkin</a>
+						<a href="#">googleplus</a>
+						<a href="#">youtube</a>
+						<a href="#">diaspora</a>
+					</div>
+				</section>
+			</div>
+		</footer>
+		
+		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+		<script src="http://cdn.jquerytools.org/1.2.7/all/jquery.tools.min.js"></script>
+		<!-- include Select2 plugin -->
+		<script src="js/select2.js"></script>
+		<!-- include Placeholder plugin -->
+		<script src="js/jquery.placeholder.min.js"></script>
+		<!-- include JMenu plugin -->
+		<script src="js/jMenu.jquery.min.js"></script>
+		<!-- include Paralax plugin -->
+		<script src="js/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
+		<!-- include Cycle plugin -->
+		<script src="js/jquery.cycle.all.js" type="text/javascript"></script>
+		<!-- include Screw Default Buttons plugin -->
+		<script src="js/jquery.screwdefaultbuttonsV2.min.js" type="text/javascript"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function () {
+				function format(state) {
+					if (!state.id) return state.text; // optgroup
+					return "<img class='flag' alt='flag' src='style/images/flag_" + state.id.toLowerCase() + ".jpg'/>" + state.text;
+				}
+				$("#lang-selector").select2({
+					minimumResultsForSearch:100,
+					formatResult: format,
+					formatSelection: format
+				})
+				$(".withplaceholder").placeholder();
+				$("#ext_search").click(function (event) {
+					event.preventDefault()
+					$("div.moduletable_extendedsearch").slideToggle("slow");
+				});
+				$('input:radio').screwDefaultButtons({
+					image: 'url("style/images/radio.png")',
+					width: 12,
+					height: 14
+				});
+				
+				$(".selectline select").select2({
+					minimumResultsForSearch:100,
+					dropdownCssClass:"simple"
+				})
+				
+				$("#jMenu").jMenu();
+				
+				$('#layerslider').layerSlider({
+					navPrevNext : false,
+					navStartStop : false,
+					skin : 'lightskin',
+					skinsPath : 'style/skins/'
+				});
+				
+				$('.is_slider').each(function() {
+					var $navWrap = $('<div class="slider-navigation clearfix"></div>');
+					var $navPrev = $('<a href="#" class="slider-prev">Prev</a>');
+					$navWrap.append($navPrev);
+					var $navPager = $('<div class="pager"></div>');
+					$navWrap.append($navPager); 
+					var $navNext = $('<a href="#" class="slider-next">Next</a>');
+					$navWrap.append($navNext);
+					$navWrap.insertBefore(this);
+					$(this).cycle({
+						fx:'scrollLeft',
+						timeout:0,
+						prev:$navPrev,
+						next:$navNext,
+						pager:$navPager
+					});
+					
+				});
+				
+				$(".scrollable").scrollable();
+				
+			});
+		</script>
+        
+        <script type="text/javascript">
+            /*
+             * function customizeFinder() is called at initialisation time
+             * you need to change values repositoryName and serviceUrl
+             * and also the same values inside the -finder.js- !
+             */
+            function customizeFinder() {
+                return {
+                    "externalSources": ["wp","scr","ss","gb"],
+                    "pageContainers": ['bottom','top'],
+                    "facets": ["language","lrt","format","lom.classification.taxonpath.taxon.entry.string","rights"],
+                    "limitFacetDisplay": {"language":["en","eng;","eng","eng; eng","el","fr","nl","de","et","hu","ro","tr"]},
+                    "maxLengthDescription":  300,
+                    "pageSize": 12,
+                    "repositoryName": "Organic.Edunet",//find this in the ariadne.properties file inside your Ariadne folder  ex."repositoryName":"AriadneNext Repository"
+                    //"repositoryName":"AriadneNext Repository",
+                    "serviceUrl":"http://83.212.96.169:8080/repository2/api/ariadne/restp" //ex. "serviceUrl":"http://localhost:8080/api/ariadne/restp"
+                    
+                    
+                }
+            }
+            </script>
+		
+	</body>
+
+</html>
