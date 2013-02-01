@@ -61,18 +61,18 @@
 				</div>
 				<div class="main_search_block inner clearfix">
 					<a href="#" class="logo">Organic.Edunet</a>
+                    
+                   
+                    
 					<div class="moduletable_mainsearch">
-						<div>
-							<form>
-								<div>
-									<input type="text" name="search" class="withplaceholder" placeholder="Search..." />
-								</div>
-								<input type="submit" value="submit" />
-							</form>
-							<div class="alignright">
-								<a href="#" id="ext_search">Extended search</a>
-							</div>
-						</div>
+                        <div>
+                            <form name="searchForm" id="searchForm" action="" method="post" onsubmit="doSearch(); return false;">
+                                <div>
+                                    <input type="text" name="query" id="query" class="withplaceholder" placeholder="Search..." />
+                                </div>
+                                <input type="submit" value="submit" />
+                            </form>
+                        </div>
 					</div>
 					<div class="moduletable_extendedsearch">
 						<form>
@@ -578,14 +578,7 @@
 		</section>
         
                                                         <!--OLD LISTING-->
-        <div>
-            <form name="searchForm" id="searchForm" action="" method="post" onsubmit="doSearch(); return false;">
-                <div>
-                    <input type="text" name="query" id="query" class="withplaceholder" placeholder="Search..." />
-                </div>
-                <input type="submit" value="submit" />
-            </form>
-        </div>
+        
         
         
         <table width="100%" cellspacing="0" style="">
@@ -630,14 +623,11 @@
 			</div>
 		</footer>
 		
-		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
 		<!-- include Select2 plugin -->
 		<script src="js/select2.min.js"></script>
 		<!-- include Placeholder plugin -->
 		<script src="js/jquery.placeholder.min.js"></script>
-		<!-- include JMenu plugin -->
-		<script src="js/jMenu.jquery.min.js"></script>
 		<!-- include Paralax plugin -->
 		<script src="js/layerslider.kreaturamedia.jquery.js" type="text/javascript"></script>
 		<!-- include Cycle plugin -->
@@ -648,103 +638,7 @@
 		<script src="js/jquery.mousewheel.js" type="text/javascript"></script>
 		<script src="js/jquery.jscrollpane.min.js" type="text/javascript"></script>
 		
-		<script type="text/javascript">
-			$(document).ready(function () {
-				function format(state) {
-					if (!state.id) return state.text; // optgroup
-					return "<img class='flag' alt='flag' src='style/images/flag_" + state.id.toLowerCase() + ".jpg'/>" + state.text;
-				}
-				$("#lang-selector").select2({
-					minimumResultsForSearch:100,
-					formatResult: format,
-					formatSelection: format
-				})
-				$(".withplaceholder").placeholder();
-				$("#ext_search").click(function (event) {
-					event.preventDefault()
-					$("div.moduletable_extendedsearch").slideToggle("slow");
-				});
-				$('input:radio').screwDefaultButtons({
-					image: 'url("style/images/radio.png")',
-					width: 12,
-					height: 14
-				});
-				
-				$(".selectline select").select2({
-					minimumResultsForSearch:100,
-					dropdownCssClass:"simple"
-				})
-				
-				$("#jMenu").jMenu();
-				
-				$('#layerslider').layerSlider({
-					navPrevNext : false,
-					navStartStop : false,
-					skin : 'lightskin',
-					skinsPath : 'style/skins/'
-				});
-				
-				$('.is_slider').each(function() {
-					var $navWrap = $('<div class="slider-navigation clearfix"></div>');
-					var $navPrev = $('<a href="#" class="slider-prev">Prev</a>');
-					$navWrap.append($navPrev);
-					var $navPager = $('<div class="pager"></div>');
-					$navWrap.append($navPager); 
-					var $navNext = $('<a href="#" class="slider-next">Next</a>');
-					$navWrap.append($navNext);
-					$navWrap.insertBefore(this);
-					$(this).cycle({
-						fx:'scrollLeft',
-						timeout:0,
-						prev:$navPrev,
-						next:$navNext,
-						pager:$navPager
-					});
-					
-				});
-				
-				$(".search_filter input[type=text]").placeholder();
-				$('.filter_parent').each(function() {
-					if($(this).hasClass("opened")) $(this).next().css("display","block");
-				});
-				$('.filter_parent').click(function(event){
-					event.preventDefault();
-					$(this).toggleClass("opened");
-					$(this).next().slideToggle("slow");
-				});
-				
-				$(".sorting select").select2({
-					minimumResultsForSearch:100,
-					dropdownCssClass:"simple"
-				})
-				
-				//$('.item-intro > h2').next().css("display","none");
-				//$('.item-intro > h2 > span').click(function(event){
-				//	event.preventDefault();
-				//	$(this).parent().next().slideToggle("slow");
-				//});
-				
-				function setface(state) {
-					var t = "human";
-					if (!state.id) return state.text; // optgroup
-					if (typeof state.element.attr === "function") { t = state.element.attr("class"); }
-					else t = state.css;
-					if (typeof t === "undefined") t = "human";
-					
-					return "<img class='face' alt='face' src='style/images/" + t + ".png'/>" + state.text;
-				}
-				$(".item-intro select").select2({
-					minimumResultsForSearch:3,
-					dropdownCssClass:"simple font12",
-					formatResult: setface,
-					formatSelection: setface
-				})
-				
-				$(".hasscroll").jScrollPane();
-				
-			});
-		</script>
-		
+        
         <script type="text/javascript">
             /*
              * function customizeFinder() is called at initialisation time
@@ -767,6 +661,8 @@
                 }
             }
             </script>
+		
+        
         
 	</body>
 
