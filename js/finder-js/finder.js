@@ -151,19 +151,23 @@ function initializeFinder(){
 				if (customParams.externalSources) EXT_SOURCES = customParams.externalSources;
 			}		
 		}
-		if (PAGE_CONTAINERS.indexOf('pagination_top')>=0) {
-			if (!$('insert_pagination_top')) {
-				$('body').insert('<div id="insert_pagination_top" style="display:none"></div>');
-
-			}
-			$('insert_pagination_top').update('<DIV id="pagination_top"></DIV>');
-		}
+        
+//		if (PAGE_CONTAINERS.indexOf('pagination_top')>=0) {
+//			if (!$('insert_pagination_top')) {
+//				$('body').insert('<div id="insert_pagination_top" style="display:none"></div>');
+//
+//			}
+//			$('insert_pagination_top').update('<DIV id="pagination_top"></DIV>');
+//		}
+        
 		if (PAGE_CONTAINERS.indexOf('pagination_bottom')>=0) {
 			if (!$('insert_pagination_bottom')) {
 				$('body').insert('<div id="insert_pagination_bottom" style="display:none"></div>');
 			}
-			$('insert_pagination_bottom').update('<DIV id="pagination_bottom"></DIV>');
+			$('insert_pagination_bottom').update('<div id="pagination_bottom"></div>');
 		}
+        
+        
 		if (!$('insert_summary')) {
 			$('body').insert('<div id="insert_summary" style="display:none"></div>');
 		}
@@ -236,12 +240,12 @@ function toggleFacet(el){
 }
 
 function pagination_hide(){
-	if($('pagination_top'))$('pagination_top').hide();
+	//if($('pagination_top'))$('pagination_top').hide();
 	if($('pagination_bottom'))$('pagination_bottom').hide();
 }
 
 function pagination_show(){
-	if($('pagination_top'))$('pagination_top').show();
+	//if($('pagination_top'))$('pagination_top').show();
 	if($('pagination_bottom'))$('pagination_bottom').show();
 }
 
@@ -779,7 +783,13 @@ Jaml.render('first_title',function(data){
 }); */
   
  Jaml.register('result', function(data){
-    div({cls:'row'},
+               article({class:'item-intro'},
+                       header(
+                              h2({cls:'video'},  a({href:data.location,title: data.title, target: '_blank'},data.title))),
+                       section(
+                               p({cls:'item-intro-desc'}, data.description)))});
+               
+    /*div({cls:'row'},
 	           
           div({cls:'lotitle'},
 	    a({href:data.location,title: data.title, target: '_blank'},data.title)
@@ -801,16 +811,16 @@ Jaml.render('first_title',function(data){
             'Context: ', data.context,
              br(),
              span({cls:'keywords'},
-                      span({cls:'bold'},'Keywords: '),
-                      Jaml.render('keyword',data.keywords)
+             span({cls:'bold'},'Keywords: '),
+              Jaml.render('keyword',data.keywords)
                     ), br(),
               a({href:"http://83.212.96.169:8080/repository2/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
 
         )
     )
-	);      
+	); */
                
-               });
+               //});
   
   Jaml.register('resultwithoutkeywords', function(data) {
     div({cls:'row'},
