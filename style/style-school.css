@@ -1250,15 +1250,17 @@ h2.centerheader span {
 	text-transform:uppercase;
 	margin:0 37px;
 }
-.items div a:hover { color:#46ad96; }
+
+//UNCOMMENT THE FOLLOWING FOR EVERY ITEM THAT ACTIVATED
+//.items div a:hover { color:#46ad96; }
 .items div a.school { background:url(images/school-sliders/s0.png) center top no-repeat; }
 .items div a.academic { background:url(images/school-sliders/s1.png) center top no-repeat; }
 .items div a.professional { background:url(images/school-sliders/s2.png) center top no-repeat; }
 .items div a.casual { background:url(images/school-sliders/s3.png) center top no-repeat; }
-.items div a:hover.school { background:url(images/school-sliders/s0h.png) center top no-repeat; }
-.items div a:hover.academic { background:url(images/school-sliders/s1h.png) center top no-repeat; }
-.items div a:hover.professional { background:url(images/school-sliders/s2h.png) center top no-repeat; }
-.items div a:hover.casual { background:url(images/school-sliders/s3h.png) center top no-repeat; }
+//.items div a:hover.school { background:url(images/school-sliders/s0h.png) center top no-repeat; }
+//.items div a:hover.academic { background:url(images/school-sliders/s1h.png) center top no-repeat; }
+//.items div a:hover.professional { background:url(images/school-sliders/s2h.png) center top no-repeat; }
+//.items div a:hover.casual { background:url(images/school-sliders/s3h.png) center top no-repeat; }
 
 .small_slider .slider {
 	height: 100px;
@@ -1274,10 +1276,10 @@ h2.centerheader span {
 .items div a.academic_m { background:url(images/school-sliders/sm1.png) center top no-repeat; }
 .items div a.professional_m { background:url(images/school-sliders/sm2.png) center top no-repeat; }
 .items div a.casual_m { background:url(images/school-sliders/sm3.png) center top no-repeat; }
-.items div a:hover.school_m { background:url(images/school-sliders/sm0h.png) center top no-repeat; }
-.items div a:hover.academic_m { background:url(images/school-sliders/sm1h.png) center top no-repeat; }
-.items div a:hover.professional_m { background:url(images/school-sliders/sm2h.png) center top no-repeat; }
-.items div a:hover.casual_m { background:url(images/school-sliders/sm3h.png) center top no-repeat; }
+//.items div a:hover.school_m { background:url(images/school-sliders/sm0h.png) center top no-repeat; }
+//.items div a:hover.academic_m { background:url(images/school-sliders/sm1h.png) center top no-repeat; }
+//.items div a:hover.professional_m { background:url(images/school-sliders/sm2h.png) center top no-repeat; }
+//.items div a:hover.casual_m { background:url(images/school-sliders/sm3h.png) center top no-repeat; }
 
 /* single scrollable item */
 .scrollable img {
