@@ -67,7 +67,7 @@ FACET_LABELS['tagr'] = 'Typical Range';
 FACET_LABELS['iur'] = 'Intended User Role';
 FACET_LABELS['il'] = 'Interactivity type level';
 FACET_LABELS['lom.classification.taxonpath.taxon.entry.string'] = 'Classification';
-//FACET_LABELS['contribute'] = 'Contributor'; // added in order to check the field
+FACET_LABELS['contribute'] = 'Contributor'; // added in order to check the field
 
 var LIMIT_FACET_DISPLAY = {};
 var PAGE_CONTAINERS = [];
@@ -502,12 +502,15 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                        // spt = item.description.split(",",1);
                                        // item.description=spt[0];
 
-                                        spt = item.metaMetadataId.split(",");
-                                        item.metaMetadataId=spt[1];
-                                        spt = item.metaMetadataId.split(" ");
-                                        item.metaMetadataId=spt[1];
-                                        spt = item.metaMetadataId.split("]");
-                                        item.metaMetadataId=spt[0];
+                                     //---
+                                        //spt = item.metaMetadataId.split(",");
+                                        //item.metaMetadataId=spt[1];
+                                        //spt = item.metaMetadataId.split(" ");
+                                        //item.metaMetadataId=spt[1];
+                                        //spt = item.metaMetadataId.split("]");
+                                        //item.metaMetadataId=spt[0];
+                                     
+                                     
                                         //length = spt[1].length;
                                         //item.metaMetadataId = item.metaMetadataId.substring(1,length);*/
                                         //alert(item.metaMetadataId);

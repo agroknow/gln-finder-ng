@@ -514,14 +514,13 @@
                 return {
                     "externalSources": ["wp","scr","ss","gb"],
                     "pageContainers": ['bottom','top'],
-                    "facets": ["language","lrt","format","lom.classification.taxonpath.taxon.entry.string","rights"],
+                    "facets": ["language","lrt","format","lom.classification.taxonpath.taxon.entry.string"], //,"rights"
                     "limitFacetDisplay": {"language":["en","eng;","eng","eng; eng","el","fr","nl","de","et","hu","ro","tr"]},
                     "maxLengthDescription":  300,
-                    "pageSize": 12,
+                    "pageSize": 10,
                     "repositoryName": "Organic.Edunet",//find this in the ariadne.properties file inside your Ariadne folder  ex."repositoryName":"AriadneNext Repository"
-                    //"repositoryName":"AriadneNext Repository",
-                    "serviceUrl":"http://83.212.96.169:8080/repository2/api/ariadne/restp" //ex. "serviceUrl":"http://localhost:8080/api/ariadne/restp"
-                    
+                    //"serviceUrl":"http://83.212.96.169:8080/repository2/api/ariadne/restp"
+                    "serviceUrl":"http://83.212.96.169:8080/OE_repos/api/ariadne/restp"
                     
                 }
             }
