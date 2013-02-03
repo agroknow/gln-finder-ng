@@ -306,6 +306,9 @@ function getFeaturedItem(urlTemp, belongsToSlide)
 
 }
 
+// ADD THE LINK TO THE BANNER IMAGES
+function imageClick(url) {window.location = url;}
+
 
 
 
