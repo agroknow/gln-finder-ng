@@ -17,6 +17,8 @@
 	position: absolute;
 	display: none;
 	background-position: center center;
+    cursor: hand; 
+    cursor: pointer; 
 }
 
 .ls-active,
