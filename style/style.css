@@ -52,7 +52,7 @@ h3 {
 /* STICK FOOTER */
 html, body {height: 100%;}
 #wrap {min-height: 100%;width:100%}
-#main {/*overflow:auto;*/ padding-bottom:352px;}  /* must be same height as the footer */
+#main {/*overflow:auto;*/ /*padding-bottom:352px;*/}  /* must be same height as the footer */
 footer#mainfooter, #footer {
 	position: relative;
 	margin-top:-352px; /* negative value of footer height */
@@ -149,6 +149,13 @@ footer#mainfooter .inner h3.aboutus ~ p {
 	margin:0 22px 22px 0;
 }
 
+
+.resultsLeft
+{
+    float:left;
+    color: white;
+
+}
 /* HEADER */
 header#mainheader {
 	min-height:229px;
@@ -753,6 +760,7 @@ body.innerpage #main {
 	padding-top:20px;
 }
 /* FILTER */
+
 .filter {
 	width:230px;
 	/*margin-right:20px;*/
@@ -790,7 +798,7 @@ body.innerpage #main {
 }
 .filter_parent {
 	line-height:35px;
-	background:url(images/filter_arrows.png) 93% 14px no-repeat;
+//	background:url(images/filter_arrows.png) 93% 14px no-repeat;
 	border-top:1px solid #175867;
 }
 .filter_parent:hover {
@@ -805,11 +813,11 @@ body.innerpage #main {
 	display:block;
 }
 .filter_child {
-	display:none;
+	//display:none;
 }
 .filter_child.hasscroll {
 	overflow:hidden;
-	height:180px;
+	//height:180px;
 }
 .filter_child a {
 	background-color:#0b4356;
@@ -1266,15 +1274,15 @@ h2.centerheader span {
 	text-transform:uppercase;
 	margin:0 37px;
 }
-.items div a:hover { color:#46ad96; }
+//.items div a:hover { color:#46ad96; }
 .items div a.school { background:url(images/s0.png) center top no-repeat; }
 .items div a.academic { background:url(images/s1.png) center top no-repeat; }
 .items div a.professional { background:url(images/s2.png) center top no-repeat; }
 .items div a.casual { background:url(images/s3.png) center top no-repeat; }
 .items div a:hover.school { background:url(images/s0h.png) center top no-repeat; }
-.items div a:hover.academic { background:url(images/s1h.png) center 1px no-repeat; }
-.items div a:hover.professional { background:url(images/s2h.png) center top no-repeat; }
-.items div a:hover.casual { background:url(images/s3h.png) center top no-repeat; }
+//.items div a:hover.academic { background:url(images/s1h.png) center 1px no-repeat; }
+//.items div a:hover.professional { background:url(images/s2h.png) center top no-repeat; }
+//.items div a:hover.casual { background:url(images/s3h.png) center top no-repeat; }
 
 /* single scrollable item */
 .scrollable img {

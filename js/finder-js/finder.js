@@ -171,28 +171,29 @@ function initializeFinder(){
 		if (!$('insert_summary')) {
 			$('body').insert('<div id="insert_summary" style="display:none"></div>');
 		}
-		$('insert_summary').update('<div id="summary" class="separator_top" ><div id="search_title"><H1><span id="search_terms"></span><B class="barfont" style="font-weight:bold"><span id="search_results_index"></span></B></H1></div><div id="search_status"></div></div>');
+		$('insert_summary').update('<div id="summary"><div id="search_title" class="resultsLeft"><span id="search_terms"></span><strong><span id="search_results_index"></span></strong></div><div id="search_status" class="floatright"></div></div>');
 		if (!$('insert_facets')) {
 			$('body').insert('<div id="insert_facets" style="display:none"></div>');
 		}
 		var div = [];
-		div.push('<DIV id="facets">');
+        
 		for (var i=0;i<FACET_TOKENS.length;i++){
 			var fn = FACET_TOKENS[i];
 			
                         
-                        div.push('<DIV id="rb_'+fn+'" class="rbSection">');
-			div.push('<DIV class="rbHeader"><SPAN id="'+fn+'" class="ws_label" onclick="toggleFacet(\'rb_'+fn+'\'); return false;"><SPAN class="ico"></SPAN>'+FACET_LABELS[fn]+'</SPAN></DIV>');
-			div.push('<DIV class="rbsrbo"><ul id="'+fn+'_rbo" class="rbList"></ul>');
-			div.push('</DIV></DIV>');
+            div.push('<DIV id="rb_'+fn+'" class="rbSection">');
+			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll">');
+			div.push('</div>');
+            div.push('</DIV>');
 		}
-                div.push('<DIV id="rb_Clear" class="rbClear"><input type="submit" name="id" value="Unselect all" onclick="initialSearch();pagination_hide();">');
-                div.push('</DIV>');
 
 
 		div.push('</DIV>');
-
-                $('insert_facets').update(div.join(''));
+        $('insert_facets').update(div.join(''));
+        
+        
+        
+        
 		if (!$('insert_results')) {
 			$('body').insert('<div id="insert_results" style="display:none"></div>');
 		}
@@ -204,22 +205,26 @@ function initializeFinder(){
 		div.push('<div id="search_results"></div>');
 		div.push('</div>');
 		$('insert_results').update(div.join(''));
-		if (!$('insert_moreResults')) {
-			$('body').insert('<div id="insert_moreResults" style="display:none"></div>');
-		}
-		var div = [];
-		div.push('<div id="moreResults"><h3>More Results</h3>');
-		for (var i=0;i<EXT_SOURCES.length;i++){
-			var es = EXT_SOURCES[i];
-			var esn = AVAILABLE_ES[es]['name'];
-			div.push('<div id="'+es+'_search" class="ext-res-div">');
-			div.push('<a class="ext-res" onclick="getExternalSourceResult(\''+es+'\');" href="javascript:void(0)" title="'+esn+'">'+esn+'</a>');
-			div.push('<span id="'+es+'_indicator" style="display:none"><img src="'+ROOT_URL+'common/images/indicator.gif"></span>');
-			div.push('<span id="'+es+'_results"></span>');
-			div.push('</DIV>');
-		}
-		div.push('</DIV>');
-		$('insert_moreResults').update(div.join(''));
+//		if (!$('insert_moreResults')) {
+//			$('body').insert('<div id="insert_moreResults" style="display:none"></div>');
+//		}
+//		var div = [];
+//		div.push('<div id="moreResults"><h3>More Results</h3>');
+//		for (var i=0;i<EXT_SOURCES.length;i++){
+//			var es = EXT_SOURCES[i];
+//			var esn = AVAILABLE_ES[es]['name'];
+//			div.push('<div id="'+es+'_search" class="ext-res-div">');
+//			div.push('<a class="ext-res" onclick="getExternalSourceResult(\''+es+'\');" href="javascript:void(0)" title="'+esn+'">'+esn+'</a>');
+//			div.push('<span id="'+es+'_indicator" style="display:none"><img src="'+ROOT_URL+'common/images/indicator.gif"></span>');
+//			div.push('<span id="'+es+'_results"></span>');
+//			div.push('</DIV>');
+//		}
+//		div.push('</DIV>');
+//		$('insert_moreResults').update(div.join(''));
+        
+        
+        
+        
 		initializeJamlTemplates();
 		PAGE = new YAHOO.widget.Paginator({
 			rowsPerPage : PAGE_SIZE,
@@ -676,24 +681,6 @@ $$('#language_rbo li').each(function(item) {
 });
 
 
-
-
-/*var names = $('language_rbo').select('ul.rbList');
-               
-               names.each(function(item){
-                
-                //var pos = item.id.indexOf(':');
-		var facet = item.id;
-                //.substring(0,pos);
-		//var langValue = item.id.substring(pos+1);
- alert(facet);
-                if (langName[langValue]== langName[name])
-                    alert("EVRHKA");
-
-                });*/
-
-
-
 }
 
 
@@ -837,24 +824,19 @@ Jaml.render('first_title',function(data){
  
  Jaml.register('rbcriteria', function(data)
  {
-
-
-      li({id: data.field + ':' + data.val},
-a({href:'javascript:void(0);',title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
-		  data.val),
-	  '(#{count})'.interpolate({count: data.count})
-		 ); 
-  });
+               li({id: data.field + ':' + data.val},
+                  a({href:'javascript:void(0);',id: data.field + ':' + data.val, title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},span({cls:'url-icon'},
+                      data.val), span({cls:'total'},
+                      '#{count}'.interpolate({count: data.count}))));}
+               );
 
 
 Jaml.register('rbcriteria2', function(data)
  {
-      li({id: data.field + ':' + data.val},
-a({href:'javascript:void(0);',title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
-		  langName[data.val]),
-	  '(#{count})'.interpolate({count: data.count})
-		 );
-  });
+              li({id: data.field + ':' + data.val},
+         a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},span({cls:'url-icon'},
+           langName[data.val]), span({cls:'total'},'#{count}'.interpolate({count: data.count}))));}
+  );
 
 
   for (var i=0;i<EXT_SOURCES.length;i++){

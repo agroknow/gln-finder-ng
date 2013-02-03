@@ -34,7 +34,10 @@
             function getItem()
             {
                 //get the items identifier from url
-                getItemJSON('http://83.212.100.142:8081/ariadne_finder_jsons/'+ location.search.split("=")[1] +'.json' );
+                //getItemJSON('http://83.212.100.142:8081/ariadne_finder_jsons/'+ location.search.split("=")[1] +'.json' );
+                var threeLast = location.search.split("=")[1].substr(location.search.split("=")[1].length-3);
+                getItemJSON('http://glnfinder.agroknow.gr:8080/metadata/AKIF/'+threeLast+'/'+ location.search.split("=")[1] +'.json' );
+            
             }
         </script>
         
@@ -65,12 +68,12 @@
 								</div>
 								<input type="submit" value="submit" />
 							</form>
-							<div class="alignright">
+							<!--<div class="alignright">
 								<a href="#" id="ext_search">Extended search</a>
-							</div>
+							</div>-->
 						</div>
 					</div>
-					<div class="moduletable_extendedsearch">
+					<!--<div class="moduletable_extendedsearch">
 						<form>
 							<div class="clearfix radioline">
 								<label><input type="radio" name="radio" checked="checked">All words</label>
@@ -112,7 +115,7 @@
 								</label>
 							</div>
 						</form>
-					</div>
+					</div>-->
 				</div>
 				<div class="inner">
 					<nav>
@@ -325,7 +328,7 @@
           
 		</section>
 		
-        <footer id="mainfooter">
+        <!--<footer id="mainfooter">
 			<div class="inner clearfix">
 				<section class="floatleft footerblock">
 					<h3>Collections</h3>
@@ -368,7 +371,7 @@
 					</div>
 				</section>
 			</div>
-		</footer>
+		</footer>-->
 		
 		<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
