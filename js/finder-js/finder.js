@@ -60,10 +60,10 @@ FACET_LABELS['provider'] = 'Provider';
 FACET_LABELS['language'] = 'Language';
 FACET_LABELS['format'] = 'Format';
 FACET_LABELS['keyword'] = 'Keyword';
-FACET_LABELS['context'] = 'Educational level';
+FACET_LABELS['context'] = 'Educational Context';
 FACET_LABELS['lrt'] = 'Type';
 FACET_LABELS['rights'] = 'Rights';
-FACET_LABELS['tagr'] = 'Typical Range';
+FACET_LABELS['tagr'] = 'Typical Age Range';
 FACET_LABELS['iur'] = 'Intended User Role';
 FACET_LABELS['il'] = 'Interactivity type level';
 FACET_LABELS['lom.classification.taxonpath.taxon.entry.string'] = 'Classification';
@@ -538,6 +538,11 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                            item.format='./icons/application.png';
                                        else if ((item.format == ''))
                                            item.format='./icons/application.png';
+                                     
+                                     
+                                     var spliter1 = item.identifier.split(",");
+                                     var spliter2 = spliter1[0].split("[");
+                                     item.identifier = spliter2[1];
 
                                                 $('search_results').insert(Jaml.render('result',item));
 
@@ -772,10 +777,15 @@ Jaml.render('first_title',function(data){
     a({href:data.location,title: data.title, target: '_blank'},data.title)
 }); */
   
+                         
+                         
+                                            /*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
  Jaml.register('result', function(data){
                article({class:'item-intro'},
                        header(
-                              h2({cls:'video'},  a({href:data.location,title: data.title, target: '_blank'},data.title))),
+                              h2({cls:'video'},
+                                 a({href:data.location,title: data.title, target: '_blank'},data.title)),
+                       a({href:"item.html?id="+data.identifier}, "link")),
                        section(
                                p({cls:'item-intro-desc'}, data.description)))});
                
