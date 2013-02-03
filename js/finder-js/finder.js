@@ -785,9 +785,13 @@ Jaml.render('first_title',function(data){
                        header(
                               h2({cls:'video'},
                                  a({href:data.location,title: data.title, target: '_blank'},data.title)),
-                       a({href:"item.html?id="+data.identifier}, "link")),
-                       section(
-                               p({cls:'item-intro-desc'}, data.description)))});
+                                              section(p({cls:'item-intro-desc'}, data.description),
+                                                      aside({cls:'clearfix'},
+                                                            div({cls:'floatleft'},div({cls:'line keywords'}, span("Keywords:"), a({href:"#", cls:'secondary'}, "keywords"/*item.keywords*/) )),
+                                                            div({cls:'floatright'},
+                                                                div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))});
+               
+               //a({href:"item.html?id="+data.identifier}, "link")),
                
     /*div({cls:'row'},
 	           
