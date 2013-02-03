@@ -164,7 +164,7 @@
 					<div id="layerslider">
 						
 						<div class="ls-layer">
-							<img class="ls-bg" src="images/slideshow/Walk-in-the-forest.png" alt="layer">
+							<img class="ls-bg" src="images/slideshow/Walk-in-the-forest.png" onclick="imageClick('http://www.apple.com')" alt="layer">
 						</div>
 						
 						<div class="ls-layer">
@@ -239,75 +239,37 @@
 									<!-- page 1 -->
 									<div class="slider_page">
 										<div class="slider_page_singleitem">
-											<!--<a href="#" class="hasshadow">
+											<a href="#" class="hasshadow">
 												<img src="images/sample_big_thumb.jpg" alt="thumb" width="318" height="183" />
-											</a>-->
+											</a>
 											<h2>
 												<a href="#">Preparation of nursery bed for onion in rainy seson</a>
 											</h2>
 											<p>
 												The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).
 											</p>
-											<div class="info clearfix">
+											<!--<div class="info clearfix">
 												<div class="floatleft">{j! rating}</div>
-												<a href="#">View reviewing history</a>
-												<a href="#">View rating history</a>
-											</div>
-										</div>
-									
-                                        
-										<div class="slider_page_singleitem">
-											<!--<a href="#" class="hasshadow">
-                                             <img src="images/sample_big_thumb.jpg" alt="thumb" width="318" height="183" />
-                                             </a>-->
-											<h2>
-												<a href="#">Preparation of nursery bed for onion in rainy seson</a>
-											</h2>
-											<p>
-                                            The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).
-											</p>
-											<div class="info clearfix">
-												<div class="floatleft">{j! rating}</div>
-												<a href="#">View reviewing history</a>
-												<a href="#">View rating history</a>
-											</div>
+												<a href="#">View reviewing history</a> <a href="#">View rating history</a>
+											</div>-->
 										</div>
 									</div>
 									<!-- page 2 -->
 									<div class="slider_page">
 										<div class="slider_page_singleitem">
-											<!--<a href="#" class="hasshadow">
-                                             <img src="images/sample_big_thumb.jpg" alt="thumb" width="318" height="183" />
-                                             </a>-->
+											<a href="#" class="hasshadow">
+												<img src="images/sample_big_thumb.jpg" alt="thumb" width="318" height="183" />
+											</a>
 											<h2>
 												<a href="#">Preparation of nursery bed for onion in rainy seson</a>
 											</h2>
 											<p>
-                                            The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).
+												The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).
 											</p>
-											<div class="info clearfix">
+											<!--<div class="info clearfix">
 												<div class="floatleft">{j! rating}</div>
-												<a href="#">View reviewing history</a>
-												<a href="#">View rating history</a>
-											</div>
-										</div>
-									
-                                        
-										<div class="slider_page_singleitem">
-											<!--<a href="#" class="hasshadow">
-                                             <img src="images/sample_big_thumb.jpg" alt="thumb" width="318" height="183" />
-                                             </a>-->
-											<h2>
-												<a href="#">Preparation of nursery bed for onion in rainy seson</a>
-											</h2>
-											<p>
-                                            The video describes the importance of the timely vaccination in livestock, in order to prevent the occasionally occurring Foot and Mouth Disease (FMD).
-											</p>
-											<div class="info clearfix">
-												<div class="floatleft">{j! rating}</div>
-												<a href="#">View reviewing history</a>
-												<a href="#">View rating history</a>
-											</div>
+												<a href="#">View reviewing history</a><a href="#">View rating history</a>
+											</div>-->
 										</div>
 									</div>
 									
@@ -322,10 +284,10 @@
 						<div class="width570">
 							<div class="moduletable slidermodule">
 								<h3>Latest Resources</h3>
-								<div id="FeaturedItemsSlider" class="articles_mod_list is_slider">
+								<div  class="articles_mod_list is_slider"> <!-- id="FeaturedItemsSlider" add it for dynamic behavior -->
 									
 									<!-- page 1 -->
-									<!--<div class="slider_page">
+									<div class="slider_page">
 										<ul>
 											<li class="clearfix slider_page_listitem movie_label">
 												<div>
@@ -377,10 +339,10 @@
 												</div>
 											</li>
 										</ul>
-									</div>-->
+									</div>
 									
 									<!-- page 2 -->
-									<!--<div class="slider_page">
+									<div class="slider_page">
 										<ul>
 											<li class="clearfix slider_page_listitem movie_label">
 												<div>
@@ -434,7 +396,7 @@
 												</div>
 											</li>
 										</ul>
-									</div>-->
+									</div>
 									
 									
 								</div>
@@ -577,6 +539,10 @@
 				
 			});
 		</script>
+        
+        <script type="text/javascript">
+        function imageClick(url) {window.location = url;}
+        </script>
         
         <script type="text/javascript">
             /*
