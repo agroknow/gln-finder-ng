@@ -182,8 +182,8 @@ function initializeFinder(){
 			
                         
             div.push('<DIV id="rb_'+fn+'" class="rbSection">');
-			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll">');
-			div.push('</div>');
+			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"><ul>');
+			div.push('</ul></div>');
             div.push('</DIV>');
 		}
 

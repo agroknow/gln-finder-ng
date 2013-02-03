@@ -681,13 +681,14 @@ li.slider_page_listitem > div .info > a {
 	display:block;
 }
 .slider_page_singleitem .info {
-	margin-top:12px;
+	margin-top:5px;
 	font-size:12px;
 }
 .slider_page_singleitem .info > a {
 	float:right;
 	margin-left:18px;
 }
+
 /* navigation */
 .slider-navigation {
 	position:absolute;
