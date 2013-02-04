@@ -167,8 +167,42 @@ function getItemJSON(urlTemp)
 
                 if(data.expressions[0].manifestations[0].items[0].url!==undefined)
                 {
-                        jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
+                    jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
+                    if(data.expressions[0].manifestations[0].parameter!==undefined)
+                    {
+                        if(data.expressions[0].manifestations[0].parameter=='text/html'){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+
+                        }else if(data.expressions[0].manifestations[0].parameter=='text/xml'){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/xml.png" /> </a>');
+
+                        }else if(data.expressions[0].manifestations[0].parameter.search("/pdf")>=0){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/pdf.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("excel")>=0){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/x-applix-spreadsheet.png" /> </a>');    
+                        }else if(data.expressions[0].manifestations[0].parameter.search("word")>=0){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/word.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("ppt")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/ppt.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("application")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/application.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("audio")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/audio.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("video")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/video.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("image")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="'+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+
+
+                        }else{
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+  
+                        }
+                        
+                    }else{
                         jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+  
+                    }
                 }
                 if(data.expressions[0].manifestations[0].parameter!==undefined)
                 {
@@ -238,8 +272,42 @@ function getItemJSON(urlTemp)
 
                 if(data.expressions[0].manifestations[0].items[0].url!==undefined)
                 {
-                        jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
+                    jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
+                    if(data.expressions[0].manifestations[0].parameter!==undefined)
+                    {
+                        if(data.expressions[0].manifestations[0].parameter=='text/html'){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+
+                        }else if(data.expressions[0].manifestations[0].parameter=='text/xml'){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/xml.png" /> </a>');
+
+                        }else if(data.expressions[0].manifestations[0].parameter.search("/pdf")>=0){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/pdf.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("excel")>=0){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/x-applix-spreadsheet.png" /> </a>');    
+                        }else if(data.expressions[0].manifestations[0].parameter.search("word")>=0){
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/word.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("ppt")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/ppt.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("application")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/application.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("audio")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/audio.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("video")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/video.png" /> </a>');
+                        }else if(data.expressions[0].manifestations[0].parameter.search("image")>=0){ 
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="'+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+
+
+                        }else{
+                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+  
+                        }
+                        
+                    }else{
                         jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+  
+                    }
                 }
                 if(data.expressions[0].manifestations[0].parameter!==undefined)
                 {
