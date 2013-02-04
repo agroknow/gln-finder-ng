@@ -819,7 +819,7 @@ body.innerpage #main {
 	display:block;
 }
 .filter_child {
-	display:none;
+	//display:none;
 }
 .filter_child.hasscroll {
 	overflow:hidden;
@@ -832,10 +832,18 @@ body.innerpage #main {
 	position:relative;
 }
 .filter_child a:hover { color:#46ad96; }
-.filter_child a.active {
-	background:#0b4356 url(images/filter_active.png) left center no-repeat;
-	font-weight:bold;
+
+.filter_child a.facet-selected {
+background:#0b4356 url(images/filter_active.png) left center no-repeat;
+font-weight:bold;
 }
+
+/*replaced with facet-selectd
+//.filter_child a.active {
+//	background:#0b4356 url(images/filter_active.png) left center no-repeat;
+//	font-weight:bold;
+//}*/
+
 .filter_child span {
 	display:block;
 	padding:0 0 0 27px;
