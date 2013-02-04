@@ -214,7 +214,7 @@ function initializeFinder(){
 			
                         
             div.push('<DIV id="rb_'+fn+'" class="rbSection">');
-			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"></div>');
 			
             div.push('</DIV>');
 		}
@@ -579,10 +579,15 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                        else if ((item.format == ''))
                                            item.format='images/icons/application.png';
                                      
+                                     ///example of mdPath : home/workflow/repository/LOM/DIGITALGREEN/1455.xml
+                                    
+                                     var spliter1 = item.mdPath.split("/");
                                      
-                                     var spliter1 = item.identifier.split(",");
-                                     var spliter2 = spliter1[0].split("[");
-                                     item.identifier = spliter2[1];
+                                     var spliter2 = spliter1[spliter1.length-1].split(".");
+                                     item.identifier = spliter2[0];
+                                     
+                                     //alert(item.identifier);
+                                     
 
                                     
                                      $('search_results').insert(Jaml.render('result',item));
@@ -916,6 +921,8 @@ Jaml.register('rbcriteria2', function(data)
            span(langName[data.val]), span({cls:'total'}, data.count )));}
   );
 
+                         
+                         
 
   for (var i=0;i<EXT_SOURCES.length;i++){
 	  
