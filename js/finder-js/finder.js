@@ -56,15 +56,15 @@ var THOUSAND_SEP = ',';
 var FACET_TOKENS = ['provider','language','format','context','lrt','tagr'];
 var FACET_INCLUDES = [];
 var FACET_LABELS = {};
-FACET_LABELS['provider'] = 'Provider';
+FACET_LABELS['provider'] = 'Collection';
 FACET_LABELS['language'] = 'Language';
 FACET_LABELS['format'] = 'Format';
 FACET_LABELS['keyword'] = 'Keyword';
 FACET_LABELS['context'] = 'Educational Context';
-FACET_LABELS['lrt'] = 'Type';
+FACET_LABELS['lrt'] = 'Resource Type';
 FACET_LABELS['rights'] = 'Rights';
 FACET_LABELS['tagr'] = 'Typical Age Range';
-FACET_LABELS['iur'] = 'Intended User Role';
+FACET_LABELS['iur'] = 'Intended Audience';
 FACET_LABELS['il'] = 'Interactivity type level';
 FACET_LABELS['lom.classification.taxonpath.taxon.entry.string'] = 'Classification';
 FACET_LABELS['contribute'] = 'Contributor'; // added in order to check the field
@@ -220,7 +220,7 @@ function initializeFinder(){
 //			div.push('</DIV>');
 //		}
 //		div.push('</DIV>');
-//		$('insert_moreResults').update(div.join(''));
+// 		$('insert_moreResults').update(div.join(''));
         
         
         
@@ -517,27 +517,27 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 
 
                                        if (item.format.indexOf('pdf') != -1)
-                                        item.format='./icons/pdf.png';
+                                        item.format='images/icons/pdf.png';
                                        else if (item.format.indexOf('powerpoint') != -1)
-                                        item.format='./icons/ppt.png';
+                                        item.format='images/icons/ppt.png';
                                        else if (item.format.indexOf('video') != -1)
-                                           item.format='./icons/video.png';
+                                           item.format='images/icons/video.png';
                                        else if (item.format.indexOf('zip') != -1)
-                                           item.format='./icons/zip.png';
+                                           item.format='images/icons/zip.png';
                                        else if (item.format.indexOf('audio') != -1)
-                                           item.format='./icons/audio.png';
+                                           item.format='images/icons/audio.png';
                                        else if ((item.format.indexOf('text') != -1) ||(item.format.indexOf('multipart') != -1) )
                                            item.format='http://open.thumbshots.org/image.aspx?url='+'item.location';                                              
                                        else if ((item.format.indexOf('xml') != -1) )
-                                           item.format='./icons/xml.png';
+                                           item.format='images/icons/xml.png';
                                        else if (item.format.indexOf('image') != -1)
-                                           item.format='./icons/image.png';
+                                           item.format='images/icons/image.png';
                                        else if ((item.format.indexOf('word')!= -1) || (item.format.indexOf('wordprocessingml')!= -1))
-                                           item.format='./icons/word.png';
+                                           item.format='images/icons/word.png';
                                        else if ((item.format.indexOf('application')!= -1))
-                                           item.format='./icons/application.png';
+                                           item.format='images/icons/application.png';
                                        else if ((item.format == ''))
-                                           item.format='./icons/application.png';
+                                           item.format='images/icons/application.png';
                                      
                                      
                                      var spliter1 = item.identifier.split(",");
