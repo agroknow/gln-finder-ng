@@ -168,6 +168,11 @@ function getItemJSON(urlTemp)
                         jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
                         jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
                 }
+                if(data.expressions[0].manifestations[0].parameter!==undefined)
+                {
+                        jQuery('#itemMediaFormat').append('<a href="#" class="secondary" target="_blank">'+data.expressions[0].manifestations[0].parameter+'</a>');
+                        
+                }
                 
                 if(data.tokenBlock.ageRange!==undefined){
                     jQuery('#ageRange').append(data.tokenBlock.ageRange);
@@ -230,7 +235,11 @@ function getItemJSON(urlTemp)
                         jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
                         jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
                 }
-                
+                if(data.expressions[0].manifestations[0].parameter!==undefined)
+                {
+                        jQuery('#itemMediaFormat').append('<a href="#" class="secondary" target="_blank">'+data.expressions[0].manifestations[0].parameter+'</a>');
+                        
+                }
                 
                 if(data.tokenBlock.ageRange!==undefined){
                     jQuery('#ageRange').append(data.tokenBlock.ageRange);
@@ -239,6 +248,8 @@ function getItemJSON(urlTemp)
                 if(data.rights.url!==undefined){ 
                     jQuery('#itemRights').append('<a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a>');
                 }
+                
+                
                 
                 if(data.tokenBlock.endUserRoles.length!==undefined)
                 {
