@@ -519,8 +519,8 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                else
                                                     item.title = item.title.substring(0,length);
 
-                                       //  spt = item.description.split(",",1);
-                                       // item.description=spt[0];
+                                        //spt = item.description.split(",",1);
+                                        //item.description=spt[0];
                                         //length = spt[0].length;
                                        length=END_DESCRIPTION;
 
@@ -816,7 +816,8 @@ Jaml.render('first_title',function(data){
                
                for(var i=0 , length=data.keywords.length; i<length;i++){
                keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.keywords[i]+"\">"+data.keywords[i]+"&nbsp</a>"
-               console.log("data.keyword"+data.keywords[i]);}
+               }
+               console.log("data.ageRange:"+data.ageRange);
                
                article({class:'item-intro'},
                        header(
@@ -825,7 +826,9 @@ Jaml.render('first_title',function(data){
                                               section(p({cls:'item-intro-desc'}, data.description),
                                                       aside({cls:'clearfix'},
                                                             div({cls:'floatleft'},
-                                                                //div({cls:'line'},),
+//                                                                div({cls:'line'},
+//                                                                    span("Typical age range context:"),
+//                                                                    a({href:"listing.html?query="+data.ageRange,cls:'secondary'}, data.ageRange+"something")),
                                                                 div({cls:'line keywords'}, span("Keywords:"),keywordsToEmbed /*item.keywords*/)),
                                                             div({cls:'floatright'},
                                                                 div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))});

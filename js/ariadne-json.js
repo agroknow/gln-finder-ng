@@ -145,7 +145,8 @@ function getItemJSON(urlTemp)
     jQuery.ajax({
                 url: urlTemp,
                 mimeType: "textPlain",
-                dataType: "json",
+                dataType: "jsonp",
+                //dataType: "json",
                 success: function(data)
                 {
                 
