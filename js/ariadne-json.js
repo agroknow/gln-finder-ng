@@ -184,6 +184,10 @@ function getItemJSON(urlTemp)
                     jQuery('#itemRights').append('<a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a>');
                 }
                 
+                if(data.set!==undefined){ 
+                    jQuery('#itemCollection').append('<a href="#" class="secondary" target="_blank">'+data.set+'</a>');
+                }
+                
                 if(data.tokenBlock.endUserRoles.length!==undefined)
                 {
                     for(var j=0; j<data.tokenBlock.endUserRoles.length;j++)//*ARRAY of keywords in current version
@@ -249,6 +253,9 @@ function getItemJSON(urlTemp)
                 }
                 if(data.rights.url!==undefined){ 
                     jQuery('#itemRights').append('<a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a>');
+                }
+                 if(data.set!==undefined){ 
+                    jQuery('#itemCollection').append('<a href="#" class="secondary" target="_blank">'+data.set+'</a>');
                 }
                 
                 
