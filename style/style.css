@@ -762,6 +762,11 @@ body.innerpage #main {
 }
 /* FILTER */
 
+.cleanFilterList
+{
+    list-style-type: none;
+}
+
 .filter {
 	width:230px;
 	/*margin-right:20px;*/

@@ -182,8 +182,8 @@ function initializeFinder(){
 			
                         
             div.push('<DIV id="rb_'+fn+'" class="rbSection">');
-			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"><ul>');
-			div.push('</ul></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"></div>');
+			
             div.push('</DIV>');
 		}
 
@@ -568,15 +568,15 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 					pagination_hide();
 				}
 
-/* for facet presentation
-                                 result.facets.each(function(item,index){
+ //for facet presentation
+//                                 result.facets.each(function(item,index){
+//
+//                                     item.title = item.title.substring(0,length);
+//
+//                                    $('search_results').insert(Jaml.render('result2',item));
+//
+//                                 });
 
-                                //     item.title = item.title.substring(0,length);
-
-                                    $('search_results').insert(Jaml.render('result2',item));
-
-                                 });
-*/
 				
 			}
 			
@@ -606,27 +606,19 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 			    element.update('');
 			    if(item.numbers != undefined){
 			      item.numbers.each(function(it2,idx2){
-			    	  if (facetHasNoLimit || limitValues.indexOf(it2.val) >= 0) {
-
-                                                        
-                                                            it2.field = fld;
-
-							it2.val=it2.val.replace(/\'/g, "&#34;");
-							it2.count = formatInteger(it2.count,THOUSAND_SEP);
-//element.insert(Jaml.render('rbcriteria',it2));
-                                         if (fld!= "language")
-                                                        element.insert(Jaml.render('rbcriteria',it2));
-                                                        
-                                                    else
+			    	  if (facetHasNoLimit || limitValues.indexOf(it2.val) >= 0){
+                                    it2.field = fld;
+                                    it2.val=it2.val.replace(/\'/g, "&#34;");
+                                    it2.count = formatInteger(it2.count,THOUSAND_SEP);
+                                            //element.insert(Jaml.render('rbcriteria',it2));
+                                         if (fld!= "language"){element.insert(Jaml.render('rbcriteria',it2));}else
                                          // check first if langName[it2.val] exists already in rbList
                                                    { 
                                                    checkLang(it2.val,it2.count);
 
-                                                   if (CHECK==0)
-                                                      element.insert(Jaml.render('rbcriteria2',it2));
+                                                            if (CHECK==0){element.insert(Jaml.render('rbcriteria2',it2));}
                                                              
-                                                    } 
-			    	  }
+                                                    } }
 			      });
 			    }
 			  }
@@ -641,7 +633,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 			  });
 			}
 			 //webSnapr.init();
-			 $('header').scrollTo();
+			 //$('header').scrollTo();
 			 loadTranslator();
 		},
 		onComplete: function(transport){
@@ -843,8 +835,7 @@ Jaml.render('first_title',function(data){
  {
                li({id: data.field + ':' + data.val},
                   a({href:'javascript:void(0);',id: data.field + ':' + data.val, title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},span({cls:'url-icon'},
-                      data.val), span({cls:'total'},
-                      '#{count}'.interpolate({count: data.count}))));}
+                      data.val), span({cls:'total'}, data.count)));}
                );
 
 
@@ -852,7 +843,7 @@ Jaml.register('rbcriteria2', function(data)
  {
               li({id: data.field + ':' + data.val},
          a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},span({cls:'url-icon'},
-           langName[data.val]), span({cls:'total'},'#{count}'.interpolate({count: data.count}))));}
+           langName[data.val]), span({cls:'total'}, data.count )));}
   );
 
 
