@@ -898,13 +898,14 @@ Jaml.render('first_title',function(data){
 	);
   });
 
+                         /*---------------------------------------------------------------------------------------------*/
+                         /*-----------------------------RENDER FACETS--------------------------------*/
  
  Jaml.register('rbcriteria', function(data)
  {
                li({id: data.field + ':' + data.val},
                   a({href:'javascript:void(0);',id: data.field + ':' + data.val, title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},
-                    span({cls:'url-icon'},
-                      data.val), span({cls:'total'}, data.count)));}
+                    span(data.val), span({cls:'total'}, data.count)));}
                );
 
 
@@ -912,8 +913,7 @@ Jaml.register('rbcriteria2', function(data)
  {
               li({id: data.field + ':' + data.val},
          a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},
-           span({cls:'url-icon'},
-           langName[data.val]), span({cls:'total'}, data.count )));}
+           span(langName[data.val]), span({cls:'total'}, data.count )));}
   );
 
 

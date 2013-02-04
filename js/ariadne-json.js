@@ -145,8 +145,13 @@ function getItemJSON(urlTemp)
     jQuery.ajax({
                 url: urlTemp,
                 mimeType: "textPlain",
+<<<<<<< HEAD
                 //dataType: "jsonp",
                 //dataType: "json",
+=======
+                dataType: "jsonp",
+                crossDomain: "true",
+>>>>>>> ariadne-json
                 success: function(data)
                 {
                 
