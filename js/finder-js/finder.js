@@ -565,8 +565,10 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                        else if (item.format.indexOf('audio') != -1)
                                            item.format='images/icons/audio.png';
                                        else if ((item.format.indexOf('text') != -1) ||(item.format.indexOf('multipart') != -1) )
-                                           item.format='http://open.thumbshots.org/image.aspx?url='+'item.location';                                              
-                                       else if ((item.format.indexOf('xml') != -1) )
+                                            item.format='images/icons/url.png';
+                                        //item.format='http://open.thumbshots.org/image.aspx?url='+'item.location';
+                                     
+                                     else if ((item.format.indexOf('xml') != -1 || item.format.indexOf('XML') != -1) )
                                            item.format='images/icons/xml.png';
                                        else if (item.format.indexOf('image') != -1)
                                            item.format='images/icons/image.png';
@@ -821,11 +823,12 @@ Jaml.render('first_title',function(data){
                
                article({class:'item-intro'},
                        header(
-                              h2({cls:'video'},
+                              h2(img({src:data.format}),
                                  a({href:data.location,title: data.title, target: '_blank'},data.title)),
                                               section(p({cls:'item-intro-desc'}, data.description),
                                                       aside({cls:'clearfix'},
                                                             div({cls:'floatleft'},
+                                                                //το age range δεν επιστρέφεται ακόμα στο response. waiting Nikos.
 //                                                                div({cls:'line'},
 //                                                                    span("Typical age range context:"),
 //                                                                    a({href:"listing.html?query="+data.ageRange,cls:'secondary'}, data.ageRange+"something")),
@@ -884,7 +887,8 @@ Jaml.render('first_title',function(data){
  Jaml.register('rbcriteria', function(data)
  {
                li({id: data.field + ':' + data.val},
-                  a({href:'javascript:void(0);',id: data.field + ':' + data.val, title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},span({cls:'url-icon'},
+                  a({href:'javascript:void(0);',id: data.field + ':' + data.val, title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},
+                    span({cls:'url-icon'},
                       data.val), span({cls:'total'}, data.count)));}
                );
 
@@ -892,7 +896,8 @@ Jaml.render('first_title',function(data){
 Jaml.register('rbcriteria2', function(data)
  {
               li({id: data.field + ':' + data.val},
-         a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},span({cls:'url-icon'},
+         a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},
+           span({cls:'url-icon'},
            langName[data.val]), span({cls:'total'}, data.count )));}
   );
 

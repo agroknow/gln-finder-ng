@@ -931,10 +931,15 @@ body.innerpage #main {
 }
 .item-intro h2 {
 	font-size:18px;
-	padding:2px 0 8px 35px;
-	background:url(images/item_intro_sprite.png) 0 -95px no-repeat;
+	padding:2px 0 8px 5px;
+//	background:url(images/item_intro_sprite.png) 0 -95px no-repeat;
 	line-height:1.2em;
 }
+
+.item-intro h2 img{
+    width:34px;
+}
+
 .item-intro h3 {
 	font-size:12px;
 	border-bottom:none;
