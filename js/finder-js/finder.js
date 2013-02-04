@@ -88,19 +88,51 @@ var CHECK = 0;
 var langName = {};
 var iter = 0;
 
+langName['n/a']='Other';
+
 langName['en']='English';
 langName['eng;']='English';
 langName['eng']='English';
 langName['eng; eng']='English';
-
 langName['fr']= 'French';
+langName['fre']= 'French';
 langName['el']= 'Greek';
+langName['hun']= 'Hungarian';
 langName['hu']= 'Hungarian';
 langName['et']= 'Estonian';
+langName['est']= 'Estonian';
 langName['nl']= 'Dutch';
 langName['ro']= 'Romanian';
 langName['de']= 'German';
+langName['deu']= 'German';
 langName['tr']= 'Turkish';
+langName['pt']= 'Portuguese';
+langName['por']= 'Portuguese';
+langName['es']= 'Spanish';
+langName['sv']= 'Swedish';
+langName['ell']= 'Greek';
+langName ['lat'] = 'Latin';
+langName['rus'] = 'Russian';
+
+langName['ori']= 'Oriya';
+langName['hin']='Hindi';
+langName['sat']='Santhali';
+langName['unr']='Mundari';
+langName['sck']='Sadri';
+langName['hok']='Ho';
+langName['ben']='Bengali';
+langName['kan']='Kannada';
+langName['noe']='Neemadi';
+langName['sat']='Santhali';
+langName['gon']='Gondi';
+langName['bns']='Narsinghpuria';
+langName['bhb']='Bhili';
+langName['mup']='Malvi';
+langName['mai']='Maithili';
+langName['bho']='Bhojpuri';
+langName['tel']='Telugu';
+langName['gaz']='Oromifa';
+langName['twi']='Twi';
 
 
 google.load("language", "1"); 
@@ -464,13 +496,19 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
 				if(result.metadata.size() == 0){
 				   $('noResults').show();
 				}
+                         
+                         
+                         
+                                        /*----------------------------------------------------------------------------------------------*/
+                                        /*--------------------CREATE EVERY ITEM BEFORE CALL RENDERING WITH JAML-------------------------*/
 
 				result.metadata.each(function(item,index){
+                                     
+                                     
 				  if(item.keywords == undefined || item.keywords == '')
 					$('search_results').insert(Jaml.render('resultwithoutkeywords',item));
 				  else {
-                                      
-					  try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
+                                     try {item.keywords = item.keywords.split(",");} catch(e){}
                                         
                                                 var spt = item.title.split(",",1);
                                                  item.title = spt[0];
@@ -770,16 +808,25 @@ Jaml.render('first_title',function(data){
 }); */
   
                          
-                         
+                                          /*---------------------------------------------------------------------------------------------*/
                                             /*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
  Jaml.register('result', function(data){
+               
+               var keywordsToEmbed = "";
+               
+               for(var i=0 , length=data.keywords.length; i<length;i++){
+               keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.keywords[i]+"\">"+data.keywords[i]+"&nbsp</a>"
+               console.log("data.keyword"+data.keywords[i]);}
+               
                article({class:'item-intro'},
                        header(
                               h2({cls:'video'},
                                  a({href:data.location,title: data.title, target: '_blank'},data.title)),
                                               section(p({cls:'item-intro-desc'}, data.description),
                                                       aside({cls:'clearfix'},
-                                                            div({cls:'floatleft'},div({cls:'line keywords'}, span("Keywords:"), a({href:"#", cls:'secondary'}, "keywords"/*item.keywords*/) )),
+                                                            div({cls:'floatleft'},
+                                                                //div({cls:'line'},),
+                                                                div({cls:'line keywords'}, span("Keywords:"),keywordsToEmbed /*item.keywords*/)),
                                                             div({cls:'floatright'},
                                                                 div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))});
                
