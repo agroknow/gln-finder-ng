@@ -814,13 +814,13 @@ Jaml.render('first_title',function(data){
                                           /*---------------------------------------------------------------------------------------------*/
                                             /*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
                          
-                         var odd=0;//variable for changing background
+                         //var odd=0;//variable for changing background
                          
  Jaml.register('result',function(data){
                
-               odd++;
-               var backgroundClass = ""
-               if(odd%2===0){backgroundClass = "odd";}
+//               odd++;
+//               var backgroundClass = ""
+//               if(odd%2===0){backgroundClass = "odd";}
                var keywordsToEmbed = "";
                
                for(var i=0 , length=data.keywords.length; i<length;i++)
@@ -836,7 +836,7 @@ Jaml.render('first_title',function(data){
                }
                console.log("data.ageRange:"+data.ageRange);
                
-               article({class:'item-intro'+backgroundClass},
+               article({class:'item-intro odd'},
                        header(
                               h2(img({src:data.format}),
                                  a({href:data.location,title: data.title, target: '_blank'},data.title)),
