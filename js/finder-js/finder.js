@@ -214,7 +214,7 @@ function initializeFinder(){
 			
                         
             div.push('<DIV id="rb_'+fn+'" class="rbSection">');
-			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"></div>');
 			
             div.push('</DIV>');
 		}
@@ -898,8 +898,8 @@ Jaml.render('first_title',function(data){
 	);
   });
 
-                         /*---------------------------------------------------------------------------------------------*/
-                         /*-----------------------------RENDER FACETS--------------------------------*/
+                                /*---------------------------------------------------------------------------------------------*/
+                                        /*-----------------------------RENDER FACETS--------------------------------*/
  
  Jaml.register('rbcriteria', function(data)
  {

@@ -819,7 +819,7 @@ body.innerpage #main {
 	display:block;
 }
 .filter_child {
-	//display:none;
+	display:none;
 }
 .filter_child.hasscroll {
 	overflow:hidden;
