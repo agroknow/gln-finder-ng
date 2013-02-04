@@ -584,7 +584,8 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                      var spliter2 = spliter1[0].split("[");
                                      item.identifier = spliter2[1];
 
-                                                $('search_results').insert(Jaml.render('result',item));
+                                    
+                                     $('search_results').insert(Jaml.render('result',item));
 
 
 
@@ -812,16 +813,30 @@ Jaml.render('first_title',function(data){
                          
                                           /*---------------------------------------------------------------------------------------------*/
                                             /*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
- Jaml.register('result', function(data){
+                         
+                         var odd=0;//variable for changing background
+                         
+ Jaml.register('result',function(data){
                
+               odd++;
+               var backgroundClass = ""
+               if(odd%2===0){backgroundClass = "odd";}
                var keywordsToEmbed = "";
                
-               for(var i=0 , length=data.keywords.length; i<length;i++){
-               keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.keywords[i]+"\">"+data.keywords[i]+"&nbsp</a>"
+               for(var i=0 , length=data.keywords.length; i<length;i++)
+               {
+               if(i!==length-1)
+               {
+                    keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.keywords[i]+"\">&nbsp"+data.keywords[i]+"</a>"
+               }
+               else
+               {
+                    keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.keywords[i].split(" ")[0]+"\">&nbsp"+data.keywords[i]+"</a>"
+               }
                }
                console.log("data.ageRange:"+data.ageRange);
                
-               article({class:'item-intro'},
+               article({class:'item-intro'+backgroundClass},
                        header(
                               h2(img({src:data.format}),
                                  a({href:data.location,title: data.title, target: '_blank'},data.title)),
@@ -832,7 +847,7 @@ Jaml.render('first_title',function(data){
 //                                                                div({cls:'line'},
 //                                                                    span("Typical age range context:"),
 //                                                                    a({href:"listing.html?query="+data.ageRange,cls:'secondary'}, data.ageRange+"something")),
-                                                                div({cls:'line keywords'}, span("Keywords:"),keywordsToEmbed /*item.keywords*/)),
+                                                                div({cls:'line keywords'}, span("Keywords:"), keywordsToEmbed /*item.keywords*/)),
                                                             div({cls:'floatright'},
                                                                 div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))});
                
