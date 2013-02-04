@@ -143,45 +143,79 @@ function getItemJSON(urlTemp)
 {
     //alert("getItemJSON!");
     jQuery.ajax({
-                url: urlTemp,
-                mimeType: "textPlain",
-                //dataType: "jsonp",
-                //dataType: "json",
-                dataType: "jsonp",
-                crossDomain: "true",
-                success: function(data)
-                {
+        url: urlTemp,
+        mimeType: "textPlain",
+        dataType: "json",
+        //dataType: "json",
+        success: function(data)
+        {
                 
-                //if languageBlocks is an array and isn't empty
-                if(data.languageBlocks.length!==undefined && data.languageBlocks!==undefined )
-                {
+            //if languageBlocks is an array and isn't empty
+            if(data.languageBlocks.length!==undefined && data.languageBlocks!==undefined )
+            {
                 for(var i = 0; i<data.languageBlocks.length; i++)//run all different languages version of this item
                 {
-                var language = Object.keys(data.languageBlocks[i]); //keys for different language versions of this item. (i.e en, gr, no,)
+                    var language = Object.keys(data.languageBlocks[i]); //keys for different language versions of this item. (i.e en, gr, no,)
                 
-                languageBlock = data.languageBlocks[i][language[0]]; // We always get language[0] as key
+                    languageBlock = data.languageBlocks[i][language[0]]; // We always get language[0] as key
                 
-                //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
-                document.getElementById('itemTitle').innerHTML = languageBlock.title;
-                document.getElementById('itemDescription').innerHTML = languageBlock.description;
+                    //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
+                    document.getElementById('itemTitle').innerHTML = languageBlock.title;
+                    document.getElementById('itemDescription').innerHTML = languageBlock.description;
+
+                if(data.expressions[0].manifestations[0].items[0].url!==undefined)
+                {
+                        jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+                }
+                
                 if(data.tokenBlock.ageRange!==undefined){
-                jQuery('#ageRange').append(data.tokenBlock.ageRange);}
-                
-                if(languageBlock.keywords.length!==undefined)
-                {
-                for(var j=0; j<languageBlock.keywords.length;j++)//*ARRAY of keywords in current version
-                {
-                jQuery('#itemKeywords').append('<a  href="#" class="secondary">'+languageBlock.keywords[j]+'</a>');
+                    jQuery('#ageRange').append(data.tokenBlock.ageRange);
+                    jQuery('#itemAgeRange').append(data.tokenBlock.ageRange);
                 }
+                if(data.rights.url!==undefined){ 
+                    jQuery('#itemRights').append('<a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a>');
                 }
                 
-                }}
-                
-                
-                
-                //if languageBlocks has ONLY one value => not array
-                if(data.languageBlocks.length==undefined && data.languageBlocks!==undefined )
+                if(data.tokenBlock.endUserRoles.length!==undefined)
                 {
+                    for(var j=0; j<data.tokenBlock.endUserRoles.length;j++)//*ARRAY of keywords in current version
+                    {
+                        jQuery('#itemEducationalContext').append('<a  href="#" class="secondary">'+data.tokenBlock.endUserRoles[j]+'</a>');
+                    }
+                }
+                if(data.tokenBlock.learningResourceTypes.length!==undefined)
+                {
+                    for(var j=0; j<data.tokenBlock.learningResourceTypes.length;j++)//*ARRAY of keywords in current version
+                    {
+                        jQuery('#itemResourceType').append('<a  href="#" class="secondary">'+data.tokenBlock.learningResourceTypes[j]+'</a>');
+                    }
+                }
+                if(data.tokenBlock.contexts.length!==undefined)
+                {
+                    for(var j=0; j<data.tokenBlock.contexts.length;j++)//*ARRAY of keywords in current version
+                    {
+                        jQuery('#itemIntendedAudience').append('<a  href="#" class="secondary">'+data.tokenBlock.contexts[j]+'</a>');
+                    }
+                }
+                
+                
+                    if(languageBlock.keywords.length!==undefined)
+                    {
+                        for(var j=0; j<languageBlock.keywords.length;j++)//*ARRAY of keywords in current version
+                        {
+                            jQuery('#itemKeywords').append('<a  href="listing.html?query='+languageBlock.keywords[j]+'" class="secondary">'+languageBlock.keywords[j]+'</a>');
+                        }
+                    }
+                
+                }
+            }
+                
+                
+                
+            //if languageBlocks has ONLY one value => not array
+            if(data.languageBlocks.length==undefined && data.languageBlocks!==undefined )
+            {
                 var language = Object.keys(data.languageBlocks); //keys for different language versions of this item. (i.e en, gr, no,)
                 
                 languageBlock = data.languageBlocks[language[0]]; // We always get language[0] as key
@@ -189,23 +223,60 @@ function getItemJSON(urlTemp)
                 //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
                 document.getElementById('itemTitle').innerHTML = languageBlock.title ;
                 document.getElementById('itemDescription').innerHTML = languageBlock.description;
+
+
+                if(data.expressions[0].manifestations[0].items[0].url!==undefined)
+                {
+                        jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+                }
+                
+                
                 if(data.tokenBlock.ageRange!==undefined){
-                jQuery('#ageRange').append(data.tokenBlock.ageRange);}
+                    jQuery('#ageRange').append(data.tokenBlock.ageRange);
+                    jQuery('#itemAgeRange').append(data.tokenBlock.ageRange);
+                }
+                if(data.rights.url!==undefined){ 
+                    jQuery('#itemRights').append('<a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a>');
+                }
+                
+                if(data.tokenBlock.endUserRoles.length!==undefined)
+                {
+                    for(var j=0; j<data.tokenBlock.endUserRoles.length;j++)//*ARRAY of keywords in current version
+                    {
+                        jQuery('#itemEducationalContext').append('<a  href="#" class="secondary">'+data.tokenBlock.endUserRoles[j]+'</a>');
+                    }
+                }
+                if(data.tokenBlock.learningResourceTypes.length!==undefined)
+                {
+                    for(var j=0; j<data.tokenBlock.learningResourceTypes.length;j++)//*ARRAY of keywords in current version
+                    {
+                        jQuery('#itemResourceType').append('<a  href="#" class="secondary">'+data.tokenBlock.learningResourceTypes[j]+'</a>');
+                    }
+                }
+                if(data.tokenBlock.contexts.length!==undefined)
+                {
+                    for(var j=0; j<data.tokenBlock.contexts.length;j++)//*ARRAY of keywords in current version
+                    {
+                        jQuery('#itemIntendedAudience').append('<a  href="#" class="secondary">'+data.tokenBlock.contexts[j]+'</a>');
+                    }
+                }
+                
                 
                 if(languageBlock.keywords.length!==undefined)
                 {
-                for(var j=0; j<languageBlock.keywords.length;j++)//*ARRAY of keywords in current version
-                {
-                jQuery('#itemKeywords').append('<a  href="#" class="secondary">'+languageBlock.keywords[j]+'</a>');
-                }
-                }
-                
+                    for(var j=0; j<languageBlock.keywords.length;j++)//*ARRAY of keywords in current version
+                    {
+                        jQuery('#itemKeywords').append('<a  href="listing.html?query='+languageBlock.keywords[j]+'" class="secondary">'+languageBlock.keywords[j]+'</a>');
+                    }
                 }
                 
+            }
                 
-                }
                 
-                });
+        }
+                
+    });
 }
 
 
