@@ -237,7 +237,11 @@ function getItemJSON(urlTemp)
             if(data.set!==undefined){ 
                 jQuery('#itemCollection').append('<span class="forKomma last">'+data.set+'</span>');
             }
-                
+             if(data.expressions[0].language!==undefined)
+            {
+                jQuery('#itemLanguage').append('<span class="flag '+data.expressions[0].language+'flag">'+data.expressions[0].language+'</span>');
+                        
+            }   
                 
                 
             if(data.tokenBlock.endUserRoles.length!==undefined)
@@ -390,7 +394,11 @@ function getItemJSON(urlTemp)
             if(data.set!==undefined){ 
                 jQuery('#itemCollection').append('<span class="forKomma last">'+data.set+'</span>');
             }
-                
+             if(data.expressions[0].language!==undefined)
+            {
+                jQuery('#itemLanguage').append('<span class="flag '+data.expressions[0].language+'flag">'+data.expressions[0].language+'</span>');
+                        
+            }   
                 
                 
             if(data.tokenBlock.endUserRoles.length!==undefined)
