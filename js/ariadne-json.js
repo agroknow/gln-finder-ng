@@ -208,8 +208,8 @@ function getItemJSON(urlTemp)
                     jQuery('#ageRange').append(data.tokenBlock.ageRange);
                     jQuery('#itemAgeRange').append(data.tokenBlock.ageRange);
                 }
-                if(data.rights.url!==undefined){ 
-                    jQuery('#itemRights').append('<a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a>');
+                 if(data.rights.url!==undefined){ 
+                    jQuery('#itemRights').append('<span>Rights:</span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
                 }
                 
                 if(data.set!==undefined){ 
@@ -313,8 +313,8 @@ function getItemJSON(urlTemp)
                     jQuery('#ageRange').append(data.tokenBlock.ageRange);
                     jQuery('#itemAgeRange').append(data.tokenBlock.ageRange);
                 }
-                if(data.rights.url!==undefined){ 
-                    jQuery('#itemRights').append('<a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a>');
+                 if(data.rights.url!==undefined){ 
+                    jQuery('#itemRights').append('<span>Rights:</span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
                 }
                  if(data.set!==undefined){ 
                     jQuery('#itemCollection').append('<a href="#" class="secondary" target="_blank">'+data.set+'</a>');
