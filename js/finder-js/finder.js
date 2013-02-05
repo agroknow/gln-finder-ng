@@ -209,18 +209,20 @@ function initializeFinder(){
 		}
 		var div = [];
         
-		for (var i=0;i<FACET_TOKENS.length;i++){
+		for (var i=0;i<FACET_TOKENS.length;i++)
+        {
 			var fn = FACET_TOKENS[i];
 			
             
 //            div.push('<DIV id="rb_'+fn+'" >');
-			div.push('<a href="#" id="'+fn+'" return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: block; overflow: hidden;height:auto;"></div>');
 			
 //            div.push('</DIV>');
 		}
         
         
 		div.push('</DIV>');
+        
         $('insert_facets').update(div.join(''));
         
         
@@ -315,34 +317,34 @@ function getExternalSourceResult(prefix,engine){
 	}
 }
 
-function searchExternalSource(prefix){
-	var es_query = prepareQueryString();
-	var res = $(prefix+'_results');
-	$(prefix+'_indicator').show();
-	res.update('');
-    var clauses = [{language:'VSQL',expression:es_query}];
-	var request = {clause: clauses,
-    resultFormat:'json'
-	};
-	
-	new Ajax.JSONRequest(EXT_SOURCE_URL, {
-                         callbackParamName: "callback",
-                         method: 'get',
-                         parameters: {
-                         json: Object.toJSON(request),
-                         engine: AVAILABLE_ES[prefix]['engine']
-                         },
-                         onSuccess: function(transport) {
-                         var result = transport.responseText.evalJSON(true).result;
-                         
-                         result['title'] = 'Search '+ AVAILABLE_ES[prefix]['name'];
-                         res.insert(Jaml.render(prefix+'_field',result));
-                         },
-                         onComplete: function(transport){
-                         $(prefix+'_indicator').hide();
-                         }
-                         });
-}
+//function searchExternalSource(prefix){
+//	var es_query = prepareQueryString();
+//	var res = $(prefix+'_results');
+//	$(prefix+'_indicator').show();
+//	res.update('');
+//    var clauses = [{language:'VSQL',expression:es_query}];
+//	var request = {clause: clauses,
+//    resultFormat:'json'
+//	};
+//	
+//	new Ajax.JSONRequest(EXT_SOURCE_URL, {
+//                         callbackParamName: "callback",
+//                         method: 'get',
+//                         parameters: {
+//                         json: Object.toJSON(request),
+//                         engine: AVAILABLE_ES[prefix]['engine']
+//                         },
+//                         onSuccess: function(transport) {
+//                         var result = transport.responseText.evalJSON(true).result;
+//                         
+//                         result['title'] = 'Search '+ AVAILABLE_ES[prefix]['name'];
+//                         res.insert(Jaml.render(prefix+'_field',result));
+//                         },
+//                         onComplete: function(transport){
+//                         $(prefix+'_indicator').hide();
+//                         }
+//                         });
+//}
 
 function doSearch(){
     if($F('query').blank()){
@@ -352,8 +354,9 @@ function doSearch(){
     $('searchMessage').hide();
     
     //showFacets();
-    //resetFacets();
+    resetFacets();
     findMaterials(0,PAGE_SIZE,true,false);
+  
     //searchExternalSources();
 }
 
@@ -396,7 +399,7 @@ function parseQueryString(initUpdate){
         clauses.push({language:'anyOf',expression:'keyword:' + keyword});
     }
     if(plainText.blank()){
-        clauses.push({language:'anyOf',expression:'collection:*'});
+        clauses.push({language:'anyOf',expression:'collection:organicedunet'});
     }
     return clauses;
 }
@@ -412,6 +415,7 @@ function formatInteger(number, com) {
 }
 
 function findMaterials(start,numberResults,needsUpdate,initUpdate){
+    
 	var selectedFacets = $('insert_facets').select('a.facet-selected');
 	
     //    document.getElementById("searchQuery").innerHTML=
@@ -433,11 +437,12 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                         
                         var clauses = parseQueryString(initUpdate);
                         
-                        facetExpressions.each(function(pair) {
-  clauses.push({language:'anyOfFacet',expression:pair.key + ":" + pair.value});
-  
-  });
-                        FACET_INCLUDES.each(function(exp) {
+                        facetExpressions.each(function(pair)
+                                              {
+                                              clauses.push({language:'anyOfFacet',expression:pair.key + ":" + pair.value});
+                                              });
+                        FACET_INCLUDES.each(function(exp)
+                                            {
                                             clauses.push({language:'anyOfFacet',expression:exp});
                                             
                                             });
@@ -469,23 +474,30 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                         $('search_status').update('Searching...');
                         $('noResults').hide();
                         
-                        new Ajax.JSONRequest(SERVICE_URL, {
+new Ajax.JSONRequest(SERVICE_URL, {
  callbackParamName: "callback",
  method: 'get',
  parameters: {
  json: Object.toJSON(request),
  engine: 'InMemory'
  },
- onSuccess: function(transport) {
+ onSuccess: function(transport)
+                     {
+                   
+                     
  var result = transport.responseText.evalJSON(true).result;
  
+                     
+                   
+
  
  //alert(JSON.stringify(result));
  // document.getElementById("jsonResponse").innerHTML="Response: <br/><h3>"+JSON.stringify(result)+"</h3>";
  
  $('search_results').update('');
  $('noResults').hide();
- 
+  
+                     
  $('search_status').update('Processing time: ' + (result.processingTime/1000).toFixed(3) + ' seconds');
  
  if(initUpdate) {
@@ -497,7 +509,8 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
  $('noResults').show();
  }
  
- 
+                     
+  
  
  /*----------------------------------------------------------------------------------------------*/
  /*--------------------CREATE EVERY ITEM BEFORE CALL RENDERING WITH JAML-------------------------*/
@@ -594,15 +607,16 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                       
                       $('search_results').insert(Jaml.render('result',item));
                       
-                      
-                      
-                      
+                    
                       expand();
                       
                       // alert(item.metaMetadataId);
                       iter++;
                       }
                       });
+                     
+                     
+                     
  
  $('search_results_index').show();
  
@@ -639,34 +653,55 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
  
  if(needsUpdate){
  updatePaginator(result.nrOfResults);
- result.facets.each(function(item,index){
+ result.facets.each(function(item,index)
+                    {
                     var fld = item.field;
                     //rbkey = facetKeys[fld];
                     var facetHasNoLimit = true;
                     var limitValues = [];
-                    if (LIMIT_FACET_DISPLAY[fld]) {
+                    if (LIMIT_FACET_DISPLAY[fld])
+                    {
                     limitValues = LIMIT_FACET_DISPLAY[fld];
                     facetHasNoLimit = false;
                     }
                     var rbkey = fld;
                     var element = $(rbkey + '_rbo');
-                    if(element && facetExpressions.get(fld) == undefined){
+                    if(element && facetExpressions.get(fld) == undefined)
+                    {
                     element.update('');
-                    if(item.numbers != undefined){
-                    item.numbers.each(function(it2,idx2){
-                                      if (facetHasNoLimit || limitValues.indexOf(it2.val) >= 0){
+                    if(item.numbers != undefined)
+                    {
+                    item.numbers.each(function(it2,idx2)
+                                      {
+                                      if (facetHasNoLimit || limitValues.indexOf(it2.val) >= 0)
+                                      {
                                       it2.field = fld;
                                       it2.val=it2.val.replace(/\'/g, "&#34;");
-                  it2.count = formatInteger(it2.count,THOUSAND_SEP);
-                  //element.insert(Jaml.render('rbcriteria',it2));
-                  if (fld!= "language"){element.insert(Jaml.render('rbcriteria',it2));}else
-                  // check first if langName[it2.val] exists already in rbList
-                  {
-                  checkLang(it2.val,it2.count);
+                                      it2.count = formatInteger(it2.count,THOUSAND_SEP);
+                                                              //element.insert(Jaml.render('rbcriteria',it2));
+                                                              if (fld!= "language")
+                                                              {
+                                                              if(fld=="provider")
+                                                              {
+                                                                if (it2.val=="organicedunet"){
+                                                                     element.insert(Jaml.render('rbcriteria',it2));}
+                                                              }
+                                                              else
+                                                              {
+                                                                  element.insert(Jaml.render('rbcriteria',it2));
+                                                              }
+                                                              
+                                                             
+                                                              }else
+                                                              // check first if langName[it2.val] exists already in rbList
+                                                              {
+                                                              checkLang(it2.val,it2.count);
+                                                              if (CHECK==0){
+                                                              element.insert(Jaml.render('rbcriteria2',it2));}
                   
-                  if (CHECK==0){element.insert(Jaml.render('rbcriteria2',it2));}
-                  
-                  } }
+                                                              }
+                                                              
+                                                              }
                   });
                                       }
                                       }
@@ -693,6 +728,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                     $('search_results_index').update('');
                     }
                     });
+                     
+                     
+                     
  }
  
  function checkLang(name,counter){
@@ -732,7 +770,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
  }
  
  
- 
+                  
  
  
  //function loadTranslator() {
@@ -892,6 +930,11 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
   ); */
  
  //});
+                     
+                     
+                     
+                   
+                     
  
  Jaml.register('resultwithoutkeywords', function(data) {
                div({cls:'row'},
@@ -908,9 +951,15 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
  /*---------------------------------------------------------------------------------------------*/
  /*-----------------------------RENDER FACETS--------------------------------*/
  
+
+                     
  Jaml.register('rbcriteria', function(data)
                {
-               a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(data.val), span({cls:'total'}, data.count));
+               
+               var label = data.val;
+               if(data.val=="organicedunet"){label = "organic edunet";}//in future it will created through mapping for providers in order to have more readable labels
+               
+               a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
                
                //               li({id: data.field + ':' + data.val},
                //                  a({href:'javascript:void(0);',id: data.field + ':' + data.val, title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),}, span(data.val), span({cls:'total'}, data.count)));
@@ -919,8 +968,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
  
  Jaml.register('rbcriteria2', function(data)
                {
-               a({href:'#', title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
-                 span(langName[data.val]), span({cls:'total'}, data.count ));
+               a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val, parent: data.field})}, span(langName[data.val]), span({cls:'total'}, data.count ));
                
                //              li({id: data.field + ':' + data.val},
                //         a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},
@@ -991,7 +1039,8 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
  $(parent).removeClassName('parent-selected');
  }
  
- function toggleFacetValue(elem,parent){
+ function toggleFacetValue(elem,parent)
+{
  $(elem).toggleClassName('facet-selected');
  //$(elem).toggleClassName('active');
  selectParent(parent);
