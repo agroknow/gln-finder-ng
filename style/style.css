@@ -1191,22 +1191,25 @@ span.enflag {
 	background:url(images/flag_en.jpg) 0 0 no-repeat;
 }
 span.esflag {
-	background:url(images/flag_es.jpg) 0 0 no-repeat;
+	background:url(images/flag_es.png) 0 0 no-repeat;
 }
 span.itflag {
-	background:url(images/flag_it.jpg) 0 0 no-repeat;
+	background:url(images/flag_it.png) 0 0 no-repeat;
 }
 span.grflag {
-	background:url(images/flag_gr.jpg) 0 0 no-repeat;
-}
-span.kanflag {
-	background:url(images/flag_kan.jpg) 0 0 no-repeat;
+	background:url(images/flag_gr.png) 0 0 no-repeat;
 }
 span.etflag {
-	background:url(images/flag_et.jpg) 0 0 no-repeat;
+	background:url(images/flag_et.png) 0 0 no-repeat;
 }
 span.roflag {
 	background:url(images/flag_ro.jpg) 0 0 no-repeat;
+}
+span.deflag {
+	background:url(images/flag_de.png) 0 0 no-repeat;
+}
+span.frflag {
+	background:url(images/flag_fr.png) 0 0 no-repeat;
 }
 a.flag {
 	text-indent:-9999px;
