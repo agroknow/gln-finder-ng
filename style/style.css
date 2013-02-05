@@ -804,7 +804,7 @@ body.innerpage #main {
 }
 .filter_parent {
 	line-height:35px;
-	background:url(images/filter_arrows.png) 93% 14px no-repeat;
+	/*background:url(images/filter_arrows.png) 93% 14px no-repeat;*/
 	border-top:1px solid #175867;
 }
 .filter_parent:hover {
