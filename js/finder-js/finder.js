@@ -213,10 +213,10 @@ function initializeFinder(){
 			var fn = FACET_TOKENS[i];
 			
             
-            div.push('<DIV id="rb_'+fn+'" class="rbSection">');
-			div.push('<a href="#" id="'+fn+'" onclick="toggleFacet(\'rb_'+fn+'\'); return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"></div>');
+//            div.push('<DIV id="rb_'+fn+'" >');
+			div.push('<a href="#" id="'+fn+'" return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child hasscroll"></div>');
 			
-            div.push('</DIV>');
+//            div.push('</DIV>');
 		}
         
         
@@ -272,9 +272,9 @@ function initializeFinder(){
 	}
 }
 
-function toggleFacet(el){
-	$(el).toggleClassName('rbOpen');
-}
+//function toggleFacet(el){
+//	$(el).toggleClassName('rbOpen');
+//}
 
 function pagination_hide(){
 	//if($('pagination_top'))$('pagination_top').hide();
@@ -412,7 +412,7 @@ function formatInteger(number, com) {
 }
 
 function findMaterials(start,numberResults,needsUpdate,initUpdate){
-	var selectedFacets = $('facets').select('a.facet-selected');
+	var selectedFacets = $('insert_facets').select('a.facet-selected');
 	
     //    document.getElementById("searchQuery").innerHTML=
     //        "start: <br/><h3>"+start+"</h3>"
@@ -908,7 +908,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                              
                                              Jaml.register('rbcriteria', function(data)
                                                            {
-                                                           a({cls:'clearfix', href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(data.val), span({cls:'total'}, data.count));
+                                                           a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(data.val), span({cls:'total'}, data.count));
                                                            
                                                            //               li({id: data.field + ':' + data.val},
                                                            //                  a({href:'javascript:void(0);',id: data.field + ':' + data.val, title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),}, span(data.val), span({cls:'total'}, data.count)));
@@ -917,7 +917,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                              
                                              Jaml.register('rbcriteria2', function(data)
                                                            {
-                                                           a({ cls:'clearfix', href:'#', title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
+                                                           a({href:'#', title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})},
                                                              span(langName[data.val]), span({cls:'total'}, data.count ));
                                                            
                                                            //              li({id: data.field + ':' + data.val},

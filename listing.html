@@ -152,11 +152,12 @@
 						</label>-->
 					</div>
 					<div class="twocols clearfix">
-						<aside id="facets" class="filter">
+                   
+						<aside id="insert_facets" class="filter">
 							<!--<div class="search_filter">
 								<input type="text" name="search_filter" placeholder="Search in results..." />
 							</div>-->
-                            
+                                                     
                             <!--old-->
 							<!--<a href="#" class="filter_parent opened"><span>filter 1</span></a>
 							<div class="filter_child hasscroll">
@@ -260,8 +261,6 @@
 								</a>
 							</div>-->
                             
-                            <!-- Facets -->
-                            <div id="insert_facets" class="lineRight"></div>
                             
 							<!--<div class="tagcloud">
 								<a href="#" class="layer1">brain</a>
@@ -363,7 +362,7 @@
         
         
 		
-        
+        <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
 		<!-- include Select2 plugin -->
 		<script src="js/select2.min.js"></script>
@@ -381,43 +380,43 @@
 		<script src="js/jquery.mousewheel.js" type="text/javascript"></script>
 		<script src="js/jquery.jscrollpane.min.js" type="text/javascript"></script>
 		
-        <script type="text/javascript">
-			$(document).ready(function() {
+    	<script type="text/javascript">
+			$(document).ready(function () {
                               function format(state) {
                               if (!state.id) return state.text; // optgroup
                               return "<img class='flag' alt='flag' src='style/images/flag_" + state.id.toLowerCase() + ".jpg'/>" + state.text;
                               }
-                              $("#lang-selector").select2({
+                              jQuery("#lang-selector").select2({
                                                           minimumResultsForSearch:100,
                                                           formatResult: format,
                                                           formatSelection: format
                                                           })
-                              $(".withplaceholder").placeholder();
-                              $("#ext_search").click(function (event) {
+                              jQuery(".withplaceholder").placeholder();
+                              jQuery("#ext_search").click(function (event) {
                                                      event.preventDefault()
                                                      $("div.moduletable_extendedsearch").slideToggle("slow");
                                                      });
-                              $('input:radio').screwDefaultButtons({
+                              jQuery('input:radio').screwDefaultButtons({
                                                                    image: 'url("style/images/radio.png")',
                                                                    width: 12,
                                                                    height: 14
                                                                    });
                               
-                              $(".selectline select").select2({
+                              jQuery(".selectline select").select2({
                                                               minimumResultsForSearch:100,
                                                               dropdownCssClass:"simple"
                                                               })
                               
-                              $("#jMenu").jMenu();
+                              jQuery("#jMenu").jMenu();
                               
-                              $('#layerslider').layerSlider({
+                              jQuery('#layerslider').layerSlider({
                                                             navPrevNext : false,
                                                             navStartStop : false,
                                                             skin : 'lightskin',
                                                             skinsPath : 'style/skins/'
                                                             });
                               
-                              $('.is_slider').each(function() {
+                              jQuery('.is_slider').each(function() {
                                                    var $navWrap = $('<div class="slider-navigation clearfix"></div>');
                                                    var $navPrev = $('<a href="#" class="slider-prev">Prev</a>');
                                                    $navWrap.append($navPrev);
@@ -436,7 +435,44 @@
                                                    
                                                    });
                               
-                              $(".scrollable").scrollable();
+                              jQuery(".search_filter input[type=text]").placeholder();
+                              jQuery('.filter_parent').each(function() {
+                                                       if(jQuery(this).hasClass("opened")) jQuery(this).next().css("display","block");
+                                                       });
+                              jQuery('.filter_parent').click(function(event){
+                                                        event.preventDefault();
+                                                        jQuery(this).toggleClass("opened");
+                                                        jQuery(this).next().slideToggle("slow");
+                                                        });
+                              
+                              jQuery(".sorting select").select2({
+                                                           minimumResultsForSearch:100,
+                                                           dropdownCssClass:"simple"
+                                                           })
+                              
+                              //$('.item-intro > h2').next().css("display","none");
+                              //$('.item-intro > h2 > span').click(function(event){
+                              //	event.preventDefault();
+                              //	$(this).parent().next().slideToggle("slow");
+                              //});
+                              
+                              function setface(state) {
+                              var t = "human";
+                              if (!state.id) return state.text; // optgroup
+                              if (typeof state.element.attr === "function") { t = state.element.attr("class"); }
+                              else t = state.css;
+                              if (typeof t === "undefined") t = "human";
+                              
+                              return "<img class='face' alt='face' src='style/images/" + t + ".png'/>" + state.text;
+                              }
+                              jQuery(".item-intro select").select2({
+                                                              minimumResultsForSearch:3,
+                                                              dropdownCssClass:"simple font12",
+                                                              formatResult: setface,
+                                                              formatSelection: setface
+                                                              })
+                              
+                              jQuery(".hasscroll").jScrollPane();
                               
                               });
             </script>
@@ -447,6 +483,8 @@
              * you need to change values repositoryName and serviceUrl
              * and also the same values inside the -finder.js- !
              */
+            
+            $.noConflict();
             function customizeFinder() {
                 return {
                     "externalSources": ["wp","scr","ss","gb"],

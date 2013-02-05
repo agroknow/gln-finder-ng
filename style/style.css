@@ -762,10 +762,10 @@ body.innerpage #main {
 }
 /* FILTER */
 
-.cleanFilterList
-{
-    list-style-type: none;
-}
+//.cleanFilterList
+//{
+//    list-style-type: none;
+//}
 
 .filter {
 	width:230px;
@@ -846,17 +846,17 @@ font-weight:bold;
 
 .filter_child span {
 	display:block;
-	padding:0 0 0 27px;
+	padding:0 0 0 5px;
 	width:130px;
 	display:table-cell;
 	vertical-align:middle;
 	height:35px;
 	float:none;
 }
-.filter_child span.image-icon { background:url(images/filter_icons.png) 0 9px no-repeat; }
-.filter_child span.audio-icon { background:url(images/filter_icons.png) 0 -36px no-repeat; }
-.filter_child span.video-icon { background:url(images/filter_icons.png) 0 -80px no-repeat; }
-.filter_child span.url-icon { background:url(images/filter_icons.png) 5px -125px no-repeat; }
+//.filter_child span.image-icon { background:url(images/filter_icons.png) 0 9px no-repeat; }
+//.filter_child span.audio-icon { background:url(images/filter_icons.png) 0 -36px no-repeat; }
+//.filter_child span.video-icon { background:url(images/filter_icons.png) 0 -80px no-repeat; }
+//.filter_child span.url-icon { background:url(images/filter_icons.png) 5px -125px no-repeat; }
 .filter_child span.total {
 	position:absolute;
 	height:16px;
