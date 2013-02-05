@@ -1184,8 +1184,9 @@ span.flag {
 	text-indent:-9999px;
 	margin-left:3px;
 	display:inline-block;
-	width:24px;
+	width:27px;
 	height:18px;
+        background-repeat: no-repeat;
 }
 span.enflag {
 	background:url(images/flag_en.jpg) 0 0 no-repeat;
