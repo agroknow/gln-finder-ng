@@ -141,8 +141,11 @@ function getFullJSON(urlTemp){
 //gets needed attributes and render them in the item.html
 function getItemJSON(urlTemp)
 {
-    //alert("getItemJSON!");
-    jQuery.getJSON(urlTemp, function(data)
+    jQuery.ajax({
+               url: urlTemp,
+               mimeType: "textPlain",
+               dataType: "json",
+               success: function(data)
         {
                            //alert(urlTemp);
                 
@@ -449,7 +452,7 @@ function getItemJSON(urlTemp)
                 
     }
                 
-    );
+    });
 }
 
 
