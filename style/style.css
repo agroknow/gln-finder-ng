@@ -1458,5 +1458,17 @@ a.disabled {
     font-size:12px;
 }
 
+.forKomma{
+    color:#46AD96;
+}
+.forKomma:after{
+    color:#46AD96;
+    content:", ";
+}
+.forKomma.last:after{
+    color:#46AD96;
+    content:" ";
+}
+
 /*ITEM VIEW*/
 
