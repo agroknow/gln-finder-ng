@@ -823,7 +823,8 @@ body.innerpage #main {
 }
 .filter_child.hasscroll {
 	overflow:hidden;
-	height:180px;
+	height:auto;
+    max-height: 285px;
 }
 .filter_child a {
 	background-color:#0b4356;
@@ -959,6 +960,7 @@ font-weight:bold;
 	line-height:1.3em;
 }
 .item-intro .line {
+    max-width : 650px; //fix infinite length of keywords line
 	margin-bottom:7px;
 }
 .item-intro .keywords a::after {
