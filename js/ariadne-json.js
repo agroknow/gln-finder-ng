@@ -142,15 +142,9 @@ function getFullJSON(urlTemp){
 function getItemJSON(urlTemp)
 {
     //alert("getItemJSON!");
-    jQuery.ajax({
-         
-        url: urlTemp,
-        mimeType: "textPlain",
-        dataType: "jsonp",
-        crossDomain: "true",
-        //dataType: "json",
-        success: function(data)
+    jQuery.getJSON(urlTemp, function(data)
         {
+                   alert(urlTemp);
                 
             //if languageBlocks is an array and isn't empty
             if(data.languageBlocks.length!==undefined && data.languageBlocks!==undefined )
@@ -364,7 +358,7 @@ function getItemJSON(urlTemp)
                 
         }
                 
-    });
+                );
 }
 
 
