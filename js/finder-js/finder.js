@@ -567,7 +567,6 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                       else if ((item.format.indexOf('text') != -1) ||(item.format.indexOf('multipart') != -1) )
                       item.format='images/icons/url.png';
                       //item.format='http://open.thumbshots.org/image.aspx?url='+'item.location';
-                      
                       else if ((item.format.indexOf('xml') != -1 || item.format.indexOf('XML') != -1) )
                       item.format='images/icons/xml.png';
                       else if (item.format.indexOf('image') != -1)
@@ -578,6 +577,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                       item.format='images/icons/application.png';
                       else if ((item.format == ''))
                       item.format='images/icons/application.png';
+                      else
+                      item.format='images/icons/url.png';
+                      
                       
                       ///example of mdPath : home/workflow/repository/LOM/DIGITALGREEN/1455.xml
                       

@@ -824,7 +824,7 @@ body.innerpage #main {
 .filter_child.hasscroll {
 	overflow:hidden;
 	height:auto;
-    max-height: 285px;
+    max-height: 215px;
 }
 .filter_child a {
 	background-color:#0b4356;
