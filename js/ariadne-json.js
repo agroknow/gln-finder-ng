@@ -209,18 +209,18 @@ function getItemJSON(urlTemp)
                 jQuery('#itemAgeRange').append('<span class="forKomma last">'+data.tokenBlock.ageRange+'</span>');
             }
             if(data.rights.url!==undefined){ 
-                if(data.rights.url.search("licenses/by")>=0){
-                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by.png"></a></nav>');
-                }else if(data.rights.url.search("licenses/by-nc")>=0){
-                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc.png"></a></nav>');
+                if(data.rights.url.search("licenses/by-nc-sa")>=0){
+                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-sa.png"></a></nav>');
                 }else if(data.rights.url.search("licenses/by-nc-nd")>=0){
                     jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-nd.png"></a></nav>');
-                }else if(data.rights.url.search("licenses/by-nc-sa")>=0){
-                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-sa.png"></a></nav>');
                 }else if(data.rights.url.search("licenses/by-nd")>=0){
                     jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nd.png"></a></nav>');
                 }else if(data.rights.url.search("licenses/by-sa")>=0){
                     jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-sa.png"></a></nav>');
+                }else if(data.rights.url.search("licenses/by-nc")>=0){
+                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc.png"></a></nav>');
+                }else if(data.rights.url.search("licenses/by")>=0){
+                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by.png"></a></nav>');
     
                 }else{
                     jQuery('#itemRights').append('<span>Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
@@ -360,18 +360,18 @@ function getItemJSON(urlTemp)
                 jQuery('#itemAgeRange').append('<span class="forKomma last">'+data.tokenBlock.ageRange+'</span>');
             }
             if(data.rights.url!==undefined){ 
-                if(data.rights.url.search("licenses/by")>=0){
-                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by.png"></a></nav>');
-                }else if(data.rights.url.search("licenses/by-nc")>=0){
-                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc.png"></a></nav>');
+                if(data.rights.url.search("licenses/by-nc-sa")>=0){
+                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-sa.png"></a></nav>');
                 }else if(data.rights.url.search("licenses/by-nc-nd")>=0){
                     jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-nd.png"></a></nav>');
-                }else if(data.rights.url.search("licenses/by-nc-sa")>=0){
-                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc-sa.png"></a></nav>');
                 }else if(data.rights.url.search("licenses/by-nd")>=0){
                     jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nd.png"></a></nav>');
                 }else if(data.rights.url.search("licenses/by-sa")>=0){
                     jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-sa.png"></a></nav>');
+                }else if(data.rights.url.search("licenses/by-nc")>=0){
+                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by-nc.png"></a></nav>');
+                }else if(data.rights.url.search("licenses/by")>=0){
+                    jQuery('#itemRights').append('<span style="position:relative;top:-10px;">Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank"><img style="display:inline;" src="images/cc/cc-by.png"></a></nav>');
     
                 }else{
                     jQuery('#itemRights').append('<span>Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
