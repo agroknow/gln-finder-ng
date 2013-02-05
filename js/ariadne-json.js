@@ -229,8 +229,10 @@ function getItemJSON(urlTemp)
                     jQuery('#itemRights').append('<span>Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
                 }
                 
-            }else if(data.rights.description['en']!==undefined){ 
+            }else if(data.rights.description!==undefined ){ 
+                if(data.rights.description['en']!==undefined ){
                 jQuery('#itemRights').append('<span>Rights: </span><nav  class="itemRights">'+data.rights.description['en']+'</nav>');
+            }
             }
             if(data.set!==undefined){ 
                 jQuery('#itemCollection').append('<span class="forKomma last">'+data.set+'</span>');
@@ -380,8 +382,10 @@ function getItemJSON(urlTemp)
                     jQuery('#itemRights').append('<span>Rights: </span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
                 }
                 
-            }else if(data.rights.description['en']!==undefined){ 
+            }else if(data.rights.description!==undefined ){ 
+                if(data.rights.description['en']!==undefined ){
                 jQuery('#itemRights').append('<span>Rights: </span><nav  class="itemRights">'+data.rights.description['en']+'</nav>');
+            }
             }
             if(data.set!==undefined){ 
                 jQuery('#itemCollection').append('<span class="forKomma last">'+data.set+'</span>');
