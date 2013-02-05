@@ -1180,6 +1180,34 @@ a.setrightbottom {
 	font-size:12px;
 }
 /* flags */
+span.flag {
+	text-indent:-9999px;
+	margin-left:3px;
+	display:inline-block;
+	width:21px;
+	height:13px;
+}
+span.enflag {
+	background:url(images/flag_en.jpg) 0 0 no-repeat;
+}
+span.esflag {
+	background:url(images/flag_es.jpg) 0 0 no-repeat;
+}
+span.itflag {
+	background:url(images/flag_it.jpg) 0 0 no-repeat;
+}
+span.grflag {
+	background:url(images/flag_gr.jpg) 0 0 no-repeat;
+}
+span.kanflag {
+	background:url(images/flag_kan.jpg) 0 0 no-repeat;
+}
+span.etflag {
+	background:url(images/flag_et.jpg) 0 0 no-repeat;
+}
+span.roflag {
+	background:url(images/flag_ro.jpg) 0 0 no-repeat;
+}
 a.flag {
 	text-indent:-9999px;
 	margin-left:3px;
