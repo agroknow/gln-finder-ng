@@ -144,7 +144,7 @@ function getItemJSON(urlTemp)
     //alert("getItemJSON!");
     jQuery.getJSON(urlTemp, function(data)
         {
-                   alert(urlTemp);
+                   //alert(urlTemp);
                 
             //if languageBlocks is an array and isn't empty
             if(data.languageBlocks.length!==undefined && data.languageBlocks!==undefined )
