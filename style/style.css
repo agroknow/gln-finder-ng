@@ -1469,6 +1469,9 @@ a.disabled {
     color:#46AD96;
     content:" ";
 }
+.forKomma.link:hover{
+    color:#136E5A;
+}
 
 /*ITEM VIEW*/
 
