@@ -152,133 +152,14 @@
 						</label>-->
 					</div>
 					<div class="twocols clearfix">
-                   
-						<aside id="insert_facets" class="filter">
-							<!--<div class="search_filter">
-								<input type="text" name="search_filter" placeholder="Search in results..." />
-							</div>-->
-                                                     
-                            <!--old-->
-							<!--<a href="#" class="filter_parent opened"><span>filter 1</span></a>
-							<div class="filter_child hasscroll">
-								<a href="#" class="clearfix">
-									<span class="image-icon">image</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix active">
-									<span class="audio-icon">audio</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="video-icon">video video video video video video</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">4</span>
-								</a>
-							</div>
-							<a href="#" class="filter_parent"><span>filter 2</span></a>
-							<div class="filter_child">
-								<a href="#" class="clearfix">
-									<span class="image-icon">image</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="audio-icon">audio</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="video-icon">video</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix active">
-									<span class="url-icon">url</span>
-									<span class="total">147</span>
-								</a>
-							</div>
-							<a href="#" class="filter_parent"><span>filter 3</span></a>
-							<div class="filter_child">
-								<a href="#" class="clearfix">
-									<span class="image-icon">image</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="audio-icon">audio</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix active">
-									<span class="video-icon">video</span>
-									<span class="total">147</span>
-								</a>
-								<a href="#" class="clearfix">
-									<span class="url-icon">url</span>
-									<span class="total">147</span>
-								</a>
-							</div>-->
-                            
-                            
-							<!--<div class="tagcloud">
-								<a href="#" class="layer1">brain</a>
-								<a href="#" class="layer3">aggriculture</a>
-								<a href="#" class="layer2">test</a>
-								<a href="#" class="layer3">canopy</a>
-								<a href="#">digital</a>
-								<a href="#" class="layer1">green</a>
-								<a href="#" class="layer2">organic</a>
-								<a href="#" class="layer3">education</a>
-								<a href="#" class="layer4">cattle</a>
-								<a href="#" class="layer2 active">vaccination</a>
-								<a href="#" class="layer3">livestock</a>
-							</div>
-							<div class="remove_filters">
-								<a href="#">remove filters</a>
-							</div>-->
-						</aside>
+                   <aside class="filter">
+                       <div class="remove_filters" style="padding: 3px 0 3px 0;">
+                           <a href="" style="font-size:12px;" onclick="initialSearch();pagination_hide();">remove filters</a>
+                       </div>
+                       
+                       <div id="insert_facets" ></div>
+                       </aside>
+
 						<section class="listing">
                             
                             <div id="insert_results"></div> <!--results from AJAX call-->
@@ -361,6 +242,7 @@
 		</section>
         
         
+  
 		
         <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 		<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
@@ -381,6 +263,7 @@
 		<script src="js/jquery.jscrollpane.min.js" type="text/javascript"></script>
 		
     	<script type="text/javascript">
+            
 			$(document).ready(function () {
                               function format(state) {
                               if (!state.id) return state.text; // optgroup
@@ -450,11 +333,11 @@
                                                            dropdownCssClass:"simple"
                                                            })
                               
-                              //$('.item-intro > h2').next().css("display","none");
-                              //$('.item-intro > h2 > span').click(function(event){
-                              //	event.preventDefault();
-                              //	$(this).parent().next().slideToggle("slow");
-                              //});
+                              jQuery('.item-intro > h2').next().css("display","none");
+                              jQuery('.item-intro > h2 > span').click(function(event){
+                              	event.preventDefault();
+                              jQuery(this).parent().next().slideToggle("slow");
+                              });
                               
                               function setface(state) {
                               var t = "human";
@@ -475,9 +358,7 @@
                               jQuery(".hasscroll").jScrollPane();
                               
                               });
-            </script>
-        
-        <script type="text/javascript">
+           
             /*
              * function customizeFinder() is called at initialisation time
              * you need to change values repositoryName and serviceUrl
@@ -494,12 +375,14 @@
                     "maxLengthDescription":  300,
                     "pageSize": 10,
                     "repositoryName": "Organic.Edunet",//find this in the ariadne.properties file inside your Ariadne folder  ex."repositoryName":"AriadneNext Repository"
-                    //"serviceUrl":"http://83.212.96.169:8080/repository2/api/ariadne/restp"
                     "serviceUrl":"http://83.212.96.169:8080/OE_repos/api/ariadne/restp"
                     
                 }
             }
+            
             </script>
+        
+       
 		
         
         
