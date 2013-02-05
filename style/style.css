@@ -68,7 +68,7 @@ body:before {
 	height:100%;
 	float:left;
 	width:0;
-	margin-top:-32767px;/
+	margin-top:-32767px;
 }
 
 .inner {
@@ -819,7 +819,7 @@ body.innerpage #main {
 	display:block;
 }
 .filter_child {
-	//display:none;
+	/*display:none;*/
 }
 .filter_child.hasscroll {
 	overflow:hidden;
@@ -854,10 +854,10 @@ font-weight:bold;
 	height:35px;
 	float:none;
 }
-//.filter_child span.image-icon { background:url(images/filter_icons.png) 0 9px no-repeat; }
-//.filter_child span.audio-icon { background:url(images/filter_icons.png) 0 -36px no-repeat; }
-//.filter_child span.video-icon { background:url(images/filter_icons.png) 0 -80px no-repeat; }
-//.filter_child span.url-icon { background:url(images/filter_icons.png) 5px -125px no-repeat; }
+/*.filter_child span.image-icon { background:url(images/filter_icons.png) 0 9px no-repeat; }*/
+/*.filter_child span.audio-icon { background:url(images/filter_icons.png) 0 -36px no-repeat; }*/
+/*.filter_child span.video-icon { background:url(images/filter_icons.png) 0 -80px no-repeat; }*/
+/*.filter_child span.url-icon { background:url(images/filter_icons.png) 5px -125px no-repeat; }*/
 .filter_child span.total {
 	position:absolute;
 	height:16px;
@@ -941,7 +941,7 @@ font-weight:bold;
 .item-intro h2 {
 	font-size:18px;
 	padding:2px 0 8px 5px;
-//	background:url(images/item_intro_sprite.png) 0 -95px no-repeat;
+/*	background:url(images/item_intro_sprite.png) 0 -95px no-repeat;*/
 	line-height:1.2em;
 }
 
@@ -960,7 +960,7 @@ font-weight:bold;
 	line-height:1.3em;
 }
 .item-intro .line {
-    max-width : 650px; //fix infinite length of keywords line
+    max-width : 650px; /*fix infinite length of keywords line*/
 	margin-bottom:7px;
 }
 .item-intro .keywords a::after {
@@ -1295,15 +1295,15 @@ h2.centerheader span {
 	text-transform:uppercase;
 	margin:0 37px;
 }
-//.items div a:hover { color:#46ad96; }
+/*.items div a:hover { color:#46ad96; }*/
 .items div a.school { background:url(images/s0.png) center top no-repeat; }
 .items div a.academic { background:url(images/s1.png) center top no-repeat; }
 .items div a.professional { background:url(images/s2.png) center top no-repeat; }
 .items div a.casual { background:url(images/s3.png) center top no-repeat; }
 .items div a:hover.school { background:url(images/s0h.png) center top no-repeat; }
-//.items div a:hover.academic { background:url(images/s1h.png) center 1px no-repeat; }
-//.items div a:hover.professional { background:url(images/s2h.png) center top no-repeat; }
-//.items div a:hover.casual { background:url(images/s3h.png) center top no-repeat; }
+/*.items div a:hover.academic { background:url(images/s1h.png) center 1px no-repeat; }*/
+/*.items div a:hover.professional { background:url(images/s2h.png) center top no-repeat; }*/
+/*.items div a:hover.casual { background:url(images/s3h.png) center top no-repeat; }*/
 
 /* single scrollable item */
 .scrollable img {
