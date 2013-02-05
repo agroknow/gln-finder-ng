@@ -146,9 +146,9 @@ function getItemJSON(urlTemp)
          
         url: urlTemp,
         mimeType: "textPlain",
-        dataType: "jsonp",
+        dataType: "json",
         crossDomain: "true",
-        jsonpCallback: "mathiou"
+        //jsonpCallback: "mathiou"
         //dataType: "json",
         success: function(data)
         {
