@@ -1190,27 +1190,35 @@ span.flag {
 }
 span.enflag {
 	background:url(images/flag_en.jpg) 0 0 no-repeat;
+        text-indent:-9999px;
 }
 span.esflag {
 	background:url(images/flag_es.png) 0 0 no-repeat;
+        text-indent:-9999px;
 }
 span.itflag {
 	background:url(images/flag_it.png) 0 0 no-repeat;
+        text-indent:-9999px;
 }
 span.grflag {
 	background:url(images/flag_gr.png) 0 0 no-repeat;
+        text-indent:-9999px;
 }
 span.etflag {
 	background:url(images/flag_et.png) 0 0 no-repeat;
+        text-indent:-9999px;
 }
 span.roflag {
 	background:url(images/flag_ro.jpg) 0 0 no-repeat;
+        text-indent:-9999px;
 }
 span.deflag {
 	background:url(images/flag_de.png) 0 0 no-repeat;
+        text-indent:-9999px;
 }
 span.frflag {
 	background:url(images/flag_fr.png) 0 0 no-repeat;
+        text-indent:-9999px;
 }
 a.flag {
 	text-indent:-9999px;
