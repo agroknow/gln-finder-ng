@@ -762,10 +762,10 @@ body.innerpage #main {
 }
 /* FILTER */
 
-//.cleanFilterList
+/*.cleanFilterList
 //{
 //    list-style-type: none;
-//}
+//}*/
 
 .filter {
 	width:230px;
