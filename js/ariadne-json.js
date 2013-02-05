@@ -144,221 +144,276 @@ function getItemJSON(urlTemp)
     //alert("getItemJSON!");
     jQuery.getJSON(urlTemp, function(data)
         {
-                   //alert(urlTemp);
+                           //alert(urlTemp);
                 
-            //if languageBlocks is an array and isn't empty
-            if(data.languageBlocks.length!==undefined && data.languageBlocks!==undefined )
+        //if languageBlocks is an array and isn't empty
+        if(data.languageBlocks.length!==undefined && data.languageBlocks!==undefined )
+        {
+            for(var i = 0; i<data.languageBlocks.length; i++)//run all different languages version of this item
             {
-                for(var i = 0; i<data.languageBlocks.length; i++)//run all different languages version of this item
-                {
-                    var language = Object.keys(data.languageBlocks[i]); //keys for different language versions of this item. (i.e en, gr, no,)
+                var language = Object.keys(data.languageBlocks[i]); //keys for different language versions of this item. (i.e en, gr, no,)
                 
-                    languageBlock = data.languageBlocks[i][language[0]]; // We always get language[0] as key
-                
-                    //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
-                    document.getElementById('itemTitle').innerHTML = languageBlock.title;
-                    document.getElementById('itemDescription').innerHTML = languageBlock.description;
-
-                if(data.expressions[0].manifestations[0].items[0].url!==undefined)
-                {
-                    jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
-                    if(data.expressions[0].manifestations[0].parameter!==undefined)
-                    {
-                        if(data.expressions[0].manifestations[0].parameter=='text/html'){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
-
-                        }else if(data.expressions[0].manifestations[0].parameter=='text/xml'){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/xml.png" /> </a>');
-
-                        }else if(data.expressions[0].manifestations[0].parameter.search("/pdf")>=0){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/pdf.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("excel")>=0){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/x-applix-spreadsheet.png" /> </a>');    
-                        }else if(data.expressions[0].manifestations[0].parameter.search("word")>=0){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/word.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("ppt")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/ppt.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("application")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/application.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("audio")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/audio.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("video")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/video.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("image")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="'+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
-
-
-                        }else{
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
-  
-                        }
-                        
-                    }else{
-                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
-  
-                    }
-                }
-                if(data.expressions[0].manifestations[0].parameter!==undefined)
-                {
-                        jQuery('#itemMediaFormat').append('<a href="#" class="secondary" target="_blank">'+data.expressions[0].manifestations[0].parameter+'</a>');
-                        
-                }
-                
-                if(data.tokenBlock.ageRange!==undefined){
-                    jQuery('#ageRange').append(data.tokenBlock.ageRange);
-                    jQuery('#itemAgeRange').append(data.tokenBlock.ageRange);
-                }
-                 if(data.rights.url!==undefined){ 
-                    jQuery('#itemRights').append('<span>Rights:</span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
-                }
-                
-                if(data.set!==undefined){ 
-                    jQuery('#itemCollection').append('<a href="#" class="secondary" target="_blank">'+data.set+'</a>');
-                }
-                
-                if(data.tokenBlock.endUserRoles.length!==undefined)
-                {
-                    for(var j=0; j<data.tokenBlock.endUserRoles.length;j++)//*ARRAY of keywords in current version
-                    {
-                        jQuery('#itemEducationalContext').append('<a  href="#" class="secondary">'+data.tokenBlock.endUserRoles[j]+'</a>');
-                    }
-                }
-                if(data.tokenBlock.learningResourceTypes.length!==undefined)
-                {
-                    for(var j=0; j<data.tokenBlock.learningResourceTypes.length;j++)//*ARRAY of keywords in current version
-                    {
-                        jQuery('#itemResourceType').append('<a  href="#" class="secondary">'+data.tokenBlock.learningResourceTypes[j]+'</a>');
-                    }
-                }
-                if(data.tokenBlock.contexts.length!==undefined)
-                {
-                    for(var j=0; j<data.tokenBlock.contexts.length;j++)//*ARRAY of keywords in current version
-                    {
-                        jQuery('#itemIntendedAudience').append('<a  href="#" class="secondary">'+data.tokenBlock.contexts[j]+'</a>');
-                    }
-                }
-                
-                
-                    if(languageBlock.keywords.length!==undefined)
-                    {
-                        for(var j=0; j<languageBlock.keywords.length;j++)//*ARRAY of keywords in current version
-                        {
-                            jQuery('#itemKeywords').append('<a  href="listing.html?query='+languageBlock.keywords[j]+'" class="secondary">'+languageBlock.keywords[j]+'</a>');
-                        }
-                    }
-                
-                }
-            }
-                
-                
-                
-            //if languageBlocks has ONLY one value => not array
-            if(data.languageBlocks.length==undefined && data.languageBlocks!==undefined )
-            {
-                var language = Object.keys(data.languageBlocks); //keys for different language versions of this item. (i.e en, gr, no,)
-                
-                languageBlock = data.languageBlocks[language[0]]; // We always get language[0] as key
+                languageBlock = data.languageBlocks[i][language[0]]; // We always get language[0] as key
                 
                 //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
-                document.getElementById('itemTitle').innerHTML = languageBlock.title ;
+                document.getElementById('itemTitle').innerHTML = languageBlock.title;
                 document.getElementById('itemDescription').innerHTML = languageBlock.description;
 
-
-                if(data.expressions[0].manifestations[0].items[0].url!==undefined)
+            if(data.expressions[0].manifestations[0].items[0].url!==undefined)
+            {
+                jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
+                if(data.expressions[0].manifestations[0].parameter!==undefined)
                 {
-                    jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
-                    if(data.expressions[0].manifestations[0].parameter!==undefined)
-                    {
-                        if(data.expressions[0].manifestations[0].parameter=='text/html'){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+                    if(data.expressions[0].manifestations[0].parameter=='text/html'){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
 
-                        }else if(data.expressions[0].manifestations[0].parameter=='text/xml'){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/xml.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter=='text/xml'){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/xml.png" /> </a>');
 
-                        }else if(data.expressions[0].manifestations[0].parameter.search("/pdf")>=0){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/pdf.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("excel")>=0){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/x-applix-spreadsheet.png" /> </a>');    
-                        }else if(data.expressions[0].manifestations[0].parameter.search("word")>=0){
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/word.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("ppt")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/ppt.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("application")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/application.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("audio")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/audio.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("video")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/video.png" /> </a>');
-                        }else if(data.expressions[0].manifestations[0].parameter.search("image")>=0){ 
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="'+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("/pdf")>=0){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/pdf.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("excel")>=0){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/x-applix-spreadsheet.png" /> </a>');    
+                    }else if(data.expressions[0].manifestations[0].parameter.search("word")>=0){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/word.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("ppt")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/ppt.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("application")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/application.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("audio")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/audio.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("video")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/video.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("image")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="'+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
 
 
-                        }else{
-                            jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
-  
-                        }
-                        
                     }else{
                         jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
   
                     }
-                }
-                if(data.expressions[0].manifestations[0].parameter!==undefined)
-                {
-                        jQuery('#itemMediaFormat').append('<a href="#" class="secondary" target="_blank">'+data.expressions[0].manifestations[0].parameter+'</a>');
                         
+                }else{
+                    jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+  
                 }
-                
-                if(data.tokenBlock.ageRange!==undefined){
-                    jQuery('#ageRange').append(data.tokenBlock.ageRange);
-                    jQuery('#itemAgeRange').append(data.tokenBlock.ageRange);
-                }
-                 if(data.rights.url!==undefined){ 
-                    jQuery('#itemRights').append('<span>Rights:</span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
-                }
-                 if(data.set!==undefined){ 
-                    jQuery('#itemCollection').append('<a href="#" class="secondary" target="_blank">'+data.set+'</a>');
-                }
-                
-                
-                
-                if(data.tokenBlock.endUserRoles.length!==undefined)
-                {
-                    for(var j=0; j<data.tokenBlock.endUserRoles.length;j++)//*ARRAY of keywords in current version
-                    {
-                        jQuery('#itemEducationalContext').append('<a  href="#" class="secondary">'+data.tokenBlock.endUserRoles[j]+'</a>');
-                    }
-                }
-                if(data.tokenBlock.learningResourceTypes.length!==undefined)
-                {
-                    for(var j=0; j<data.tokenBlock.learningResourceTypes.length;j++)//*ARRAY of keywords in current version
-                    {
-                        jQuery('#itemResourceType').append('<a  href="#" class="secondary">'+data.tokenBlock.learningResourceTypes[j]+'</a>');
-                    }
-                }
-                if(data.tokenBlock.contexts.length!==undefined)
-                {
-                    for(var j=0; j<data.tokenBlock.contexts.length;j++)//*ARRAY of keywords in current version
-                    {
-                        jQuery('#itemIntendedAudience').append('<a  href="#" class="secondary">'+data.tokenBlock.contexts[j]+'</a>');
-                    }
-                }
-                
-                
-                if(languageBlock.keywords.length!==undefined)
-                {
-                    for(var j=0; j<languageBlock.keywords.length;j++)//*ARRAY of keywords in current version
-                    {
-                        jQuery('#itemKeywords').append('<a  href="listing.html?query='+languageBlock.keywords[j]+'" class="secondary">'+languageBlock.keywords[j]+'</a>');
-                    }
-                }
-                
+            }
+            if(data.expressions[0].manifestations[0].parameter!==undefined)
+            {
+                jQuery('#itemMediaFormat').append('<span class="forKomma last">'+data.expressions[0].manifestations[0].parameter+'</span>');
+                        
             }
                 
+            if(data.tokenBlock.ageRange!==undefined){
+                jQuery('#ageRange').append('<span class="forKomma last">'+data.tokenBlock.ageRange+'</span>');
+                jQuery('#itemAgeRange').append('<span class="forKomma last">'+data.tokenBlock.ageRange+'</span>');
+            }
+            if(data.rights.url!==undefined){ 
+                jQuery('#itemRights').append('<span>Rights:</span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
+            }
+            if(data.set!==undefined){ 
+                jQuery('#itemCollection').append('<span class="forKomma last">'+data.set+'</span>');
+            }
+                
+                
+                
+            if(data.tokenBlock.endUserRoles.length!==undefined)
+            {
+                for(var j=0; j<data.tokenBlock.endUserRoles.length;j++)//*ARRAY of keywords in current version
+                {
+                    if(j==data.tokenBlock.endUserRoles.length-1){
+                        jQuery('#itemIntendedAudience').append('<span class="forKomma last">'+data.tokenBlock.endUserRoles[j]+'<span>');
+
+                    }else{
+                        jQuery('#itemIntendedAudience').append('<span class="forKomma">'+data.tokenBlock.endUserRoles[j]+'<span>');
+
+                    }
+                }
+            }
+            if(data.tokenBlock.learningResourceTypes.length!==undefined)
+            {
+                for(var j=0; j<data.tokenBlock.learningResourceTypes.length;j++)//*ARRAY of keywords in current version
+                {
+                    if(j==data.tokenBlock.learningResourceTypes.length-1){
+                        jQuery('#itemResourceType').append('<span class="forKomma last">'+data.tokenBlock.learningResourceTypes[j]+'<span>');
+
+                    }else{
+                        jQuery('#itemResourceType').append('<span class="forKomma">'+data.tokenBlock.learningResourceTypes[j]+'<span>');
+
+                    }
+                        
+                }
+            }
+            if(data.tokenBlock.contexts.length!==undefined)
+            {
+                for(var j=0; j<data.tokenBlock.contexts.length;j++)//*ARRAY of keywords in current version
+                {
+                    if(j==data.tokenBlock.contexts.length-1){
+                        jQuery('#itemEducationalContext').append('<span class="forKomma last">'+data.tokenBlock.contexts[j]+'<span>');
+
+                    }else{
+                        jQuery('#itemEducationalContext').append('<span class="forKomma">'+data.tokenBlock.contexts[j]+'<span>');
+
+                    }
+                        
+                }
+            }
+                
+                
+            if(languageBlock.keywords.length!==undefined)
+            {
+                for(var j=0; j<languageBlock.keywords.length;j++)//*ARRAY of keywords in current version
+                {
+                    if(j==languageBlock.keywords.length-1){
+                        jQuery('#itemKeywords').append('<a  href="listing.html?query='+languageBlock.keywords[j]+'" class="forKomma link last">'+languageBlock.keywords[j]+'</a>');
+
+                    }else{
+                        jQuery('#itemKeywords').append('<a  href="listing.html?query='+languageBlock.keywords[j]+'" class="forKomma link">'+languageBlock.keywords[j]+'</a>');
+
+                    }
+                        
+                }
+            }
+                
+            }
+        }
+                
+                
+                
+        //if languageBlocks has ONLY one value => not array
+        if(data.languageBlocks.length==undefined && data.languageBlocks!==undefined )
+        {
+            var language = Object.keys(data.languageBlocks); //keys for different language versions of this item. (i.e en, gr, no,)
+                
+            languageBlock = data.languageBlocks[language[0]]; // We always get language[0] as key
+                
+            //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
+            document.getElementById('itemTitle').innerHTML = languageBlock.title ;
+            document.getElementById('itemDescription').innerHTML = languageBlock.description;
+
+
+            if(data.expressions[0].manifestations[0].items[0].url!==undefined)
+            {
+                jQuery('#itemAccess').append('<a target="_blank" href="'+data.expressions[0].manifestations[0].items[0].url+'" class="access  secondary">Access to the resource</a>');
+                if(data.expressions[0].manifestations[0].parameter!==undefined)
+                {
+                    if(data.expressions[0].manifestations[0].parameter=='text/html'){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+
+                    }else if(data.expressions[0].manifestations[0].parameter=='text/xml'){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/xml.png" /> </a>');
+
+                    }else if(data.expressions[0].manifestations[0].parameter.search("/pdf")>=0){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/pdf.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("excel")>=0){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/x-applix-spreadsheet.png" /> </a>');    
+                    }else if(data.expressions[0].manifestations[0].parameter.search("word")>=0){
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/word.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("ppt")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/ppt.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("application")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/application.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("audio")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/audio.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("video")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img  src="images/icons/video.png" /> </a>');
+                    }else if(data.expressions[0].manifestations[0].parameter.search("image")>=0){ 
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="'+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+
+
+                    }else{
+                        jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+  
+                    }
+                        
+                }else{
+                    jQuery('#itemThumb').append('<a href="'+data.expressions[0].manifestations[0].items[0].url+'"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url='+data.expressions[0].manifestations[0].items[0].url+'" /> </a>');
+  
+                }
+            }
+            if(data.expressions[0].manifestations[0].parameter!==undefined)
+            {
+                jQuery('#itemMediaFormat').append('<span class="forKomma last">'+data.expressions[0].manifestations[0].parameter+'</span>');
+                        
+            }
+                
+            if(data.tokenBlock.ageRange!==undefined){
+                jQuery('#ageRange').append('<span class="forKomma last">'+data.tokenBlock.ageRange+'</span>');
+                jQuery('#itemAgeRange').append('<span class="forKomma last">'+data.tokenBlock.ageRange+'</span>');
+            }
+            if(data.rights.url!==undefined){ 
+                jQuery('#itemRights').append('<span>Rights:</span><nav  class="itemRights"><a href="'+data.rights.url+'" class="secondary" target="_blank">'+data.rights.url+'</a></nav>');
+            }
+            if(data.set!==undefined){ 
+                jQuery('#itemCollection').append('<span class="forKomma last">'+data.set+'</span>');
+            }
+                
+                
+                
+            if(data.tokenBlock.endUserRoles.length!==undefined)
+            {
+                for(var j=0; j<data.tokenBlock.endUserRoles.length;j++)//*ARRAY of keywords in current version
+                {
+                    if(j==data.tokenBlock.endUserRoles.length-1){
+                        jQuery('#itemIntendedAudience').append('<span class="forKomma last">'+data.tokenBlock.endUserRoles[j]+'<span>');
+
+                    }else{
+                        jQuery('#itemIntendedAudience').append('<span class="forKomma">'+data.tokenBlock.endUserRoles[j]+'<span>');
+
+                    }
+                }
+            }
+            if(data.tokenBlock.learningResourceTypes.length!==undefined)
+            {
+                for(var j=0; j<data.tokenBlock.learningResourceTypes.length;j++)//*ARRAY of keywords in current version
+                {
+                    if(j==data.tokenBlock.learningResourceTypes.length-1){
+                        jQuery('#itemResourceType').append('<span class="forKomma last">'+data.tokenBlock.learningResourceTypes[j]+'<span>');
+
+                    }else{
+                        jQuery('#itemResourceType').append('<span class="forKomma">'+data.tokenBlock.learningResourceTypes[j]+'<span>');
+
+                    }
+                        
+                }
+            }
+            if(data.tokenBlock.contexts.length!==undefined)
+            {
+                for(var j=0; j<data.tokenBlock.contexts.length;j++)//*ARRAY of keywords in current version
+                {
+                    if(j==data.tokenBlock.contexts.length-1){
+                        jQuery('#itemEducationalContext').append('<span class="forKomma last">'+data.tokenBlock.contexts[j]+'<span>');
+
+                    }else{
+                        jQuery('#itemEducationalContext').append('<span class="forKomma">'+data.tokenBlock.contexts[j]+'<span>');
+
+                    }
+                        
+                }
+            }
+                
+                
+            if(languageBlock.keywords.length!==undefined)
+            {
+                for(var j=0; j<languageBlock.keywords.length;j++)//*ARRAY of keywords in current version
+                {
+                    if(j==languageBlock.keywords.length-1){
+                        jQuery('#itemKeywords').append('<a  href="listing.html?query='+languageBlock.keywords[j]+'" class="forKomma link last">'+languageBlock.keywords[j]+'</a>');
+
+                    }else{
+                        jQuery('#itemKeywords').append('<a  href="listing.html?query='+languageBlock.keywords[j]+'" class="forKomma link">'+languageBlock.keywords[j]+'</a>');
+
+                    }
+                        
+                }
+            }
                 
         }
                 
-                );
+                
+    }
+                
+    );
 }
 
 
