@@ -389,20 +389,49 @@ function searchByKeyword(key){
 
 function parseQueryString(initUpdate){
     var spq = $F('query').split('keyword:');
+    //var spq = $F('context').split('context:');
     var plainText = spq[0];
     var clauses = [];
     if(!plainText.blank()){
         clauses.push({language:'VSQL',expression:plainText});
+        // add the below to github
+        var lrt = getUrlVars()["lrt"];
+        var key = getUrlVars()["keyword"];
+        var context = getUrlVars()["context"];
+        if (lrt) {
+            clauses.push({language:'anyOf',expression:'lrt:' + lrt});
+        }
+        if (key) {
+            clauses.push({language:'anyOf',expression:'keyword:' + key});
+        }
+        if (context) {
+            clauses.push({language:'anyOf',expression:'context:' + context});
+        }
+        //clauses.push({language:'anyOf',expression:'keyword:' + key});
+        //clauses.push({language:'anyOf',expression:'lrt:image'});
+        // add the below to code @ github. It is to limit the results only for OE collection //
+        clauses.push({language:'anyOf',expression:'provider:organicedunet'});
+        //clauses.push({language:'anyOf',expression:'context:pre-school'});
     }
     if(spq.length > 1){
         var keyword = spq[1];
         clauses.push({language:'anyOf',expression:'keyword:' + keyword});
     }
     if(plainText.blank()){
-        clauses.push({language:'anyOf',expression:'collection:organicedunet'});
+        //clauses.push({language:'anyOf',expression:'provider:organicedunet'});
     }
     return clauses;
 }
+
+// Get the parameters of the url
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(m,key,value) {
+                                             vars[key] = value;
+                                             });
+	return vars;
+}
+
 
 //Example use formatInteger(12345678,',')
 function formatInteger(number, com) {
