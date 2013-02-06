@@ -320,7 +320,12 @@ function getItemJSON(urlTemp)
         {
             var language = Object.keys(data.languageBlocks); //keys for different language versions of this item. (i.e en, gr, no,)
                 
-            languageBlock = data.languageBlocks[language[0]]; // We always get language[0] as key
+            /////get always language "en" else the first one
+                if(data.languageBlocks['en']==undefined){
+                    languageBlock = data.languageBlocks[language[0]]; // We always get language[0] as key
+                }else{
+                    languageBlock = data.languageBlocks['en']; // We always get language['en'] as key
+                }
                 
             //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
             //document.getElementById('itemTitle').innerHTML = languageBlock.title ;
