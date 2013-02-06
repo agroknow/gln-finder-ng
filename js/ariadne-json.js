@@ -159,8 +159,16 @@ function getItemJSON(urlTemp)
                 languageBlock = data.languageBlocks[i][language[0]]; // We always get language[0] as key
                 
                 //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
-                document.getElementById('itemTitle').innerHTML = languageBlock.title;
-                document.getElementById('itemDescription').innerHTML = languageBlock.description;
+                //document.getElementById('itemTitle').innerHTML = languageBlock.title ;
+            //document.getElementById('itemDescription').innerHTML = languageBlock.description;
+              if(languageBlock.title!==undefined)
+            {
+                document.getElementById('itemTitle').innerHTML = languageBlock.title ;                      
+            } 
+             if(languageBlock.description!==undefined)
+            {
+                document.getElementById('itemDescription').innerHTML = languageBlock.description;                        
+            } 
 
             if(data.expressions[0].manifestations[0].items[0].url!==undefined)
             {
@@ -315,8 +323,16 @@ function getItemJSON(urlTemp)
             languageBlock = data.languageBlocks[language[0]]; // We always get language[0] as key
                 
             //jQuery('#stage').append('<p> languageBlocks.title: ' + language[0] + '</p>'); // language code
-            document.getElementById('itemTitle').innerHTML = languageBlock.title ;
-            document.getElementById('itemDescription').innerHTML = languageBlock.description;
+            //document.getElementById('itemTitle').innerHTML = languageBlock.title ;
+            //document.getElementById('itemDescription').innerHTML = languageBlock.description;
+              if(languageBlock.title!==undefined)
+            {
+                document.getElementById('itemTitle').innerHTML = languageBlock.title ;                      
+            } 
+             if(languageBlock.description!==undefined)
+            {
+                document.getElementById('itemDescription').innerHTML = languageBlock.description;                        
+            } 
 
 
             if(data.expressions[0].manifestations[0].items[0].url!==undefined)
