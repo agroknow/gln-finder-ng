@@ -24,6 +24,9 @@
  * pageSize: Default is 10
  * repositoryName: Default is "ARIADNE"
  * serviceUrl: the URL of the repository services. Default is "http://ariadne.cs.kuleuven.be/GlobeFinderF1/servlet/search"
+  * selectedProviders: in case we want to limit the collections we add here the selected providers. If none is listed all collections will be imported
+ *      For example "selectedProviders":["aglraims","digitalgreen","traglor"]
+ *
  *
  * function customizeFinder() {
  return {
@@ -41,6 +44,9 @@
  */
 
 
+/*limit collections|providers*/
+var SELECTED_PROVIDERS = [];
+/**/
 
 var SERVICE_URL = 'http://ariadne.cs.kuleuven.be/GlobeFinderF1/servlet/search';
 var EXT_SOURCE_URL = 'http://ariadne.cs.kuleuven.be/GlobeFinderF1/servlet/search';
@@ -88,6 +94,8 @@ var CHECK = 0;
 var langName = {};
 var iter = 0;
 
+
+/*LANGUAGE MAPPING*/
 langName['n/a']='Other';
 
 langName['en']='English';
@@ -133,6 +141,45 @@ langName['bho']='Bhojpuri';
 langName['tel']='Telugu';
 langName['gaz']='Oromifa';
 langName['twi']='Twi';
+/*end language mapping*/
+
+/*PROVIDERS MAPPING*/
+var providerName = {};
+providerName['oeagroasis']='AGROASIS/NOVA';
+providerName['oeenoat']='ENOAT';
+providerName['oebioagro']='BioAgro';
+providerName['oeecologiga']='Ecologica';
+providerName['oeintute']='Intute';
+providerName['oeaua']='AUA';
+providerName['oeeulsesthonian']='EULS/Estonian';
+providerName['oebmlfuwaustrian']='BMLFUW/Austrian';
+providerName['oefao']='FAO';
+providerName['oeellinogermaniki']='Ellinogermaniki Agogi';
+providerName['oeorganiceprints']='Organic e-prints';
+providerName['oespanish']='Spanish';
+providerName['oemiksike']='MIKSIKE';
+providerName['greenoer']='Green OER';
+providerName['digitalgreen']='Digital Green';
+providerName['oerafrica']='OER Africa';
+providerName['sercmicro']='SERCMICRO';
+providerName['faocapacityportal']='FAO capacity portal';
+providerName['traglor']='Traglor';
+providerName['nsdlbeyond']='NSDL Beyond';
+providerName['edunhmc']='Educational National Europe';
+providerName['aglreol']='Encyclopedia of Life';
+providerName['aglrnb']='Natural Bridge';
+providerName['cgiar']='CGIAR';
+providerName['ruforum']='RuForum';
+providerName['gfar']='Global Forum on Agricultural Research';
+providerName['aglrgsg']='Great School Gardens';
+providerName['access']='Access Agricultural';
+providerName['aglrllb']='Life Lab';
+providerName['rurinc']='Rural Inclusion';
+providerName['aglraims']='AIMS';
+providerName['aglrslowfood']='Slow Food';
+
+/*--end providers mapping*/
+
 
 
 google.load("language", "1");
@@ -161,6 +208,10 @@ function initializeFinder(){
 		if(typeof customizeFinder == 'function') {
 			var customParams = customizeFinder();
 			if(customParams) {
+                /*limit collection|providers*/
+                if (customParams.selectedProviders) SELECTED_PROVIDERS = customParams.selectedProviders;
+                //alert(SELECTED_PROVIDERS);
+                /*---*/
 				if (customParams.serviceUrl) SERVICE_URL = customParams.serviceUrl;
 				if (customParams.repositoryName) REPOSITORY_NAME = customParams.repositoryName;
 				if (customParams.facets) FACET_TOKENS = customParams.facets;
@@ -392,6 +443,20 @@ function parseQueryString(initUpdate){
     //var spq = $F('context').split('context:');
     var plainText = spq[0];
     var clauses = [];
+    
+    
+    var selectedProviders;
+    if(typeof customizeFinder == 'function')
+    {
+        var customParams = customizeFinder();
+        if(customParams.selectedProviders) selectedProviders = customParams.selectedProviders;
+        
+    }
+
+    
+    
+    
+    
     if(!plainText.blank()){
         clauses.push({language:'VSQL',expression:plainText});
         // add the below to github
@@ -409,9 +474,20 @@ function parseQueryString(initUpdate){
         }
         //clauses.push({language:'anyOf',expression:'keyword:' + key});
         //clauses.push({language:'anyOf',expression:'lrt:image'});
+        
+        
         // add the below to code @ github. It is to limit the results only for OE collection //
-        clauses.push({language:'anyOf',expression:'provider:organicedunet'});
+        //clauses.push({language:'anyOf',expression:'provider:organicedunet,oerafrica,greenoer,aglrnaturebridge,cgiar,ruforum,gfar,aglrgreatschoolgardens,aglrlifelab,nsdlbeyond,sercmicro,aglrencyclopediaoflife'});
+        
+        
+        
+        
         //clauses.push({language:'anyOf',expression:'context:pre-school'});
+        
+        
+        
+        //### selectedProviders targeting OE collection.
+        if(selectedProviders) clauses.push({language:'anyOf',expression:'provider:'+selectedProviders});
     }
     if(spq.length > 1){
         var keyword = spq[1];
@@ -680,6 +756,28 @@ new Ajax.JSONRequest(SERVICE_URL, {
   $('keywords_filter').hide();
   }*/
  
+                     
+                    
+                     function facetSlide(){
+                     
+                     jQuery(document).ready(function(){
+                                            
+                                            jQuery('.filter_parent').each(function() {
+                                                                          if(jQuery(this).hasClass("opened")) jQuery(this).next().css("display","block");
+                                                                          });
+                                            jQuery('.filter_parent').click(function(event){
+                                                                           event.preventDefault();
+                                                                           jQuery(this).toggleClass("opened");
+                                                                           jQuery(this).next().slideToggle("slow");
+                                                                           });
+                                            exit();
+                                            
+                                            });
+                     }
+
+                     
+                     
+                     
  if(needsUpdate){
  updatePaginator(result.nrOfResults);
  result.facets.each(function(item,index)
@@ -710,17 +808,9 @@ new Ajax.JSONRequest(SERVICE_URL, {
                                                               //element.insert(Jaml.render('rbcriteria',it2));
                                                               if (fld!= "language")
                                                               {
-                                                              if(fld=="provider")
-                                                              {
-                                                                if (it2.val=="organicedunet"){
-                                                                     element.insert(Jaml.render('rbcriteria',it2));}
-                                                              }
-                                                              else
-                                                              {
-                                                                  element.insert(Jaml.render('rbcriteria',it2));
-                                                              }
                                                               
-                                                             
+                                                              element.insert(Jaml.render('rbcriteria',it2));
+                                                              
                                                               }else
                                                               // check first if langName[it2.val] exists already in rbList
                                                               {
@@ -737,7 +827,8 @@ new Ajax.JSONRequest(SERVICE_URL, {
                                       });
                     
                     
-                    
+                    //bind and triggers the function for sliding in facets!
+                    facetSlide();
                     
                     selectedFacets.each(function(item,index){
                                         $(item.id).addClassName('facet-selected');
@@ -985,8 +1076,13 @@ new Ajax.JSONRequest(SERVICE_URL, {
  Jaml.register('rbcriteria', function(data)
                {
                
+               //var label = data.val;
+               //if(data.val=="organicedunet"){label = "organic edunet";}//in future it will created through mapping for providers in order to have more readable labels
+               
+               //###
                var label = data.val;
-               if(data.val=="organicedunet"){label = "organic edunet";}//in future it will created through mapping for providers in order to have more readable labels
+               if(providerName[data.val])
+               {label = providerName[data.val];}
                
                a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
                

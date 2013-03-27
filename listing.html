@@ -368,13 +368,16 @@
             $.noConflict();
             function customizeFinder() {
                 return {
+                    /* limit collections|providers*/
+                     "selectedProviders":["oeagroasis","oeenoat","oebioagro","oeecologiga","oeintute","oeaua","oeeulsesthonian","oebmlfuwaustrian","oefao","oeellinogermaniki","oeorganiceprints","oespanish","oemiksike","organicedunet","oerafrica","greenoer","aglrnaturebridge","cgiar","ruforum","gfar","aglrgreatschoolgardens","aglrlifelab","nsdlbeyond","sercmicro","aglrencyclopediaoflife"],
+                     
                     "externalSources": ["wp","scr","ss","gb"],
                     "pageContainers": ['bottom','top'],
                     "facets": ["provider","language","lrt", "context", "iur"], //,"rights" ,"format" "tagr"
                     "limitFacetDisplay": {"language":["en","eng;","eng","eng; eng","el","fr","nl","de","et","hu","ro","tr"]},
                     "maxLengthDescription":  300,
                     "pageSize": 10,
-                    "repositoryName": "Organic.Edunet",//find this in the ariadne.properties file inside your Ariadne folder  ex."repositoryName":"AriadneNext Repository"
+                    "repositoryName": "Organic.Edunet",
                     "serviceUrl":"http://83.212.96.169:8080/OE_repos/api/ariadne/restp"
                     
                 }
