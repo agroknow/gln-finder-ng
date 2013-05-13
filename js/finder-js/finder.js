@@ -145,6 +145,19 @@ langName['twi']='Twi';
 
 /*PROVIDERS MAPPING*/
 var providerName = {};
+providerName['greenoer']='Green OER';
+providerName['digitalgreen']='Digital Green';
+providerName['oerafrica']='OER Africa';
+providerName['sercmicro']='SERCMICRO';
+providerName['faocapacityportal']='FAO capacity portal';
+providerName['traglor']='Traglor';
+providerName['nsdlbeyond']='NSDL Beyond';
+providerName['edunhmc']='Educational National Europe';
+providerName['cgiar']='CGIAR';
+providerName['ruforum']='RuForum';
+providerName['gfar']='Global Forum on Agricultural Research';
+providerName['access']='Access Agricultural';
+providerName['rurinc']='Rural Inclusion';
 providerName['oeagroasis']='AGROASIS/NOVA';
 providerName['oeenoat']='ENOAT';
 providerName['oebioagro']='BioAgro';
@@ -158,25 +171,22 @@ providerName['oeellinogermaniki']='Ellinogermaniki Agogi';
 providerName['oeorganiceprints']='Organic e-prints';
 providerName['oespanish']='Spanish';
 providerName['oemiksike']='MIKSIKE';
-providerName['greenoer']='Green OER';
-providerName['digitalgreen']='Digital Green';
-providerName['oerafrica']='OER Africa';
-providerName['sercmicro']='SERCMICRO';
-providerName['faocapacityportal']='FAO capacity portal';
-providerName['traglor']='Traglor';
-providerName['nsdlbeyond']='NSDL Beyond';
-providerName['edunhmc']='Educational National Europe';
+
+providerName['aglrfaocdx']='FAO Codex';
+providerName['aglrfskn']='Food Safety Knowledge Network';
+providerName['aglrfoodsafety']='Food Safety OER';
+providerName['aglraims']='Webinars AIMS';
+providerName['aglrslowfood']='Slow Food';
+providerName['aglrllb']='Life Lab';
+providerName['aglrgsg']='Great School Gardens';
 providerName['aglreol']='Encyclopedia of Life';
 providerName['aglrnb']='Natural Bridge';
-providerName['cgiar']='CGIAR';
-providerName['ruforum']='RuForum';
-providerName['gfar']='Global Forum on Agricultural Research';
-providerName['aglrgsg']='Great School Gardens';
-providerName['access']='Access Agricultural';
-providerName['aglrllb']='Life Lab';
-providerName['rurinc']='Rural Inclusion';
-providerName['aglraims']='AIMS';
-providerName['aglrslowfood']='Slow Food';
+providerName['aglrfaocapacityportal']='FAO Capacity';
+
+providerName['aglfaoimark']='iMark';
+providerName['aglrfaoerptoolkit']='ERP Tool Kit';
+providerName['aglrfaoerptoolkitprimsec']='ERP Tool Kit';
+providerName['aglrfaorightofood']='Right To Food';
 
 /*--end providers mapping*/
 
@@ -207,11 +217,18 @@ function initializeFinder(){
 	if (!FINDER_INITIALIZED) {
 		if(typeof customizeFinder == 'function') {
 			var customParams = customizeFinder();
+             var urlSelectedProviders = getUrlVars()["providers"];
+            
 			if(customParams) {
                 /*limit collection|providers*/
-                if (customParams.selectedProviders) SELECTED_PROVIDERS = customParams.selectedProviders;
+                if(urlSelectedProviders){
+                    SELECTED_PROVIDERS = urlSelectedProviders;
+                    /*alert(urlSelectedProviders);*/
+                }
+                if (!urlSelectedProviders && customParams.selectedProviders) SELECTED_PROVIDERS = customParams.selectedProviders;
                 //alert(SELECTED_PROVIDERS);
                 /*---*/
+
 				if (customParams.serviceUrl) SERVICE_URL = customParams.serviceUrl;
 				if (customParams.repositoryName) REPOSITORY_NAME = customParams.repositoryName;
 				if (customParams.facets) FACET_TOKENS = customParams.facets;
@@ -463,31 +480,31 @@ function parseQueryString(initUpdate){
         var lrt = getUrlVars()["lrt"];
         var key = getUrlVars()["keyword"];
         var context = getUrlVars()["context"];
+        var urlSelectedProviders = getUrlVars()["providers"];
+        
         if (lrt) {
-            clauses.push({language:'anyOf',expression:'lrt:' + lrt});
+            lrt = lrt.replace("#","").replace("%20", " ");
+            clauses.push({language:'anyOf',expression:'lrt:'+ lrt});
         }
         if (key) {
+            key = key.replace("#","").replace("%20", " ");
             clauses.push({language:'anyOf',expression:'keyword:' + key});
         }
         if (context) {
+            context = context.replace("#","").replace("%20", " ");
             clauses.push({language:'anyOf',expression:'context:' + context});
         }
-        //clauses.push({language:'anyOf',expression:'keyword:' + key});
+        if (urlSelectedProviders){
+            urlSelectedProviders = urlSelectedProviders.replace("#","").replace("%20", " ");
+            clauses.push({language:'anyOf',expression:'provider:'+urlSelectedProviders});
+        }
+        
+        if (!urlSelectedProviders && selectedProviders){
+            clauses.push({language:'anyOf',expression:'provider:'+selectedProviders});
+        }        //clauses.push({language:'anyOf',expression:'keyword:' + key});
         //clauses.push({language:'anyOf',expression:'lrt:image'});
-        
-        
         // add the below to code @ github. It is to limit the results only for OE collection //
-        //clauses.push({language:'anyOf',expression:'provider:organicedunet,oerafrica,greenoer,aglrnaturebridge,cgiar,ruforum,gfar,aglrgreatschoolgardens,aglrlifelab,nsdlbeyond,sercmicro,aglrencyclopediaoflife'});
         
-        
-        
-        
-        //clauses.push({language:'anyOf',expression:'context:pre-school'});
-        
-        
-        
-        //### selectedProviders targeting OE collection.
-        if(selectedProviders) clauses.push({language:'anyOf',expression:'provider:'+selectedProviders});
     }
     if(spq.length > 1){
         var keyword = spq[1];

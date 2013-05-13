@@ -15,6 +15,8 @@ function getItemJSONP(urlTemp)
                 //parse array and create an JS Object Array
                 //every item is a JSON
                 var arrayWithJSONS = JSON.parse(data);
+              
+                
                 
                 //alert("my_1 : " + arrayWithJSONS[0].languageBlocks.en.title);
                 

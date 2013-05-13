@@ -151,7 +151,7 @@ footer#mainfooter .inner h3.aboutus ~ p {
 
 /* HEADER */
 header#mainheader {
-	min-height:229px;
+	/*min-height:229px;*/
 	border-bottom:3px solid #46ad96;
 	background:#ececec url(images/header_bg.png) center bottom no-repeat;
 	position:relative;
