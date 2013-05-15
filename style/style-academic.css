@@ -224,8 +224,9 @@ header#mainheader {
 	margin-top:26px;
 	position:relative;
 }
-.logo {
-	display:block;
+
+.logo_academic{
+    display:block;
 	float:left;
 	width:390px;
 	height:94px;

@@ -231,6 +231,16 @@ header#mainheader {
 	margin-top:26px;
 	position:relative;
 }
+
+.logo_academic{
+    display:block;
+	float:left;
+	width:390px;
+	height:94px;
+	background:url(images/logo_academic.png) 0 0 no-repeat;
+	text-indent:-9999px;
+}
+
 .logo {
 	display:block;
 	float:left;

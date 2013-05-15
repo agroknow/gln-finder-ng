@@ -283,7 +283,7 @@ function initializeFinder(){
 			
             
 //            div.push('<DIV id="rb_'+fn+'" >');
-			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent opened"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: block; overflow: hidden;height:auto;"></div>');
+			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
 			
 //            div.push('</DIV>');
 		}
