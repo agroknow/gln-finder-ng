@@ -1009,11 +1009,11 @@ new Ajax.JSONRequest(SERVICE_URL, {
                {
                if(i!==length-1)
                {
-               keywordsToEmbed +="<a class=\"secondary\" href=\"listing.html?query="+data.keywords[i]+"\">&nbsp"+data.keywords[i]+"</a>"
+               keywordsToEmbed +="<a class=\"secondary\" href=\"listing-academic.html?query="+data.keywords[i]+"\">&nbsp"+data.keywords[i]+"</a>"
                }
                else
                {
-               keywordsToEmbed +="<a class=\"secondary last\" href=\"listing.html?query="+data.keywords[i].split(" ")[0]+"\">&nbsp"+data.keywords[i]+"</a>"
+               keywordsToEmbed +="<a class=\"secondary last\" href=\"listing-academic?query="+data.keywords[i].split(" ")[0]+"\">&nbsp"+data.keywords[i]+"</a>"
                }
                }
                //               console.log("data.ageRange:"+data.ageRange);
