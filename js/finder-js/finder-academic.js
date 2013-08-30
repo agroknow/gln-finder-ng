@@ -466,7 +466,11 @@ function parseQueryString(initUpdate){
     if(typeof customizeFinder == 'function')
     {
         var customParams = customizeFinder();
-        if(customParams.selectedProviders) selectedProviders = customParams.selectedProviders;
+        if(customParams.selectedProviders){
+            //alert(customParams.selectedProviders);
+            selectedProviders = customParams.selectedProviders;
+            clauses.push({language:'anyOf',expression:'provider:'+selectedProviders});
+        }
         
     }
 
@@ -498,14 +502,17 @@ function parseQueryString(initUpdate){
             urlSelectedProviders = urlSelectedProviders.replace("#","").replace("%20", " ");
             clauses.push({language:'anyOf',expression:'provider:'+urlSelectedProviders});
         }
-        
         if (!urlSelectedProviders && selectedProviders){
-            clauses.push({language:'anyOf',expression:'provider:'+selectedProviders});
-        }        //clauses.push({language:'anyOf',expression:'keyword:' + key});
+            
+        }
+               //clauses.push({language:'anyOf',expression:'keyword:' + key});
         //clauses.push({language:'anyOf',expression:'lrt:image'});
         // add the below to code @ github. It is to limit the results only for OE collection //
         
     }
+    
+    
+    
     if(spq.length > 1){
         var keyword = spq[1];
         clauses.push({language:'anyOf',expression:'keyword:' + keyword});
