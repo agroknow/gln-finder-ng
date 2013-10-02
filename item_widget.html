@@ -42,7 +42,7 @@
 	
     </head>
 
-    <body class="innerpage listingpage" onload="getItem();" >
+    <body class="innerpage listingpage" onload="getItem(); recommendations_widget();" >
         <section id="wrap">
 
             <header id="mainheader">
@@ -91,7 +91,7 @@
 
                     <div class="twocols clearfix">
 
-                        <aside class="leftSidebarInfo">
+                        <aside id="left_sidebar" class="leftSidebarInfo">
                             <div class="clearfix">
 
                                 <ul class="floatleft cleanList">
@@ -142,7 +142,6 @@
                                 </ul>
                             </div>
 							
-							<input type="button" class="rec_button" onclick="recommendations_widget();" value="recommendations">
                         </aside>
 
 
@@ -324,22 +323,23 @@
 		        
 			function recommendations_widget(){
 		
-				console.log("recommendations_widget is alive");
-			try {
-				var x = document.createElement("SCRIPT");
-				x.type = "text/javascript";
-				x.src = "http://" + WIDGET_HOST + WIDGET_PATH + "LoadListVIZ.js";
-				x.setAttribute("RecommendationType", "user"); //"user" for user recommendations
-		        x.setAttribute("ViewType","ListLarge"); //ListLarge or ListSmall - purely informational
-		        x.setAttribute("NumRecommendations", 10); //how many recommendations are shown
-		        x.setAttribute("RecommendationIdentifier", "admin"); //either resource or user id
-		        x.setAttribute("WidgetWidth", "1024");
-		        x.setAttribute("WidgetHeight", "720");
-		        x.setAttribute("ShowTop", "true"); //set to "true" or "false" to show title, search box, and sort options
-		        x.setAttribute("WidgetTitle", ""); //empty if no title
-				x.setAttribute('id', 'ListWidget');
-				document.getElementsByTagName("head")[0].appendChild(x);
-			} catch (e) {}
+				var item_id = location.search.split("=")[1];
+				console.log("recommendations_widget for " + item_id);
+				try {
+					var x = document.createElement("SCRIPT");
+					x.type = "text/javascript";
+					x.src = "http://" + WIDGET_HOST + WIDGET_PATH + "LoadListVIZ.js";
+					x.setAttribute("RecommendationType", ""); //"user" for user recommendations
+			        x.setAttribute("ViewType","ListSmall"); //ListLarge or ListSmall - purely informational
+			        x.setAttribute("NumRecommendations", 5); //how many recommendations are shown
+			        x.setAttribute("RecommendationIdentifier", item_id); //either resource or user id
+			        x.setAttribute("WidgetWidth", "250");
+			        x.setAttribute("WidgetHeight", "350");
+			        x.setAttribute("ShowTop", "false"); //set to "true" or "false" to show title, search box, and sort options
+			        x.setAttribute("WidgetTitle", ""); //empty if no title
+					x.setAttribute('id', 'ListWidget');
+					document.getElementById("left_sidebar").appendChild(x);
+				} catch (e) {}
 			
 			};
 		</script>
