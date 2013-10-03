@@ -36,18 +36,13 @@
         <script type="text/javascript">
             function getItem()
             {
-                //get the items identifier from url
-                //var threeLast = ("00"+location.search.split("=")[1]).slice(-3);
-                //getItemJSON('http://glnfinder.agroknow.gr:8080/metadata/AKIF/'+threeLast+'/'+ location.search.split("=")[1] +'.json' );
-                
                 getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
             }
         </script>
-            
-
+	
     </head>
 
-    <body class="innerpage listingpage" onload="getItem(); " >
+    <body class="innerpage listingpage" onload="getItem(); recommendations_widget();" >
         <section id="wrap">
 
             <header id="mainheader">
@@ -77,7 +72,7 @@
                             </div>-->
                         </div>
                     </div>
-                   
+
                 </div>
                 <div class="inner">
                     <nav>
@@ -96,7 +91,7 @@
 
                     <div class="twocols clearfix">
 
-                        <aside class="leftSidebarInfo">
+                        <aside id="left_sidebar" class="leftSidebarInfo">
                             <div class="clearfix">
 
                                 <ul class="floatleft cleanList">
@@ -146,9 +141,12 @@
 
                                 </ul>
                             </div>
-
-
+                            
+							<div id="widget">
+	                                <p>Recommended Resources</p>
+                                </div>					
                         </aside>
+                        
 
 
 
@@ -186,85 +184,6 @@
                                         <div class="floatright" style="margin-right: 15px;" id="itemAccess"></div>
                                     </div>
 
-                                    <!--<div class="clearfix">
-                                            <h4>Rating</h4>
-                                            <ul class="floatleft itemrating">
-                                                    <li>
-                                                            <span class="ratinglabel">Overall rating:</span>
-                                                            <ul class="rating clearfix">
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#">star</a></li>
-                                                                    <li><a href="#">star</a></li>
-                                                                    <li><a href="#">star</a></li>
-                                                            </ul>
-                                                    </li>
-                                                    <li>
-                                                            <span class="ratinglabel">Relevance to Organic Education:</span>
-                                                            <ul class="rating clearfix">
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#">star</a></li>
-                                                                    <li><a href="#">star</a></li>
-                                                            </ul>
-                                                    </li>
-                                                    <li>
-                                                            <span class="ratinglabel">Educational usefulness:</span>
-                                                            <ul class="rating clearfix">
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#">star</a></li>
-                                                                    <li><a href="#">star</a></li>
-                                                            </ul>
-                                                    </li>
-                                                    <li>
-                                                            <span class="ratinglabel">Quality of metadata:</span>
-                                                            <ul class="rating clearfix">
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#" class="active">star</a></li>
-                                                                    <li><a href="#">star</a></li>
-                                                            </ul>
-                                                    </li>
-                                            </ul>
-                                            <div class="floatleft w100 alignright">
-                                                    <a href="#" class="secondary">View Rating History</a>
-                                            </div>
-                                    </div>-->
-
-                                    <!--<div class="clearfix">
-                                            <h4>Tags</h4>
-                                            <nav class="inline-nav clearfix">
-                                                    <a href="#" class="secondary">ethanol</a>
-                                                    <a href="#" class="secondary">alternative fuels</a>
-                                                    <a href="#" class="secondary">biodiesel</a>
-                                                    <a href="#" class="secondary">methanol</a>
-                                                    <a href="#" class="secondary">energy</a>
-                                                    <a href="#" class="secondary">vehicle</a>
-                                                    <a href="#" class="secondary">auto  mobile</a>
-                                            </nav>
-                                            <div class="floatleft w100 alignright">
-                                                    <a href="#" class="secondary">Add Tag</a>
-                                            </div>
-                                    </div>-->
-
-                                    <!--<div class="clearfix">
-                                            <h4>Reviews</h4>
-                                            <p class="review-line">
-                                                    <a href="#" class="secondary">“Lorem Ipsum is simply dummy text of the printing and typesetting industry...”</a>
-                                                    by Yiannis Gouvalis
-                                            </p>
-                                            <p class="review-line">
-                                                    <a href="#" class="secondary">“Lorem Ipsum is simply dummy text of the printing and typesetting industry...”</a>
-                                                    by Yiannis Gouvalis
-                                            </p>
-                                            <div class="floatleft w100 alignright">
-                                                    <a href="#" class="secondary">Add a review</a>
-                                            </div>
-                                    </div>-->
                                 </div>
                             </article>
                             <a href="javascript:window.history.back();" class="backbutton secondary">Back</a>
@@ -284,51 +203,6 @@
             </section>
 
         </section>
-
-        <!--<footer id="mainfooter">
-                        <div class="inner clearfix">
-                                <section class="floatleft footerblock">
-                                        <h3>Collections</h3>
-                                        <ul>
-                                                <li><a href="#">School</a></li>
-                                                <li><a href="#">Academic</a></li>
-                                                <li><a href="#">Professional</a></li>
-                                                <li><a href="#">Casual</a></li>
-                                        </ul>
-                                        <h3>Search</h3>
-                                        <ul>
-                                                <li><a href="#">Browse</a></li>
-                                                <li><a href="#">Semantic</a></li>
-                                                <li><a href="#">Suggest</a></li>
-                                        </ul>
-                                        
-                                </section>
-                                <section class="floatleft footerblock">
-                                        <h3>Community</h3>
-                                        <ul>
-                                                <li><a href="#">Why register</a></li>
-                                                <li><a href="#">Create an account</a></li>
-                                                <li><a href="#">Sign in</a></li>
-                                        </ul>
-                                        <h3 class="aboutus">About Us</h3>
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected</p>
-                                </section>
-                                <section class="floatleft footerblock">
-                                        <h3>Newsletter</h3>
-                                </section>
-                                <section class="floatright footerblock">
-                                        <h3>Connect with us</h3>
-                                        <div class="clearfix footer_social">
-                                                <a href="#">fb</a>
-                                                <a href="#">twitter</a>
-                                                <a href="#">linkin</a>
-                                                <a href="#">googleplus</a>
-                                                <a href="#">youtube</a>
-                                                <a href="#">diaspora</a>
-                                        </div>
-                                </section>
-                        </div>
-                </footer>-->
 
         <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
         <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
@@ -445,6 +319,35 @@
                 
             });
         </script>
+        
+	
+	    <script>
+		    var WIDGET_HOST = "socialcomputing.know-center.tugraz.at/"; //change this to localhost if all of the web stuff is run on your own server
+			var WIDGET_PATH = "VisRecWidget/"; //change this to path on the localhost if everything is run on your own server
+		    var WIDGET_TAG = "widget";
+			function recommendations_widget(){
+		
+				var item_id = location.search.split("=")[1];
+				console.log("recommendations_widget for " + item_id);
+				try {
+					var x = document.createElement("SCRIPT");
+					x.type = "text/javascript";
+					x.src = "http://" + WIDGET_HOST + WIDGET_PATH + "LoadListVIZ_alternate.js";
+					x.setAttribute("RecommendationType", "user"); //"user" for user recommendations
+			        x.setAttribute("ViewType","ListSmall"); //ListLarge or ListSmall - purely informational
+			        x.setAttribute("NumRecommendations", 5); //how many recommendations are shown
+			        x.setAttribute("RecommendationIdentifier", item_id); //either resource or user id
+			        x.setAttribute("WidgetWidth", "250");
+			        x.setAttribute("WidgetHeight", "650");
+			        x.setAttribute("ShowTop", "false"); //set to "true" or "false" to show title, search box, and sort options
+			        x.setAttribute("WidgetTitle", ""); //empty if no title
+					x.setAttribute('id', 'ListWidget');
+					document.getElementById("left_sidebar").appendChild(x);
+				} catch (e) {}
+			
+			};
+		</script>
+
 
     </body>
 

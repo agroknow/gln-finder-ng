@@ -1543,6 +1543,13 @@ a.disabled {
 }
 
 /* recommendations */
+#widget p
+{
+	text-align: center;
+	font-size: 1.1em;
+	border-top:1px solid white;
+}
+
 
 /*ITEM VIEW*/
 
