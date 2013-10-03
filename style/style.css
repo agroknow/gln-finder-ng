@@ -1543,6 +1543,16 @@ a.disabled {
 }
 
 /* recommendations */
+#papers_list
+{
+	border:2px solid #124E62 !important;
+	-webkit-border-radius: 0px 0px 5px 5px !important;
+	-moz-border-radius: 0px 0px 5px 5px !important;
+	-o-border-radius: 0px 0px 5px 5px !important;
+	-ms-border-radius: 0px 0px 5px 5px !important;
+	border-radius: 0px 0px 5px 5px !important;
+}
+
 #widget p
 {
 	text-align: center;
