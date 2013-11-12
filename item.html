@@ -32,14 +32,14 @@
 
         <script src="js/modernizr-1.7.min.js"></script>
 
-        <script type="text/javascript" src="js/ariadne-json.js"></script>
+        <script type="text/javascript" src="js/view_item.js"></script>
         <script type="text/javascript">
             function getItem()
             {
                 getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
             }
         </script>
-	
+
     </head>
 
     <body class="innerpage listingpage" onload="getItem(); recommendations_widget();" >
@@ -141,12 +141,12 @@
 
                                 </ul>
                             </div>
-                            
+
 							<div id="widget">
 	                                <p>Recommended Resources</p>
-                                </div>					
+                                </div>
                         </aside>
-                        
+
 
 
 
@@ -160,7 +160,7 @@
                                 <div class="item-content">
                                     <div>
                                         <p class="itemDescription" id="itemDescription"></p>
-                                        
+
                                     </div>
                                     <div id="itemThumb"></div>
 
@@ -243,27 +243,27 @@
                     width: 12,
                     height: 14
                 });
-				
+
                 $(".selectline select").select2({
                     minimumResultsForSearch:100,
                     dropdownCssClass:"simple"
                 })
-				
+
                 $("#jMenu").jMenu();
-				
+
                 $('#layerslider').layerSlider({
                     navPrevNext : false,
                     navStartStop : false,
                     skin : 'lightskin',
                     skinsPath : 'style/skins/'
                 });
-				
+
                 $('.is_slider').each(function() {
                     var $navWrap = $('<div class="slider-navigation clearfix"></div>');
                     var $navPrev = $('<a href="#" class="slider-prev">Prev</a>');
                     $navWrap.append($navPrev);
                     var $navPager = $('<div class="pager"></div>');
-                    $navWrap.append($navPager); 
+                    $navWrap.append($navPager);
                     var $navNext = $('<a href="#" class="slider-next">Next</a>');
                     $navWrap.append($navNext);
                     $navWrap.insertBefore(this);
@@ -274,9 +274,9 @@
                         next:$navNext,
                         pager:$navPager
                     });
-					
+
                 });
-				
+
                 $(".search_filter input[type=text]").placeholder();
                 $('.filter_parent').each(function() {
                     if($(this).hasClass("opened")) $(this).next().css("display","block");
@@ -286,25 +286,25 @@
                     $(this).toggleClass("opened");
                     $(this).next().slideToggle("slow");
                 });
-				
+
                 $(".sorting select").select2({
                     minimumResultsForSearch:100,
                     dropdownCssClass:"simple"
                 })
-				
+
                 //$('.item-intro > h2').next().css("display","none");
                 //$('.item-intro > h2 > span').click(function(event){
                 //	event.preventDefault();
                 //	$(this).parent().next().slideToggle("slow");
                 //});
-				
+
                 function setface(state) {
                     var t = "human";
                     if (!state.id) return state.text; // optgroup
                     if (typeof state.element.attr === "function") { t = state.element.attr("class"); }
                     else t = state.css;
                     if (typeof t === "undefined") t = "human";
-					
+
                     return "<img class='face' alt='face' src='style/images/" + t + ".png'/>" + state.text;
                 }
                 $(".item-intro select").select2({
@@ -313,20 +313,20 @@
                     formatResult: setface,
                     formatSelection: setface
                 })
-				
+
                 $(".hasscroll").jScrollPane();
-				
-                
+
+
             });
         </script>
-        
-	
+
+
 	    <script>
 		    var WIDGET_HOST = "socialcomputing.know-center.tugraz.at/"; //change this to localhost if all of the web stuff is run on your own server
 			var WIDGET_PATH = "VisRecWidget/"; //change this to path on the localhost if everything is run on your own server
 		    var WIDGET_TAG = "widget";
 			function recommendations_widget(){
-		
+
 				var item_id = location.search.split("=")[1];
 				console.log("recommendations_widget for " + item_id);
 				try {
@@ -344,7 +344,7 @@
 					x.setAttribute('id', 'ListWidget');
 					document.getElementById("left_sidebar").appendChild(x);
 				} catch (e) {}
-			
+
 			};
 		</script>
 

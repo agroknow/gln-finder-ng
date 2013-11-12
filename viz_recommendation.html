@@ -38,22 +38,35 @@
         var WIDGET_PATH = "VisRecWidget/";
         var WIDGET_TAG = "graphs";
 
-		//window.onload = function(){
+        //default values for Bubble version
+        var SOURCE = "LoadBubbleVIZ_alternate.js"
+        var ID = 'BubbleWidget';
+
+		//random function for switching between Bubble and List version
+		var rand = Math.random();
+		if(rand < 0.5) {
+			SOURCE = "LoadListVIZ_alternate.js";
+			ID = 'ListWidget';
+		}
+
+		console.log(rand+" : "+SOURCE+" : "+ID);
+
+			//window.onload = function(){
 	        //function loadWidget() {
 	        window.onload = function() {
 
 		try {
 			var x = document.createElement("SCRIPT");
 			x.type = "text/javascript";
-			x.src = "http://" + WIDGET_HOST + WIDGET_PATH + "LoadBubbleVIZ_alternate.js";
+			x.src = "http://" + WIDGET_HOST + WIDGET_PATH + SOURCE;
 			x.setAttribute("RecommendationType", "user"); //or "resource" for resource recommendations
-	                x.setAttribute("ViewType","OverviewLarge"); //ListLarge, ListSmall, OverviewLarge, OverviewBubble
+	        x.setAttribute("ViewType","ListLarge"); //ListLarge, ListSmall, OverviewLarge, OverviewBubble
 			x.setAttribute("RecommendationIdentifier", "mdaliani"); //either resource or user id aionescu mdaliani
-	                x.setAttribute("WidgetWidth", "710");
-	                x.setAttribute("WidgetHeight", "710");
-	                x.setAttribute("ShowTop", "false");
-	                x.setAttribute("WidgetTitle", "");
-	                x.setAttribute('id', 'BubbleWidget');
+            x.setAttribute("WidgetWidth", "710");
+            x.setAttribute("WidgetHeight", "710");
+            x.setAttribute("ShowTop", "false");
+            x.setAttribute("WidgetTitle", "");
+            x.setAttribute('id', ID);
 			document.getElementsByTagName("head")[0].appendChild(x);
 		} catch (e) {}
 
@@ -145,7 +158,7 @@
 						<ul id="jMenu">
 							<li ><a class="fNiv" href="index.html">Home</a></li>
                             <li><a class="fNiv" href="listing.html?query=*">Browse All</a></li>
-							<li class="active"><a class="fNiv" href="javascript:;">Graph Exploration</a></li>
+							<li class="active"><a class="fNiv" href="javascript:;">Recommendations</a></li>
 						</ul>
 					</nav>
 				</div>
