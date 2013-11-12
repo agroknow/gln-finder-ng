@@ -37,12 +37,13 @@
             function getItem()
             {
                 getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
+
             }
         </script>
 
     </head>
 
-    <body class="innerpage listingpage" onload="getItem(); recommendations_widget();" >
+    <body class="innerpage listingpage" onload="getTaggings(); getItem(); recommendations_widget();" >
         <section id="wrap">
 
             <header id="mainheader">

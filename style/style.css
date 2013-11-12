@@ -4,7 +4,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-	
+
 a { color:#124e62; text-decoration:none; outline:none; }
 a:hover  { text-decoration:none; color:#46ad96; }
 a.secondary { color:#46ad96; }
@@ -163,7 +163,7 @@ header#mainheader {
 	background:#ececec url(images/header_bg.png) center bottom no-repeat;
 	position:relative;
 }
-.top-menu { 
+.top-menu {
 	height:49px;
 	line-height:49px;
 	background:#124e62;
@@ -184,7 +184,7 @@ header#mainheader {
 	font-size:10px;
 	font-weight:bold;
 	text-transform:uppercase;
-	
+
 }
 .top-menu .select2-container .select2-choice {
 	color:#fff;
@@ -339,7 +339,7 @@ header#mainheader {
 .moduletable_extendedsearch .radioline label {
 	float:left;
 	margin-right:15px;
-	
+
 }
 .moduletable_extendedsearch .radioline label .styledRadio {
 	float:left;
@@ -821,7 +821,7 @@ body.innerpage #main {
 }
 .filter_parent:hover {
 	background-color:#073646;
-    
+
 }
 .filter_parent.opened {
 	background-color:#073646;
@@ -896,7 +896,7 @@ body.innerpage #main {
 	background-color:#073646;
 	font-weight:normal;
 	text-align:center;
-    
+
 }
 .remove_filters {
 	text-align:right;
@@ -987,7 +987,7 @@ body.innerpage #main {
     max-width : 650px; /*fix infinite length of keywords line*/
 	margin-bottom:7px;
     overflow:hidden; /*### need change because it hides some keywords*/
-    
+
 
 }
 
@@ -1543,6 +1543,17 @@ a.disabled {
 }
 
 /* recommendations */
+#sort_container
+{
+
+}
+
+#sort_container .filter
+{
+	height:30px;
+	width:auto;
+}
+
 #papers_list
 {
 	border:2px solid #124E62 !important;
