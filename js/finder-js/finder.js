@@ -218,7 +218,7 @@ function initializeFinder(){
 		if(typeof customizeFinder == 'function') {
 			var customParams = customizeFinder();
              var urlSelectedProviders = getUrlVars()["providers"];
-            
+
 			if(customParams) {
                 /*limit collection|providers*/
                 if(urlSelectedProviders){
@@ -251,7 +251,7 @@ function initializeFinder(){
 				if (customParams.externalSources) EXT_SOURCES = customParams.externalSources;
 			}
 		}
-        
+
         //		if (PAGE_CONTAINERS.indexOf('pagination_top')>=0) {
         //			if (!$('insert_pagination_top')) {
         //				$('body').insert('<div id="insert_pagination_top" style="display:none"></div>');
@@ -259,15 +259,15 @@ function initializeFinder(){
         //			}
         //			$('insert_pagination_top').update('<DIV id="pagination_top"></DIV>');
         //		}
-        
+
 		if (PAGE_CONTAINERS.indexOf('pagination_bottom')>=0) {
 			if (!$('insert_pagination_bottom')) {
 				$('body').insert('<div id="insert_pagination_bottom" style="display:none"></div>');
 			}
 			$('insert_pagination_bottom').update('<div id="pagination_bottom"></div>');
 		}
-        
-        
+
+
 		if (!$('insert_summary')) {
 			$('body').insert('<div id="insert_summary" style="display:none"></div>');
 		}
@@ -276,26 +276,26 @@ function initializeFinder(){
 			$('body').insert('<div id="insert_facets" style="display:none"></div>');
 		}
 		var div = [];
-        
+
 		for (var i=0;i<FACET_TOKENS.length;i++)
         {
 			var fn = FACET_TOKENS[i];
-			
-            
+
+
 //            div.push('<DIV id="rb_'+fn+'" >');
 			div.push('<a href="#" id="'+fn+'" onclick="return false;" class="filter_parent"><span>'+FACET_LABELS[fn]+'</span></a><div id="'+fn+'_rbo" class="filter_child" style="display: none; overflow: hidden;height:auto;"></div>');
-			
+
 //            div.push('</DIV>');
 		}
-        
-        
+
+
 		div.push('</DIV>');
-        
+
         $('insert_facets').update(div.join(''));
-        
-        
-        
-        
+
+
+
+
 		if (!$('insert_results')) {
 			$('body').insert('<div id="insert_results" style="display:none"></div>');
 		}
@@ -323,10 +323,10 @@ function initializeFinder(){
         //		}
         //		div.push('</DIV>');
         // 		$('insert_moreResults').update(div.join(''));
-        
-        
-        
-        
+
+
+
+
 		initializeJamlTemplates();
 		PAGE = new YAHOO.widget.Paginator({
                                           rowsPerPage : PAGE_SIZE,
@@ -337,7 +337,7 @@ function initializeFinder(){
 		PAGE.render();
 		PAGE.subscribe('changeRequest',handlePagination);
 		pagination_hide();
-        
+
 		FINDER_INITIALIZED = true;
 	}
 }
@@ -394,7 +394,7 @@ function getExternalSourceResult(prefix,engine){
 //	var request = {clause: clauses,
 //    resultFormat:'json'
 //	};
-//	
+//
 //	new Ajax.JSONRequest(EXT_SOURCE_URL, {
 //                         callbackParamName: "callback",
 //                         method: 'get',
@@ -404,7 +404,7 @@ function getExternalSourceResult(prefix,engine){
 //                         },
 //                         onSuccess: function(transport) {
 //                         var result = transport.responseText.evalJSON(true).result;
-//                         
+//
 //                         result['title'] = 'Search '+ AVAILABLE_ES[prefix]['name'];
 //                         res.insert(Jaml.render(prefix+'_field',result));
 //                         },
@@ -420,11 +420,11 @@ function doSearch(){
         return;
     }
     $('searchMessage').hide();
-    
+
     //showFacets();
     resetFacets();
     findMaterials(0,PAGE_SIZE,true,false);
-  
+
     //searchExternalSources();
 }
 
@@ -460,20 +460,20 @@ function parseQueryString(initUpdate){
     //var spq = $F('context').split('context:');
     var plainText = spq[0];
     var clauses = [];
-    
-    
+
+
     var selectedProviders;
     if(typeof customizeFinder == 'function')
     {
         var customParams = customizeFinder();
         if(customParams.selectedProviders) selectedProviders = customParams.selectedProviders;
-        
+
     }
 
-    
-    
-    
-    
+
+
+
+
     if(!plainText.blank()){
         clauses.push({language:'VSQL',expression:plainText});
         // add the below to github
@@ -481,7 +481,7 @@ function parseQueryString(initUpdate){
         var key = getUrlVars()["keyword"];
         var context = getUrlVars()["context"];
         var urlSelectedProviders = getUrlVars()["providers"];
-        
+
         if (lrt) {
             lrt = lrt.replace("#","").replace("%20", " ");
             clauses.push({language:'anyOf',expression:'lrt:'+ lrt});
@@ -498,13 +498,13 @@ function parseQueryString(initUpdate){
             urlSelectedProviders = urlSelectedProviders.replace("#","").replace("%20", " ");
             clauses.push({language:'anyOf',expression:'provider:'+urlSelectedProviders});
         }
-        
+
         if (!urlSelectedProviders && selectedProviders){
             clauses.push({language:'anyOf',expression:'provider:'+selectedProviders});
         }        //clauses.push({language:'anyOf',expression:'keyword:' + key});
         //clauses.push({language:'anyOf',expression:'lrt:image'});
         // add the below to code @ github. It is to limit the results only for OE collection //
-        
+
     }
     if(spq.length > 1){
         var keyword = spq[1];
@@ -537,17 +537,17 @@ function formatInteger(number, com) {
 }
 
 function findMaterials(start,numberResults,needsUpdate,initUpdate){
-    
+
 	var selectedFacets = $('insert_facets').select('a.facet-selected');
-	
+
     //    document.getElementById("searchQuery").innerHTML=
     //        "start: <br/><h3>"+start+"</h3>"
     //        +"numberResults: <br/><h3>"+numberResults+"</h3>"
     //        +"needsUpdate: <br/><h3>"+needsUpdate+"</h3>"
     //        +"initUpdate: <br/><h3>"+initUpdate+"</h3>";
-	
-    
-    
+
+
+
     var facetExpressions = $H();
     selectedFacets.each(function(item,index){
                         var pos = item.id.indexOf(':');
@@ -556,9 +556,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                         facetValue = facetValue.replace(/\"/g,"'");
             facetExpressions.set(facet,(facetExpressions.get(facet) == undefined) ? facetValue : facetExpressions.get(facet) + "," + facetValue);
             });
-                        
+
                         var clauses = parseQueryString(initUpdate);
-                        
+
                         facetExpressions.each(function(pair)
                                               {
                                               clauses.push({language:'anyOfFacet',expression:pair.key + ":" + pair.value});
@@ -566,11 +566,11 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                         FACET_INCLUDES.each(function(exp)
                                             {
                                             clauses.push({language:'anyOfFacet',expression:exp});
-                                            
+
                                             });
-                        
+
                         // alert(JSON.stringify(clauses));
-                        
+
                         var request = {
                         clause: clauses,
                         resultInfo:'display',
@@ -583,19 +583,19 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                         resultFormat:'json',
                         resultSortkey:''
                         };
-                        
-                        
+
+
                         //  document.getElementById("jsonRequest").innerHTML="Request: <br/><h3>"+JSON.stringify(request)+"</h3>";
-                        
+
                         //        alert(JSON.stringify(request));
-                        
-                        
+
+
                         if(!$F('query').blank())
                         $('search_terms').update($F('query'));
-                        
+
                         $('search_status').update('Searching...');
                         $('noResults').hide();
-                        
+
 new Ajax.JSONRequest(SERVICE_URL, {
  callbackParamName: "callback",
  method: 'get',
@@ -605,23 +605,23 @@ new Ajax.JSONRequest(SERVICE_URL, {
  },
  onSuccess: function(transport)
                      {
-                   
-                     
- var result = transport.responseText.evalJSON(true).result;
- 
-                     
-                   
 
- 
+
+ var result = transport.responseText.evalJSON(true).result;
+
+
+
+
+
  //alert(JSON.stringify(result));
  // document.getElementById("jsonResponse").innerHTML="Response: <br/><h3>"+JSON.stringify(result)+"</h3>";
- 
+
  $('search_results').update('');
  $('noResults').hide();
-  
-                     
+
+
  $('search_status').update('Processing time: ' + (result.processingTime/1000).toFixed(3) + ' seconds');
- 
+
  if(initUpdate) {
  $('searchMessage').insert('<h3 align="center">Available: '+formatInteger(result.nrOfResults,',')+' learning resources</h3>');
  } else {
@@ -630,51 +630,51 @@ new Ajax.JSONRequest(SERVICE_URL, {
  if(result.metadata.size() == 0){
  $('noResults').show();
  }
- 
-                     
-  
- 
+
+
+
+
  /*----------------------------------------------------------------------------------------------*/
  /*--------------------CREATE EVERY ITEM BEFORE CALL RENDERING WITH JAML-------------------------*/
- 
+
  result.metadata.each(function(item,index){
-                      
-                      
+
+
                       if(item.keywords == undefined || item.keywords == '')
                       $('search_results').insert(Jaml.render('resultwithoutkeywords',item));
                       else {
                       try {item.keywords = item.keywords.split(",");} catch(e){}
-                      
+
                       var spt = item.title.split(",",1);
                       item.title = spt[0];
                       var length = spt[0].length;
-                      
+
                       if (item.title[0] == '[')
                       item.title = item.title.substring(1,length);
                       else
                       item.title = item.title.substring(0,length);
-                      
+
                       //spt = item.description.split(",",1);
                       //item.description=spt[0];
                       //length = spt[0].length;
                       length=END_DESCRIPTION;
-                      
+
                       if (item.description[0] == '[')
                       item.description = item.description.substring(1,length);
                       else
                       item.description =item.description.substring(0,length);
-                      
+
                       if (item.description.indexOf(']') != -1)
                       {
                       spt = item.description.split("]");
                       item.description=spt[0];
                       }
-                      
-                      
-                      
+
+
+
                       // spt = item.description.split(",",1);
                       // item.description=spt[0];
-                      
+
                       //---
                       //spt = item.metaMetadataId.split(",");
                       //item.metaMetadataId=spt[1];
@@ -682,13 +682,13 @@ new Ajax.JSONRequest(SERVICE_URL, {
                       //item.metaMetadataId=spt[1];
                       //spt = item.metaMetadataId.split("]");
                       //item.metaMetadataId=spt[0];
-                      
-                      
+
+
                       //length = spt[1].length;
                       //item.metaMetadataId = item.metaMetadataId.substring(1,length);*/
                       //alert(item.metaMetadataId);
-                      
-                      
+
+
                       if (item.format.indexOf('pdf') != -1)
                       item.format='images/icons/pdf.png';
                       else if (item.format.indexOf('powerpoint') != -1)
@@ -714,34 +714,34 @@ new Ajax.JSONRequest(SERVICE_URL, {
                       item.format='images/icons/application.png';
                       else
                       item.format='images/icons/url.png';
-                      
-                      
+
+
                       ///example of mdPath : home/workflow/repository/LOM/DIGITALGREEN/1455.xml
-                      
+
                       var spliter1 = item.mdPath.split("/");
-                      
+
                       var spliter2 = spliter1[spliter1.length-1].split(".");
                       item.identifier = spliter2[0];
-                      
+
                       //alert(item.identifier);
-                      
-                      
-                      
+
+
+
                       $('search_results').insert(Jaml.render('result',item));
-                      
-                    
+
+
                       expand();
-                      
+
                       // alert(item.metaMetadataId);
                       iter++;
                       }
                       });
-                     
-                     
-                     
- 
+
+
+
+
  $('search_results_index').show();
- 
+
  var finalNumberResults = ((start + numberResults) < result.nrOfResults)?(start + numberResults):result.nrOfResults;
  if(result.nrOfResults > 0) {
  $('search_results_index').update(' (#{start} - #{end} of #{total})'.interpolate({start: formatInteger(start + 1,THOUSAND_SEP), end: formatInteger(finalNumberResults,THOUSAND_SEP), total: formatInteger(result.nrOfResults,THOUSAND_SEP)}));
@@ -751,7 +751,7 @@ new Ajax.JSONRequest(SERVICE_URL, {
  $('search_results_index').update('(No Results Found)');
  pagination_hide();
  }
- 
+
  //for facet presentation
  //                                 result.facets.each(function(item,index){
  //
@@ -760,11 +760,11 @@ new Ajax.JSONRequest(SERVICE_URL, {
  //                                    $('search_results').insert(Jaml.render('result2',item));
  //
  //                                 });
- 
- 
+
+
  }
- 
- 
+
+
  /*if(!keyword.blank()){
   $('keywords_filter').show();
   $('kwv').update(keyword);
@@ -772,13 +772,13 @@ new Ajax.JSONRequest(SERVICE_URL, {
   else{
   $('keywords_filter').hide();
   }*/
- 
-                     
-                    
+
+
+
                      function facetSlide(){
-                     
+
                      jQuery(document).ready(function(){
-                                            
+
                                             jQuery('.filter_parent').each(function() {
                                                                           if(jQuery(this).hasClass("opened")) jQuery(this).next().css("display","block");
                                                                           });
@@ -788,13 +788,13 @@ new Ajax.JSONRequest(SERVICE_URL, {
                                                                            jQuery(this).next().slideToggle("slow");
                                                                            });
                                             exit();
-                                            
+
                                             });
                      }
 
-                     
-                     
-                     
+
+
+
  if(needsUpdate){
  updatePaginator(result.nrOfResults);
  result.facets.each(function(item,index)
@@ -825,31 +825,31 @@ new Ajax.JSONRequest(SERVICE_URL, {
                                                               //element.insert(Jaml.render('rbcriteria',it2));
                                                               if (fld!= "language")
                                                               {
-                                                              
+
                                                               element.insert(Jaml.render('rbcriteria',it2));
-                                                              
+
                                                               }else
                                                               // check first if langName[it2.val] exists already in rbList
                                                               {
                                                               checkLang(it2.val,it2.count);
                                                               if (CHECK==0){
                                                               element.insert(Jaml.render('rbcriteria2',it2));}
-                  
+
                                                               }
-                                                              
+
                                                               }
                   });
                                       }
                                       }
                                       });
-                    
-                    
+
+
                     //bind and triggers the function for sliding in facets!
                     facetSlide();
-                    
+
                     selectedFacets.each(function(item,index){
                                         $(item.id).addClassName('facet-selected');
-                                        
+
                                         });
                     }
                     //webSnapr.init();
@@ -865,22 +865,22 @@ new Ajax.JSONRequest(SERVICE_URL, {
                     $('search_results_index').update('');
                     }
                     });
-                     
-                     
-                     
+
+
+
  }
- 
+
  function checkLang(name,counter){
- 
+
  CHECK=0;
  $$('#language_rbo li').each(function(item) {
-                             
+
                              //  alert(item.innerHTML);
-                             
+
                              var pos = item.id.indexOf(':');
-                             
+
                              var langValue = item.id.substring(pos+1);
-                             
+
                              if (langName[langValue]== langName[name])
                              {
                              //   pos = item.name.indexOf('/a');
@@ -888,35 +888,35 @@ new Ajax.JSONRequest(SERVICE_URL, {
                              pos = count.indexOf('/a');
                              var length = count.length;
                              count = item.innerHTML.substring(pos+5,length-1);
-                             
+
                              count=count.replace("," ,"");
                              var num = count*1;
-                             
+
                              num = Number(num) + Number(counter);
                              num = formatInteger(num,THOUSAND_SEP);
-                             
+
                              item.update(item.innerHTML.substring(0,pos+4) + '(#{count})'.interpolate({count: num}));
                              CHECK=1;
-                             
+
                              return;
                              }
-                             
+
                              });
- 
- 
+
+
  }
- 
- 
-                  
- 
- 
+
+
+
+
+
  //function loadTranslator() {
  //
  //  var script = new Element('script',{'type':'text/javascript','src':'http://translate.google.com/translate_a/element.js?cb=googleSectionalElementInit&ug=section&hl=auto'});
  //
  //  $('script-translator').childElements().each(function(el){el.remove();});
  //  $('script-translator').appendChild(script);
- //  
+ //
  //  if(google.translate) {
  //	new google.translate.SectionalElement({
  //	sectionalNodeClassName: 'lodescription',
@@ -924,7 +924,7 @@ new Ajax.JSONRequest(SERVICE_URL, {
  //	background: '#ffffcc'
  //	}, 'google_sectional_element');
  //  }
- //  
+ //
  //  $$('.lodescription').each(function(data){
  //	var toTranslate = data.innerHTML.stripScripts().unescapeHTML().replace(/[\n\r\s]+/g, ' ').replace('Translate','');
  //	google.language.detect(toTranslate,function(result){
@@ -932,27 +932,27 @@ new Ajax.JSONRequest(SERVICE_URL, {
  //			if(result.language == 'en') {
  //				data.descendants()[0].hide();
  //			}
- //			
+ //
  //		}
  //	});
  //  });
- //  
- //  
+ //
+ //
  //}
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
  function addEndingDescription(data){
  if(data.length ==  0 )
  return "";
  return (data.length<END_DESCRIPTION)?data:(data.substr(START_DESCRIPTION,END_DESCRIPTION)).concat(""," <span class='suspension-points'>...</span>");
  }
- 
+
  function removeHtmlTags(data) {
  var strInputCode = data.replace(/&(lt|gt);/g, function (strMatch, p1){
                                  return (p1 == "lt")? "<" : ">";
@@ -960,20 +960,20 @@ new Ajax.JSONRequest(SERVICE_URL, {
  var strTagStrippedText = strInputCode.replace(/<\/?[^>]+(>|$)/g, " ");
  return strTagStrippedText;
  }
- 
+
  function stripUrl(data) {
- 
+
  var strTagStrippedText = data.replace(/<\/?[^>]:+(>|$)/g, "_");
  return strTagStrippedText;
- 
- 
+
+
  }
- 
- 
- 
- 
+
+
+
+
  function initializeJamlTemplates(){
- 
+
  Jaml.register('thumb_pres', function(data) {
                //  img({src:'./icons/'+ data.format +'.png'})
                //img({src:'http://SnapCasa.com/Get.aspx?url='+data.identifier})
@@ -981,30 +981,30 @@ new Ajax.JSONRequest(SERVICE_URL, {
                a({href: data.location,title: data.title , target: '_blank'}, img({src:data.format, height:"48", width:"48" }))
                // img({src:'http://open.thumbshots.org/image.aspx?url='+'http://edis.ifas.ufl.edu/topic_ag_peanuts'})
                });
- 
- 
+
+
  Jaml.register('keyword', function(data) {
                a({href:'javascript:void(0);', onclick: "searchByKeyword('#{key}')".interpolate({key: data})}, data);
                });
- 
+
     /*
      Jaml.render('first_title',function(data){
      a({href:data.location,title: data.title, target: '_blank'},data.title)
      }); */
- 
- 
+
+
  /*---------------------------------------------------------------------------------------------*/
  /*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
- 
+
  //var odd=0;//variable for changing background
- 
+
  Jaml.register('result',function(data){
-               
+
                //               odd++;
                //               var backgroundClass = ""
                //               if(odd%2===0){backgroundClass = "odd";}
                var keywordsToEmbed = "";
-               
+
                for(var i=0 , length=data.keywords.length; i<length;i++)
                {
                if(i!==length-1)
@@ -1017,7 +1017,7 @@ new Ajax.JSONRequest(SERVICE_URL, {
                }
                }
                //               console.log("data.ageRange:"+data.ageRange);
-               
+
                article({class:'item-intro odd'},
                        header(
                               h2(img({src:data.format}),
@@ -1032,25 +1032,25 @@ new Ajax.JSONRequest(SERVICE_URL, {
     div({cls:'line keywords'}, span("Keywords:"), keywordsToEmbed /*item.keywords*/)),
                                             div({cls:'floatright'},
     div({cls:'line alignright'}, a({href:"item.html?id="+data.identifier, cls:'moreinfo'}, "More Info")))))))});
- 
+
  //a({href:"item.html?id="+data.identifier}, "link")),
- 
+
  /*div({cls:'row'},
-  
+
   div({cls:'lotitle'},
   a({href:data.location,title: data.title, target: '_blank'},data.title)
   // Jaml.render('first_title',data.title)
-  ),                 
-  
+  ),
+
   div({cls:'thumb'},
   //img({src:'./images/pdf.jpg'}),
   Jaml.render('thumb_pres',data),
   div({cls:'lodescription'},
   div({cls:'control'}),
   removeHtmlTags(addEndingDescription(data.description)))
-  
+
   ),
-  
+
   div({cls:'moremeta'}, p(),span({cls:'heading'},'more info'),
   div({cls:'metacontent'},
   'Identifier: ', a({href:data.identifier,title: data.identifier, target: '_blank'},data.identifier), br(),
@@ -1060,19 +1060,19 @@ new Ajax.JSONRequest(SERVICE_URL, {
   span({cls:'bold'},'Keywords: '),
   Jaml.render('keyword',data.keywords)
   ), br(),
-  a({href:"http://83.212.96.169:8080/repository2/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
-  
+  a({href:"http://54.228.180.124:8080/repository2/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
+
   )
   )
   ); */
- 
+
  //});
-                     
-                     
-                     
-                   
-                     
- 
+
+
+
+
+
+
  Jaml.register('resultwithoutkeywords', function(data) {
                div({cls:'row'},
                    div({cls:'lotitle'},
@@ -1080,48 +1080,48 @@ new Ajax.JSONRequest(SERVICE_URL, {
                    div({cls:'snip'},
                        div({cls:'lodescription'},
                            div({cls:'control'}),
-                           removeHtmlTags(addEndingDescription(data.description)))		
+                           removeHtmlTags(addEndingDescription(data.description)))
                        )
                    );
                });
- 
+
  /*---------------------------------------------------------------------------------------------*/
  /*-----------------------------RENDER FACETS--------------------------------*/
- 
 
-                     
+
+
  Jaml.register('rbcriteria', function(data)
                {
-               
+
                //var label = data.val;
                //if(data.val=="organicedunet"){label = "organic edunet";}//in future it will created through mapping for providers in order to have more readable labels
-               
+
                //###
                var label = data.val;
                if(providerName[data.val])
                {label = providerName[data.val];}
-               
+
                a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
-               
+
                //               li({id: data.field + ':' + data.val},
                //                  a({href:'javascript:void(0);',id: data.field + ':' + data.val, title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),}, span(data.val), span({cls:'total'}, data.count)));
                });
- 
- 
+
+
  Jaml.register('rbcriteria2', function(data)
                {
                a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val, parent: data.field})}, span(langName[data.val]), span({cls:'total'}, data.count ));
-               
+
                //              li({id: data.field + ':' + data.val},
                //         a({href:'javascript:void(0);', title: data.val,onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field}),},
                //           span(langName[data.val]), span({cls:'total'}, data.count )));
                });
- 
- 
- 
- 
+
+
+
+
  for (var i=0;i<EXT_SOURCES.length;i++){
- 
+
  Jaml.register(EXT_SOURCES[i]+'_field', function(data) {
                a({href: data.apiurl, title: data.title, target: '_blank'},
                  "<br>(" + formatInteger(data.nrOfResults,THOUSAND_SEP) + " results)"
@@ -1129,58 +1129,58 @@ new Ajax.JSONRequest(SERVICE_URL, {
                });
  }
  }
- 
- 
+
+
  function expand(){
- 
+
  jQuery(document).ready(function() {
-                        
+
                         jQuery('.metacontent').hide();
                         jQuery('.heading').click(function()
      // jQuery('#'+id).click(function()
-     {   
+     {
      jQuery(this).next('.metacontent').slideToggle(500);
      //  jQuery(this).next("#"+id).slideToggle(500);
      exit();
      });
-                        
-                        
+
+
                         });
- 
+
  }
- 
- 
- 
- 
+
+
+
+
  function updatePaginator(NR_RESULTS){
  PAGE.set('totalRecords',NR_RESULTS);
  PAGE.set('recordOffset',0);
  }
- 
- 
+
+
  function handlePagination(newState){
  // Collect page data using the requested page number
  //newState.
  findMaterials(newState.recordOffset,newState.rowsPerPage,false,false);
  // Update the Paginator's state
  PAGE.setState(newState);
- 
+
  }
- 
+
  function selectParent(parent){
  var childSelected = false;
- 
+
  $(parent+'_rbo').childElements().each(function(el){
                                        if(el.hasClassName('facet-selected')) {
                                        $(parent).addClassName('parent-selected');
                                        childSelected = true;
                                        }
                                        });
- 
+
  if(!childSelected)
  $(parent).removeClassName('parent-selected');
  }
- 
+
  function toggleFacetValue(elem,parent)
 {
  $(elem).toggleClassName('facet-selected');
@@ -1188,7 +1188,7 @@ new Ajax.JSONRequest(SERVICE_URL, {
  selectParent(parent);
  findMaterials(0,PAGE_SIZE,true,false);
  }
- 
+
  function html_entity_decode(str) {
  var ta=document.createElement("textarea");
  ta.innerHTML=str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -1196,18 +1196,18 @@ new Ajax.JSONRequest(SERVICE_URL, {
  ta.parentNode.removeChild(ta);
  return val;
  }
- 
+
  function fullLangName(iso)
  {
- 
+
  var fullName = "";
- 
+
  if (iso == "en")
  fullName = langName["en"];
  else if  (iso == "fr")
  fullName = langName["fr"];
- 
- 
+
+
  return fullName;
  }
- 
+

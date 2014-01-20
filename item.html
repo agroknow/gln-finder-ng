@@ -36,14 +36,13 @@
         <script type="text/javascript">
             function getItem()
             {
-                getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
-
+                getItemJSONP('http://54.228.180.124:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
             }
         </script>
 
     </head>
 
-    <body class="innerpage listingpage" onload="getTaggings(); getItem(); recommendations_widget();" >
+    <body class="innerpage listingpage" onload="getItem(); recommendations_widget();" >
         <section id="wrap">
 
             <header id="mainheader">
@@ -52,9 +51,9 @@
                         <div class="top-menu-body">
                             <!--<a href="#">Sign In</a> or <a href="#">Register</a>-->
                             <!--<select id="lang-selector">
- <option value="en">English</option>
- <option value="gr">Greek</option>
- </select>-->
+							 <option value="en">English</option>
+							 <option value="gr">Greek</option>
+							 </select>-->
                         </div>
                     </div>
                 </div>
@@ -168,10 +167,23 @@
                                     <div class="clearfix">
                                         <div>
                                             <ul class="itemKeywords">
+                                           		<!--
+                                           			<li>
+                                                    <p>Rate this item</p>
+													<span><a href="javascript:;" onclick="rateItem(1)">1</a></span>
+													<span><a href="javascript:;" onclick="rateItem(2)">2</a></span>
+													<span><a href="javascript:;" onclick="rateItem(3)">3</a></span>
+													<span><a href="javascript:;" onclick="rateItem(4)">4</a></span>
+													<span><a href="javascript:;" onclick="rateItem(5)">5</a></span>
+													</li>
+                                                -->
+                                           		<li>
+                                                    <span>Tags:</span>
+                                                    <nav id="tags" class="inline-nav clearfix"> <!--auto-generated--></nav>
+                                                </li>
                                                 <li>
                                                     <span>Keywords:</span>
                                                     <nav id="itemKeywords" class="inline-nav clearfix"> <!--auto-generated--></nav>
-
                                                 </li>
                                             </ul>
                                         </div>
@@ -191,6 +203,8 @@
                         </section>
                     </div>
                 </div>
+
+
 
                 <section class="supporters">
                     <div class="inner aligncenter">

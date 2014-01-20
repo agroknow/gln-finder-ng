@@ -1,4 +1,6 @@
-//JSONP version
+/************************************************************************/
+/*							GET ITEM									*/
+/************************************************************************/
 //we get a json array and manipulate it.
 function getItemJSONP(urlTemp) {
   jQuery.ajax({
@@ -6,10 +8,12 @@ function getItemJSONP(urlTemp) {
     dataType: "jsonp",
     success: function(data) {
 
-      //alert(data);
       //parse array and create an JS Object Array
       //every item is a JSON
+
+      //console.log(data);
       var arrayWithJSONS = JSON.parse(data);
+	  //console.log(arrayWithJSONS[0]);
 
       //alert("my_1 : " + arrayWithJSONS[0].languageBlocks.en.title);
       //-------------
@@ -61,7 +65,15 @@ function getItemJSONP(urlTemp) {
               jQuery('#itemThumb').append('<a href="' + arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url + '"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url=' + arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url + '" /> </a>');
 
             }
+
+
+              //CALL SOCIAL NAVIGATION API BASED ON URI
+              getTaggingsForItem(arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url);
           }
+
+
+
+
           if (arrayWithJSONS[0].expressions[0].manifestations[0].parameter !== undefined) {
             jQuery('#itemMediaFormat').append('<span class="forKomma last">' + arrayWithJSONS[0].expressions[0].manifestations[0].parameter + '</span>');
 
@@ -218,7 +230,16 @@ function getItemJSONP(urlTemp) {
             jQuery('#itemThumb').append('<a href="' + arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url + '"><img class="itemsMedia" src="http://open.thumbshots.org/image.aspx?url=' + arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url + '" /> </a>');
 
           }
+
+              //CALL SOCIAL NAVIGATION API BASED ON URI
+              getTaggingsForItem(arrayWithJSONS[0].expressions[0].manifestations[0].items[0].url);
+
         }
+
+
+
+
+
         if (arrayWithJSONS[0].expressions[0].manifestations[0].parameter !== undefined) {
           jQuery('#itemMediaFormat').append('<span class="forKomma last">' + arrayWithJSONS[0].expressions[0].manifestations[0].parameter + '</span>');
 
@@ -323,19 +344,114 @@ function getItemJSONP(urlTemp) {
   })
 }
 
-//use Social navigation service API
-function getTaggings(remoteUserId) {
+/************************************************************************/
+/*				use Social Navigation Service API						*/
+/************************************************************************/
 
-	var path = 'http://62.217.125.104:8080/socnav/api/taggings?remoteUserId='+remoteUserId;
+//get Tags for Item
+function getTaggingsForItem(itemResourceUri) {
 
-	console.log(path);
+	var path = 'http://62.217.125.104:8080/socnav/api/taggings?itemResourceUri='+itemResourceUri;
+	console.log(" >> " + path);
+
+	if(path.indexOf("/resource/")!=-1) path = path.replace('/resource/', '/entry/');
+
 	jQuery.ajax({
+		type:"GET",
+		contentType: 'application/json',
+		beforeSend: function (request)
+	        {
+	        	request.withCredentials = true;
+	            request.setRequestHeader("Authorization", "Basic YWRtaW46YWRtaW4==");
+	        },
 	    url: path,
-	    dataType: "jsonp",
+	    dataType: "json",
 	    success: function(data) {
+	    	var exist_flag = false;
+	    	//var arrayWithJSONS = JSON.parse(data);
+	    	for(i in data) {
+	    		for(j in data[i].tags) {
+	    			exist_flag=true;
+		    		jQuery('#tags').append('<a  href="listing.html?query=' + data[i].tags[j].value + '" class="forKomma link last">' + data[i].tags[j].value + '</a>');
+	    		}
+	    	}
+	    	if(!exist_flag) jQuery('#tags').append('<a  href="javascript:;" class="forKomma link last"> - </a>');
 	    	console.log(data);
+	    },
+	    error: function (request, status, error) {
+	    	jQuery('#tags').append('<a  href="javascript:;" class="forKomma link last"> - </a>');
+		    //console.log(error);
+		  }
+	    });
+}
 
-	    }});
+//get Ratings for Item
+function getRatingForItem(itemResourceUri) {
+
+	var path = 'http://62.217.125.104:8080/socnav/api/ratings?itemResourceUri='+itemResourceUri;
+	console.log(" >> " + path);
+
+	if(path.indexOf("/resource/")!=-1) path = path.replace('/resource/', '/entry/');
+
+	jQuery.ajax({
+		type:"GET",
+		contentType: 'application/json',
+		beforeSend: function (request)
+	        {
+	        	request.withCredentials = true;
+	            request.setRequestHeader("Authorization", "Basic YWRtaW46YWRtaW4==");
+	        },
+	    url: path,
+	    dataType: "json",
+	    success: function(data) {
+	    	var exist_flag = false;
+	    	//var arrayWithJSONS = JSON.parse(data);
+	    	for(i in data) {
+	    		for(j in data[i].tags) {
+	    			exist_flag=true;
+		    		jQuery('#tags').append('<a  href="listing.html?query=' + data[i].tags[j].value + '" class="forKomma link last">' + data[i].tags[j].value + '</a>');
+	    		}
+	    	}
+	    	if(!exist_flag) jQuery('#tags').append('<a  href="javascript:;" class="forKomma link last"> - </a>');
+	    	console.log(data);
+	    },
+	    error: function (request, status, error) {
+	    	jQuery('#tags').append('<a  href="javascript:;" class="forKomma link last"> - </a>');
+		    //console.log(error);
+		  }
+	    });
+}
+
+//add Rating for Item
+function rateItem(itemResourceUri) {
+
+	var path = 'http://62.217.125.104:8080/socnav-gln/ratings';
+	var thisJson = '{"domain":null,"id":254,"ip_address":null,"item":{"id":246,"metadata_uri":null,"resource_id":null,"resource_uri":"http://confolio.vm.grnet.gr/scam/2/entry/630","version":0},"preference_avg":4.66667,"preference_dimensions":3,"preferences":[{"dimension":3,"id":728,"value":5.0,"version":0},{"dimension":2,"id":727,"value":5.0,"version":0},{"dimension":1,"id":726,"value":4.0,"version":0}],"session_id":null,"sharing_level":"Public","updated_at":1373218872000,"user":{"id":20,"metadata_uri":null,"remote_id":290,"version":0},"version":0}';
+
+
+	console.log(" >> " + path);
+	console.log(thisJson);
+
+	if(path.indexOf("/resource/")!=-1) path = path.replace('/resource/', '/entry/');
+
+	jQuery.ajax({
+		type:"POST",
+		beforeSend: function (request)
+	    {
+	    	request.withCredentials = true;
+	        request.setRequestHeader("Authorization", "Basic YWRtaW46YWRtaW4==");
+	    },
+		data: thisJson,
+		contentType: "application/json; charset=utf-8",
+	    url: path,
+	    dataType: "json",
+	    success: function(data) {
+
+	    },
+	    error: function (request, status, error) {
+	    	console.log(error);
+		  }
+	    });
 }
 
 // ADD THE LINK TO THE BANNER IMAGES
